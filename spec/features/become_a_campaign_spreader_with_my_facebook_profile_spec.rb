@@ -108,6 +108,19 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
         expect(page).to have_css("input#campaign_spreader_timeline_user_email[data-invalid]")
       end
     end
+
+    context "when I fill the message field" do
+      scenario "it should save the message" do
+        message = "My custom message"
+
+        visit campaign_path(campaign)
+        fill_in "campaign_spreader[message]", with: message
+        fill_in "campaign_spreader[timeline][user][email]", with: email
+        click_button "facebook-profile-campaign-spreader-submit-button"
+
+        expect(CampaignSpreader.first.message).to be_eql(message)
+      end
+    end
   end
 
   context "when I'm not a new user" do
