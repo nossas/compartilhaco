@@ -11,9 +11,12 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
     click_button "facebook-profile-campaign-spreader-submit-button"
 
     user = User.find_by_email(email)
+    facebook_profile = user.facebook_profile
+    campaign_spreaders = facebook_profile.campaign_spreaders
 
     expect(user).to_not be_nil
-    expect(user.facebook_profile).to_not be_nil
+    expect(facebook_profile).to_not be_nil
+    expect(campaign_spreaders).to have(1).campaign_spreader
     expect(current_path).to be_eql(campaign_path(campaign))
     expect(page).to have_css(".alert-box")
   end

@@ -14,3 +14,7 @@ end
 FacebookProfile.blueprint do
   # Attributes here
 end
+
+Timeline.blueprint do
+  # Attributes here
+end

@@ -1,2 +1,2 @@
-class FacebookProfile < ActiveRecord::Base
+class FacebookProfile < Timeline
 end
