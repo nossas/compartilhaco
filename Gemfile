@@ -51,7 +51,7 @@ gem 'slim-rails'
 gem 'omniauth-facebook'
 gem 'schema_plus'
 gem 'coveralls', require: false
-gem 'rails_12factor', group: :production
+gem 'rails_12factor', group: [:production, :staging]
 gem 'unicorn'
 gem 'appsignal'
 gem 'foundation-rails'
