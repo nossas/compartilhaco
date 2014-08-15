@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :campaigns
+  resources :campaigns do
+    member do
+      get 'images/:trash', to: 'campaigns#serve_image', as: :serve_image
+    end
+  end
   resources :campaign_spreaders
 
   get '/auth/:provider/callback', to: 'campaign_spreaders#create'

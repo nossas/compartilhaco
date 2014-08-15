@@ -1,5 +1,6 @@
 .row
   = form_for @facebook_profile_campaign_spreader do |form|
+    = image_tag @campaign.image.url if @campaign.image.present?
     - if current_user.nil?
       = form.fields_for :timeline do |timeline_form|
         = timeline_form.fields_for :user do |user_form|
