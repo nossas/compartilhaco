@@ -9,9 +9,9 @@ class CampaignSpreadersController < ApplicationController
 
       user = User.create(
         email: campaign_spreader["timeline"]["user"]["email"],
-        ip: campaign_spreader["timeline"]["user"]["ip"],
         first_name: auth[:info][:first_name],
-        last_name: auth[:info][:last_name]
+        last_name: auth[:info][:last_name],
+        ip: request.remote_ip
       )
 
       facebook_profile = FacebookProfile.create(

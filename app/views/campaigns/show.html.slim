@@ -3,5 +3,4 @@
     = timeline_form.fields_for :user do |user_form|
       = user_form.label :email
       = user_form.email_field :email
-      = user_form.hidden_field :ip, value: request.remote_ip
   = form.submit "Perfil do Facebook", id: "facebook-profile-campaign-spreader-submit-button"
