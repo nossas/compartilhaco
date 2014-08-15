@@ -48,3 +48,4 @@ end
 gem 'slim-rails'
 gem 'omniauth-facebook'
 gem 'schema_plus'
+gem 'coveralls', require: false
