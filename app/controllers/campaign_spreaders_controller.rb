@@ -1,8 +1,27 @@
 class CampaignSpreadersController < ApplicationController
   def create
-    user = User.create email: params[:campaign_spreader][:timeline][:user][:email]
-    facebook_profile = FacebookProfile.create user_id: user.id
-    CampaignSpreader.create timeline: facebook_profile
-    redirect_to Campaign.first, notice: "Feitooo"
+    if params[:campaign_spreader]
+      session[:campaign_spreader] = params[:campaign_spreader]
+      redirect_to '/auth/facebook', scope: 'publish_actions'
+    elsif session[:campaign_spreader]
+      auth = request.env['omniauth.auth']
+
+      user = User.create(
+        email: session[:campaign_spreader]["timeline"]["user"]["email"],
+        first_name: auth[:info][:first_name],
+        last_name: auth[:info][:last_name]
+      )
+
+      facebook_profile = FacebookProfile.create(
+        user_id: user.id,
+        uid: auth[:uid],
+        token: auth[:credentials][:token],
+        expires_at: Time.at(auth[:credentials][:expires_at])
+      )
+
+      CampaignSpreader.create timeline: facebook_profile
+
+      redirect_to Campaign.first, notice: "Feitooo"
+    end
   end
 end
