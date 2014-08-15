@@ -1,5 +1,6 @@
 class CampaignsController < ApplicationController
   def show
-    @facebook_profile_campaign_spreader = CampaignSpreader.new
+    @campaign = Campaign.find(params[:id])
+    @facebook_profile_campaign_spreader = CampaignSpreader.new(campaign: @campaign)
   end
 end
