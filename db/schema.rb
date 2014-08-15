@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140815112104) do
+ActiveRecord::Schema.define(version: 20140815190019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20140815112104) do
     t.integer  "timeline_id",   null: false
     t.string   "timeline_type", null: false
     t.integer  "campaign_id",   null: false
+    t.text     "message"
     t.index ["campaign_id"], :name => "fk__campaign_spreaders_campaign_id"
     t.foreign_key ["campaign_id"], "campaigns", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_campaign_spreaders_campaign_id"
   end
