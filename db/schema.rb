@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140815013857) do
+ActiveRecord::Schema.define(version: 20140815014913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 20140815013857) do
     t.datetime "updated_at"
     t.integer  "user_id",    null: false
     t.string   "uid",        null: false
+    t.string   "token",      null: false
+    t.datetime "expires_at", null: false
     t.index ["uid"], :name => "index_facebook_profiles_on_uid", :unique => true
     t.index ["user_id"], :name => "index_facebook_profiles_on_user_id", :unique => true
   end
