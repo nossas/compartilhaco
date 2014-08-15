@@ -44,6 +44,7 @@ group :development, :test do
   gem 'capybara'
   gem 'machinist'
   gem 'rack_session_access'
+  gem 'shoulda-matchers', require: false
 end
 
 gem 'slim-rails'
