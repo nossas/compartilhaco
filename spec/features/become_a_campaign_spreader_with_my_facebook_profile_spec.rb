@@ -4,8 +4,9 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
   let(:campaign){ Campaign.make! }
 
   scenario "when I'm a new user" do
-    email = "nicolas@trashmail.com"
-    facebook_uid = "123"
+    email         = "nicolas@trashmail.com"
+    facebook_uid  = "123"
+    ip            = "192.168.0.1"
 
     OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
       provider: 'facebook',
@@ -20,6 +21,8 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
       }
     })
 
+    allow_any_instance_of(ActionDispatch::Request).to receive(:remote_ip).and_return(ip)
+
     visit campaign_path(campaign)
     fill_in "campaign_spreader[timeline][user][email]", with: email
     click_button "facebook-profile-campaign-spreader-submit-button"
@@ -29,6 +32,7 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
     campaign_spreaders = facebook_profile.campaign_spreaders
 
     expect(user).to_not be_nil
+    expect(user.ip).to be_eql(ip)
     expect(facebook_profile).to_not be_nil
     expect(facebook_profile.uid).to be_eql(facebook_uid)
     expect(campaign_spreaders).to have(1).campaign_spreader
