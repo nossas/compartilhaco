@@ -7,7 +7,7 @@ class CampaignSpreadersController < ApplicationController
       auth = request.env['omniauth.auth']
       campaign_spreader = session.delete(:campaign_spreader)
 
-      user = User.find_by_email(campaign_spreader["timeline"]["user"]["email"])
+      user = current_user || User.find_by_email(campaign_spreader["timeline"]["user"]["email"])
       user = User.create(
         email: campaign_spreader["timeline"]["user"]["email"],
         first_name: auth[:info][:first_name],

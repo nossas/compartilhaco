@@ -79,10 +79,17 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
     end
 
     context "when I'm logged in" do
-      scenario "when I have a Facebook profile" do
-      end
+      before { page.set_rack_session('cas' => {'user' => @user.email}) }
 
       scenario "when I don't have a Facebook profile" do
+        visit campaign_path(campaign)
+        expect(page).to_not have_css("input[name='campaign_spreader[timeline][user][email]']")
+
+        click_button "facebook-profile-campaign-spreader-submit-button"
+        expect(@user.facebook_profile).to_not be_nil
+      end
+
+      scenario "when I have a Facebook profile" do
       end
     end
   end
