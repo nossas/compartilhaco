@@ -15,11 +15,12 @@ class CampaignSpreadersController < ApplicationController
         ip: request.remote_ip
       ) if user.nil?
 
-      facebook_profile = FacebookProfile.create(
+      facebook_profile = FacebookProfile.find_or_initialize_by(uid: auth[:uid])
+      facebook_profile.update_attributes(
         user_id: user.id,
         uid: auth[:uid],
-        token: auth[:credentials][:token],
-        expires_at: Time.at(auth[:credentials][:expires_at])
+        expires_at: Time.at(auth[:credentials][:expires_at]),
+        token: auth[:credentials][:token]
       )
 
       CampaignSpreader.create(

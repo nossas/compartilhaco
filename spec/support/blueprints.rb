@@ -12,7 +12,9 @@ User.blueprint do
 end
 
 FacebookProfile.blueprint do
-  # Attributes here
+  uid { "uid-#{sn}" }
+  token { "token-#{sn}" }
+  expires_at { Time.now + 60.days }
 end
 
 Timeline.blueprint do

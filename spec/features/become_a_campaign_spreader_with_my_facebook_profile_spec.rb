@@ -4,6 +4,8 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
   let(:campaign){ Campaign.make! }
   let(:email){ "nicolas@trashmail.com" }
   let(:facebook_uid){ "123" }
+  let(:expires_at){ 1321747205 }
+  let(:token){ "abcde" }
 
   before do
     OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
@@ -14,8 +16,8 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
         last_name: "Iensen"
       },
       credentials: {
-        token: "abcde",
-        expires_at: 1321747205
+        token: token,
+        expires_at: expires_at
       }
     })
   end
@@ -43,7 +45,7 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
   end
 
   context "when I'm not a new user" do
-    before { User.make! email: email }
+    before { @user = User.make! email: email }
 
     context "when I'm not logged in" do
       scenario "when I don't have a Facebook profile" do
@@ -65,6 +67,14 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
       end
 
       scenario "when I have a Facebook profile" do
+        facebook_profile = FacebookProfile.make! user_id: @user.id, uid: facebook_uid
+
+        visit campaign_path(campaign)
+        fill_in "campaign_spreader[timeline][user][email]", with: email
+        click_button "facebook-profile-campaign-spreader-submit-button"
+
+        expect(facebook_profile.reload.expires_at).to be_eql(Time.at(expires_at))
+        expect(facebook_profile.reload.token).to be_eql(token)
       end
     end
 
