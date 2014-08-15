@@ -1,5 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe CampaignSpreader, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should belong_to :timeline }
+  it { should belong_to :campaign }
 end
