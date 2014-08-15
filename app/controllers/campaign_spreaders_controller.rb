@@ -29,7 +29,11 @@ class CampaignSpreadersController < ApplicationController
         message: campaign_spreader["message"]
       )
 
-      redirect_to Campaign.first, notice: "Feitooo"
+      redirect_to Campaign.first, notice: "Pronto! Obrigado por se juntar a este compartilhaço"
     end
+  end
+
+  def failure
+    redirect_to Campaign.first, alert: "Você não cedeu as permissões necessárias"
   end
 end

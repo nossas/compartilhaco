@@ -11,5 +11,8 @@ html
     - if flash[:notice]
       .alert-box= flash[:notice]
 
+    - if flash[:alert]
+      .alert-box.alert= flash[:alert]
+
     = yield
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
