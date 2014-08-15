@@ -21,7 +21,10 @@ class CampaignSpreadersController < ApplicationController
         expires_at: Time.at(auth[:credentials][:expires_at])
       )
 
-      CampaignSpreader.create timeline: facebook_profile
+      CampaignSpreader.create(
+        timeline: facebook_profile,
+        campaign_id: campaign_spreader["campaign_id"]
+      )
 
       redirect_to Campaign.first, notice: "Feitooo"
     end

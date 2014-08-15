@@ -29,13 +29,13 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
 
     user = User.find_by_email(email)
     facebook_profile = user.facebook_profile
-    campaign_spreaders = facebook_profile.campaign_spreaders
 
     expect(user).to_not be_nil
     expect(user.ip).to be_eql(ip)
     expect(facebook_profile).to_not be_nil
     expect(facebook_profile.uid).to be_eql(facebook_uid)
-    expect(campaign_spreaders).to have(1).campaign_spreader
+    expect(facebook_profile.campaign_spreaders).to have(1).campaign_spreader
+    expect(campaign.campaign_spreaders).to have(1).campaign_spreader
     expect(current_path).to be_eql(campaign_path(campaign))
     expect(page).to have_css(".alert-box")
     expect(page.get_rack_session['campaign_spreader']).to be_nil
