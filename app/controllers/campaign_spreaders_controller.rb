@@ -25,7 +25,8 @@ class CampaignSpreadersController < ApplicationController
 
       CampaignSpreader.create(
         timeline: facebook_profile,
-        campaign_id: campaign_spreader["campaign_id"]
+        campaign_id: campaign_spreader["campaign_id"],
+        message: campaign_spreader["message"]
       )
 
       redirect_to Campaign.first, notice: "Feitooo"

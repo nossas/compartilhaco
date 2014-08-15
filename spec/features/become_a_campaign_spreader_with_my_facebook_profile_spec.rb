@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature "Become a campaign spreader with my Facebook profile", :type => :feature do
-  let(:campaign){ Campaign.make! }
+  let(:campaign) { Campaign.make! }
   let(:email){ "nicolas@trashmail.com" }
   let(:facebook_uid){ "123" }
   let(:expires_at){ 1321747205 }
@@ -26,14 +26,14 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
   end
 
   context "when I'm a new user" do
-    around(:each) { @me = User.find_by_email(email) }
+    let(:me){ User.find_by_email(email) }
 
     scenario "it should create an user with my email" do
       visit campaign_path(campaign)
       fill_in "campaign_spreader[timeline][user][email]", with: email
       click_button "facebook-profile-campaign-spreader-submit-button"
 
-      expect(@me).to_not be_nil
+      expect(me).to_not be_nil
     end
 
     scenario "it should save my ip address" do
@@ -41,7 +41,7 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
       fill_in "campaign_spreader[timeline][user][email]", with: email
       click_button "facebook-profile-campaign-spreader-submit-button"
 
-      expect(@me.ip).to be_eql(ip)
+      expect(me.ip).to be_eql(ip)
     end
 
     scenario "it should create a Facebook profile for me" do
@@ -49,7 +49,7 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
       fill_in "campaign_spreader[timeline][user][email]", with: email
       click_button "facebook-profile-campaign-spreader-submit-button"
 
-      expect(@me.facebook_profile).to_not be_nil
+      expect(me.facebook_profile).to_not be_nil
     end
 
     scenario "it should save my Facebook profile uid" do
@@ -57,7 +57,7 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
       fill_in "campaign_spreader[timeline][user][email]", with: email
       click_button "facebook-profile-campaign-spreader-submit-button"
 
-      expect(@me.facebook_profile.uid).to be_eql(facebook_uid)
+      expect(me.facebook_profile.uid).to be_eql(facebook_uid)
     end
 
     scenario "it should make me a campaign spreader" do
@@ -65,7 +65,7 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
       fill_in "campaign_spreader[timeline][user][email]", with: email
       click_button "facebook-profile-campaign-spreader-submit-button"
 
-      expect(@me.facebook_profile.campaign_spreaders).to have(1).campaign_spreader
+      expect(me.facebook_profile.campaign_spreaders).to have(1).campaign_spreader
     end
 
     scenario "it should add a campaign spreader to the campaign" do
@@ -98,6 +98,28 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
       click_button "facebook-profile-campaign-spreader-submit-button"
 
       expect(page.get_rack_session['campaign_spreader']).to be_nil
+    end
+
+    context "when I leave the email field blank" do
+      scenario "it should show me an error message", js: true do
+        visit campaign_path(campaign)
+        click_button "facebook-profile-campaign-spreader-submit-button"
+
+        expect(page).to have_css("input#campaign_spreader_timeline_user_email[data-invalid]")
+      end
+    end
+
+    context "when I fill the message field" do
+      scenario "it should save the message" do
+        message = "My custom message"
+
+        visit campaign_path(campaign)
+        fill_in "campaign_spreader[message]", with: message
+        fill_in "campaign_spreader[timeline][user][email]", with: email
+        click_button "facebook-profile-campaign-spreader-submit-button"
+
+        expect(CampaignSpreader.first.message).to be_eql(message)
+      end
     end
   end
 
