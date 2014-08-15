@@ -1,9 +1,11 @@
 .row
-  = form_for @facebook_profile_campaign_spreader do |form|
+  = form_for @facebook_profile_campaign_spreader, data: { abide: true } do |form|
     - if current_user.nil?
       = form.fields_for :timeline do |timeline_form|
         = timeline_form.fields_for :user do |user_form|
-          = user_form.label :email
-          = user_form.email_field :email
+          .user-email-field
+            = user_form.label :email
+            = user_form.email_field(:email, required: true)
+            small.error O email é obrigatório
     = form.hidden_field :campaign_id
     = form.submit "Ceder meu Perfil do Facebook", id: "facebook-profile-campaign-spreader-submit-button", class: [:button]

@@ -55,3 +55,5 @@ gem 'rails_12factor', group: [:production, :staging]
 gem 'unicorn'
 gem 'appsignal'
 gem 'foundation-rails'
+gem 'poltergeist', group: :test
+gem 'database_cleaner', group: :test
