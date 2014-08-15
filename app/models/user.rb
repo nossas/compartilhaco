@@ -12,8 +12,7 @@ class User < ActiveRecord::Base
           last_name: params[:last_name],
           email: params[:email],
           password: SecureRandom.hex,
-          ip: params[:ip],
-          memberships_attributes: [{organization_id: ENV['MEURIO_ORGANIZATION_ID']}]
+          ip: params[:ip]
         }
 
         body = { token: ENV["ACCOUNTS_API_TOKEN"], user: user_hash }
