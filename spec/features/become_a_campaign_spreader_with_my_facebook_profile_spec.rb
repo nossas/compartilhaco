@@ -175,4 +175,18 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
       end
     end
   end
+
+  context "when I don't allow Facebook permitions" do
+    before do
+      OmniAuth.config.mock_auth[:facebook] = :invalid_credentials
+    end
+
+    scenario "it should show me an error message" do
+      visit campaign_path(campaign)
+      fill_in "campaign_spreader[timeline][user][email]", with: email
+      click_button "facebook-profile-campaign-spreader-submit-button"
+
+      expect(page).to have_css(".alert-box.alert")
+    end
+  end
 end

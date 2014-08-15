@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :campaign_spreaders
 
   get '/auth/:provider/callback', to: 'campaign_spreaders#create'
+  get '/auth/failure', to: 'campaign_spreaders#failure'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
