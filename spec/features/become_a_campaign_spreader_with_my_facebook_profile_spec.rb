@@ -151,9 +151,6 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
           expect(@user.facebook_profile).to_not be_nil
         end
       end
-
-      context "when I have a Facebook profile" do
-      end
     end
   end
 end
