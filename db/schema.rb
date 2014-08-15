@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140815190019) do
   create_table "campaigns", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image"
   end
 
   create_table "campaign_spreaders", force: true do |t|

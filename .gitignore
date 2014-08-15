@@ -17,3 +17,4 @@
 config/database.yml
 /coverage
 /config/initializers/01_env_vars.rb
+/public/uploads
