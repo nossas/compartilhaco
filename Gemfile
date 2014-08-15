@@ -43,6 +43,7 @@ group :development, :test do
   gem 'rspec-collection_matchers'
   gem 'capybara'
   gem 'machinist'
+  gem 'rack_session_access'
 end
 
 gem 'slim-rails'
