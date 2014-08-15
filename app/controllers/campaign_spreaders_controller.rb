@@ -5,9 +5,10 @@ class CampaignSpreadersController < ApplicationController
       redirect_to '/auth/facebook', scope: 'publish_actions'
     elsif session[:campaign_spreader]
       auth = request.env['omniauth.auth']
+      campaign_spreader = session.delete(:campaign_spreader)
 
       user = User.create(
-        email: session[:campaign_spreader]["timeline"]["user"]["email"],
+        email: campaign_spreader["timeline"]["user"]["email"],
         first_name: auth[:info][:first_name],
         last_name: auth[:info][:last_name]
       )

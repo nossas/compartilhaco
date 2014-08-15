@@ -34,6 +34,7 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
     expect(campaign_spreaders).to have(1).campaign_spreader
     expect(current_path).to be_eql(campaign_path(campaign))
     expect(page).to have_css(".alert-box")
+    expect(page.get_rack_session['campaign_spreader']).to be_nil
   end
 
   # scenario "when the user exists" do
