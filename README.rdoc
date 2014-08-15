@@ -1,5 +1,6 @@
 {<img src="https://travis-ci.org/meurio/compartilhaco.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/meurio/compartilhaco]
 {<img src="https://coveralls.io/repos/meurio/compartilhaco/badge.png" alt="Coverage Status" />}[https://coveralls.io/r/meurio/compartilhaco]
+{<img src="https://codeclimate.com/github/meurio/compartilhaco/badges/gpa.svg" />}[https://codeclimate.com/github/meurio/compartilhaco]
 
 == README
 
