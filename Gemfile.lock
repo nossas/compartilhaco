@@ -27,6 +27,9 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    appsignal (0.10.0)
+      rack
+      thread_safe
     arel (5.0.1.20140414130214)
     builder (3.2.2)
     capybara (2.4.1)
@@ -213,6 +216,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  appsignal
   capybara
   coveralls
   jbuilder (~> 2.0)

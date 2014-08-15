@@ -53,3 +53,4 @@ gem 'schema_plus'
 gem 'coveralls', require: false
 gem 'rails_12factor', group: :production
 gem 'unicorn'
+gem 'appsignal'
