@@ -6,6 +6,6 @@ class CampaignsController < ApplicationController
 
   def serve_image
     @campaign = Campaign.find(params[:id])
-    send_file @campaign.image.path, type: "image/png", disposition: "inline"
+    send_file @campaign.image.path, type: MIME::Types.type_for(@campaign.image.url).first.content_type, disposition: "inline"
   end
 end
