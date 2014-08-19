@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://graph.facebook.com/me?access_token=xyz
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Facebook-Api-Version:
+      - v2.0
+      Etag:
+      - '"c7f2655f91227629042049d85f73d731a7d6c5e5"'
+      Content-Type:
+      - application/json; charset=UTF-8
+      Pragma:
+      - no-cache
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Fb-Rev:
+      - '1375743'
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      Expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      X-Fb-Debug:
+      - h1i8mKbVjKLVzcrqRH63uDtjYHmat//GNd9wmLq3sMBeQ2tSSx9RsU3fYP7ZM7G6cTmbXMr3OpUygERlO7xNtw==
+      Date:
+      - Tue, 19 Aug 2014 11:11:52 GMT
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '78'
+    body:
+      encoding: UTF-8
+      string: '{"friends":{"data":[],"summary":{"total_count":861}},"id":"10152278257287843"}'
+    http_version:
+  recorded_at: Tue, 19 Aug 2014 11:11:52 GMT
+recorded_with: VCR 2.8.0
