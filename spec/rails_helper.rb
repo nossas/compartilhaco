@@ -9,6 +9,7 @@ require 'rspec/rails'
 require 'rack_session_access/capybara'
 require 'shoulda/matchers'
 require 'webmock/rspec'
+require 'sidekiq/testing'
 
 require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
