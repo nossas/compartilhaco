@@ -1,6 +1,6 @@
 class FacebookProfile < Timeline
   belongs_to :user
-  after_create { FacebookProfileWorker.perform_async(self) }
+  after_create { FacebookProfileWorker.perform_async(self.id) }
 
   def fetch_friends_count
     begin
