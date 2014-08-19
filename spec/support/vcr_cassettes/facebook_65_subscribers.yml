@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://graph.facebook.com/me/friends?access_token=CAAD1aLqhhQEBAI5MxxqLZBpUatZBw8ZApTZBefKMEW7cifqZBJgbQevjjrj5G8fHyWGPBtwM4Sv94oicLroHf9UR9BvVttZBzI3j8rXzZA4i3z3kMEXhgwgfzDeprBYjxz6LHsUbVChOgrxUpxDiIbpymUuHC2piZCrVS6ZBJBDiDPQOTG6h04ZCxTviQGpSdgSsH0uo8ypAdc0thxMntJFbGs
+    uri: https://graph.facebook.com/me/subscribers?access_token=xyz
     body:
       encoding: US-ASCII
       string: ''
@@ -21,7 +21,7 @@ http_interactions:
       Facebook-Api-Version:
       - v2.0
       Etag:
-      - '"21c71eb4d917ef16cbd8ffc3ea7aa8f5a06e3980"'
+      - '"cc426eee00444f2dbe57766235905953bdc75473"'
       Content-Type:
       - application/json; charset=UTF-8
       Pragma:
@@ -35,16 +35,16 @@ http_interactions:
       Expires:
       - Sat, 01 Jan 2000 00:00:00 GMT
       X-Fb-Debug:
-      - n9AjPEbRzh5G0i7Lgo0Faq2/0YV7DGvkAmqc/9CGrBHu+pL+xfcGSPTxLoKvNopmNeVASDtpUVie+52aSl88sQ==
+      - IkxY4dP4CpVbp+mtLpDOt9VGrtquwv4SB3e2FIqFT+tAkGQpogQZ/aUSlrLA8j3ar+VdvGjAY2uxAt2/DnFtIA==
       Date:
-      - Tue, 19 Aug 2014 16:51:43 GMT
+      - Tue, 19 Aug 2014 16:43:10 GMT
       Connection:
       - keep-alive
       Content-Length:
-      - '41'
+      - '40'
     body:
       encoding: UTF-8
-      string: '{"data":[],"summary":{"total_count":861}}'
-    http_version: 
-  recorded_at: Tue, 19 Aug 2014 16:51:43 GMT
+      string: '{"data":[],"summary":{"total_count":65}}'
+    http_version:
+  recorded_at: Tue, 19 Aug 2014 16:43:10 GMT
 recorded_with: VCR 2.8.0
