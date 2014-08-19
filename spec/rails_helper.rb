@@ -8,6 +8,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rack_session_access/capybara'
 require 'shoulda/matchers'
+require 'webmock/rspec'
 
 require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
