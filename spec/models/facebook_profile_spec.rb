@@ -50,4 +50,29 @@ RSpec.describe FacebookProfile, :type => :model do
       end
     end
   end
+
+  describe "#share" do
+    let(:campaign_spreader){ CampaignSpreader.make!(:facebook_profile) }
+    subject { campaign_spreader.timeline }
+
+    context "when it's a valid credential" do
+      it "should update campaign_spreader#uid" do
+        expect {
+          VCR.use_cassette('facebook profile share', match_requests_on: [:host, :path]) do
+            subject.share campaign_spreader
+          end
+        }.to change{campaign_spreader.uid}.from(nil).to("10152278257287843_10152330512207843")
+      end
+    end
+
+    context "when it's an invalid credential" do
+      it "should not update campaign_spreader#uid" do
+        expect {
+          VCR.use_cassette('invalid credential', match_requests_on: [:host]) do
+            subject.share campaign_spreader
+          end
+        }.to_not change{campaign_spreader.uid}
+      end
+    end
+  end
 end

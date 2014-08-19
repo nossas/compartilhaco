@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://graph.facebook.com/me/feed
+    body:
+      encoding: UTF-8
+      string: access_token=CAAD1aLqhhQEBAP41OSoanZA66xPxDLZAGpjuWZCBauBvCcs9ZCZCZCwBKbZApZC1ioPbzTUD2dIQXZCpsM29Udy6ZAIS4ufEWhWaPdxZBLvyuUWVEZAjAcy3GLujzj93igfZCTVpKnmPuTSZAsF03DZBbE1llhZBcFfFg8kQZAFjucfoKM3KrkBb600YsvwCCo90ZAu6ua3sMwtDACagcRqW1NO36IyeAIZAp5gWh5bNdEZD&link=http%3A%2F%2Fwww.minhascidades.org.br%2F&message=
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Facebook-Api-Version:
+      - v2.0
+      Content-Type:
+      - application/json; charset=UTF-8
+      Pragma:
+      - no-cache
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Fb-Rev:
+      - '1375743'
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      Expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      X-Fb-Debug:
+      - gP4tN7ibw/mSDvRKX3VwUdugnzUbm4gp9HazTcgU/NQ0KRpMFlrlj6RjlhwLiTMUlCI69VKvSOAAeGxwDriLjg==
+      Date:
+      - Tue, 19 Aug 2014 19:19:18 GMT
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '44'
+    body:
+      encoding: UTF-8
+      string: '{"id":"10152278257287843_10152330512207843"}'
+    http_version: 
+  recorded_at: Tue, 19 Aug 2014 19:19:18 GMT
+recorded_with: VCR 2.8.0
