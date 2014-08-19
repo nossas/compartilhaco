@@ -47,10 +47,12 @@ ActiveRecord::Schema.define(version: 20140818183020) do
   end
 
   create_table "users", force: true do |t|
-    t.string "email"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "ip"
+    t.string  "email"
+    t.string  "first_name"
+    t.string  "last_name"
+    t.string  "ip"
+    t.integer "facebook_friends_count"
+    t.integer "facebook_subscriptions_count"
   end
 
 end
