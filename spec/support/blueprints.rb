@@ -1,10 +1,12 @@
 require 'machinist/active_record'
 
 Campaign.blueprint do
+  share_link { "http://www.minhascidades.org.br/" }
 end
 
-CampaignSpreader.blueprint do
-  # Attributes here
+CampaignSpreader.blueprint(:facebook_profile) do
+  timeline { FacebookProfile.make! }
+  campaign { Campaign.make! }
 end
 
 User.blueprint do
