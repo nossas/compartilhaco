@@ -3,12 +3,12 @@ namespace :compartilhaco do
     task :check_expired_tokens => :environment do
       # TODO: get only active campaigns
       Campaign.all.each do |campaign| 
-        # get all spreaders belonging to FacebookProfiles
         campaign.campaign_spreaders.where(timeline_type: 'FacebookProfile').each do |spreader|
-          # TODO: verify token validity
-          if spreader.timeline.token # expired?
-              # flag the token as expired
-              spreader.timeline.update expires_at: Time.now
+          begin
+            Koala::Facebook::API.new(spreader.timeline.token).get_object('me')
+          rescue => e
+            puts e.message            
+            spreader.timeline.update(expires_at: Time.now) if e.message.include?("OAuthException: Error validating access token:")
           end
         end
       end
