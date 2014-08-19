@@ -1,5 +1,6 @@
 class FacebookProfile < Timeline
   belongs_to :user
+  after_create { self.fetch_friends_count }
 
   def fetch_friends_count
     begin
