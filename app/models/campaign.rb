@@ -27,4 +27,8 @@ class Campaign < ActiveRecord::Base
     errors.add(:ends_at, I18n.t("errors.messages.cannot_be_in_more_than", 50.days)) if
       ends_at.nil? || ends_at > 50.days.from_now
   end
+
+  def check_expired_tokens
+    campaign_spreaders.facebook_profiles.each { |s| s.timeline.check_expired_token }
+  end
 end
