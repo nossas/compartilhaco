@@ -1,5 +1,5 @@
 class CampaignSpreadersController < ApplicationController
-  def create
+  def create_for_facebook_profile
     if params[:campaign_spreader]
       session[:campaign_spreader] = params[:campaign_spreader]
       redirect_to '/auth/facebook?scope=publish_actions,user_friends'
