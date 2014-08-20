@@ -13,6 +13,24 @@ RSpec.describe Campaign, :type => :model do
     it { should have(1).error_on(:ends_at) }
   end
 
+  describe ".succeeded" do
+    context "when there is at least one succeeded campaign" do
+      before { CampaignSpreader.make!(:facebook_profile, campaign: Campaign.make!(goal: 1)) }
+
+      it "should have one campaign" do
+        expect(Campaign.succeeded).to have(1).campaign
+      end
+    end
+
+    context "when there is no succeeded campaign" do
+      before { Campaign.make! }
+
+      it "should be empty" do
+        expect(Campaign.succeeded).to be_empty
+      end
+    end
+  end
+
   describe ".ended" do
     context "when there is at least one ended campaign" do
       before do

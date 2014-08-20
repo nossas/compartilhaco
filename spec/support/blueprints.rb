@@ -2,7 +2,8 @@ require 'machinist/active_record'
 
 Campaign.blueprint do
   share_link { "http://www.minhascidades.org.br/" }
-  ends_at { Time.now + 1.month }
+  ends_at { 1.month.from_now }
+  goal { 100 }
 end
 
 CampaignSpreader.blueprint(:facebook_profile) do
@@ -17,7 +18,7 @@ end
 FacebookProfile.blueprint do
   uid { "uid-#{sn}" }
   token { "token-#{sn}" }
-  expires_at { Time.now + 60.days }
+  expires_at { 60.days.from_now }
   user { User.make! }
 end
 

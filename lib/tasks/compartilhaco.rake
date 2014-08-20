@@ -16,7 +16,6 @@ namespace :compartilhaco do
   end
 
   task :share_campaigns => :environment do
-    # Campaign.where("shared_at IS NULL AND ? >= share_at AND timelines_count >= timelines_target")
     Campaign.unshared.ended.succeeded.each {|c| c.share}
   end
 end

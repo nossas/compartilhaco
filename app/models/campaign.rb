@@ -7,6 +7,10 @@ class Campaign < ActiveRecord::Base
 
   scope :unshared, -> { where("shared_at IS NULL") }
   scope :ended, -> { where("? >= ends_at", Time.now) }
+  scope :succeeded, -> { where("(
+    SELECT count(*)
+    FROM campaign_spreaders
+    WHERE campaign_spreaders.campaign_id = campaigns.id) >= campaigns.goal")}
 
   def share
     campaign_spreaders.each {|cs| cs.share}
