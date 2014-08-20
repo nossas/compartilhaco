@@ -1,55 +1,54 @@
 class CampaignSpreadersController < ApplicationController
+  before_filter except: [:failure] do
+    @auth_params = request.env['omniauth.auth']
+    @campaign_spreader_params = session.delete(:campaign_spreader)
+  end
+
   def create_for_facebook_profile
-    if params[:campaign_spreader]
+    if @auth_params.nil?
       session[:campaign_spreader] = params[:campaign_spreader]
       redirect_to '/auth/facebook?scope=publish_actions,user_friends'
-    elsif session[:campaign_spreader]
-      auth = request.env['omniauth.auth']
-      campaign_spreader = session.delete(:campaign_spreader)
-
-      user = current_user || User.find_by_email(campaign_spreader["timeline"]["user"]["email"])
+    else
+      user = current_user || User.find_by_email(@campaign_spreader_params["timeline"]["user"]["email"])
       user = User.create(
-        email: campaign_spreader["timeline"]["user"]["email"],
-        first_name: auth[:info][:first_name],
-        last_name: auth[:info][:last_name],
+        email: @campaign_spreader_params["timeline"]["user"]["email"],
+        first_name: @auth_params[:info][:first_name],
+        last_name: @auth_params[:info][:last_name],
         ip: request.remote_ip
       ) if user.nil?
 
-      facebook_profile = FacebookProfile.find_or_initialize_by(uid: auth[:uid])
+      facebook_profile = FacebookProfile.find_or_initialize_by(uid: @auth_params[:uid])
       facebook_profile.update_attributes(
         user_id: user.id,
-        uid: auth[:uid],
-        expires_at: Time.at(auth[:credentials][:expires_at]),
-        token: auth[:credentials][:token]
+        uid: @auth_params[:uid],
+        expires_at: Time.at(@auth_params[:credentials][:expires_at]),
+        token: @auth_params[:credentials][:token]
       )
 
-      CampaignSpreader.create campaign_spreader.merge(timeline: facebook_profile)
+      CampaignSpreader.create @campaign_spreader_params.merge(timeline: facebook_profile)
 
-      redirect_to Campaign.first, notice: "Pronto! Obrigado por se juntar a este compartilhaço"
+      redirect_to campaign_path(@campaign_spreader_params["campaign_id"]), notice: "Pronto! Obrigado por se juntar a este compartilhaço"
     end
   end
 
   def create_for_twitter_profile
-    if params[:campaign_spreader]
+    if @auth_params.nil?
       session[:campaign_spreader] = params[:campaign_spreader]
       redirect_to '/auth/twitter'
-    elsif session[:campaign_spreader]
-      auth = request.env['omniauth.auth']
-      campaign_spreader = session.delete(:campaign_spreader)
-
+    else
       user = User.create(
-        email: campaign_spreader["timeline"]["user"]["email"],
+        email: @campaign_spreader_params["timeline"]["user"]["email"],
         ip: request.remote_ip
       )
 
       twitter_profile = TwitterProfile.create(
         user: user,
-        uid: auth[:uid]
+        uid: @auth_params[:uid]
       )
 
-      CampaignSpreader.create campaign_spreader.merge(timeline: twitter_profile)
+      CampaignSpreader.create @campaign_spreader_params.merge(timeline: twitter_profile)
 
-      redirect_to campaign_path(campaign_spreader["campaign_id"]), notice: "Pronto! Obrigado por se juntar a este compartilhaço"
+      redirect_to campaign_path(@campaign_spreader_params["campaign_id"]), notice: "Pronto! Obrigado por se juntar a este compartilhaço"
     end
   end
 
