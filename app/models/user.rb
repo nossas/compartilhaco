@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_one :facebook_profile
+  has_one :twitter_profile
 
   # TODO: move this method to a gem
   def self.create params
