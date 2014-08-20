@@ -30,72 +30,90 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
 
     scenario "should create an user with my email" do
       visit campaign_path(campaign)
-      fill_in "campaign_spreader[timeline][user][email]", with: email
-      click_button "facebook-profile-campaign-spreader-submit-button"
+      within("form.facebook-profile-campaign-spreader") do
+        fill_in "campaign_spreader[timeline][user][email]", with: email
+        click_button "facebook-profile-campaign-spreader-submit-button"
+      end
 
       expect(me).to_not be_nil
     end
 
     scenario "should save my ip address" do
       visit campaign_path(campaign)
-      fill_in "campaign_spreader[timeline][user][email]", with: email
-      click_button "facebook-profile-campaign-spreader-submit-button"
+      within("form.facebook-profile-campaign-spreader") do
+        fill_in "campaign_spreader[timeline][user][email]", with: email
+        click_button "facebook-profile-campaign-spreader-submit-button"
+      end
 
       expect(me.ip).to be_eql(ip)
     end
 
     scenario "should create a Facebook profile for me" do
       visit campaign_path(campaign)
-      fill_in "campaign_spreader[timeline][user][email]", with: email
-      click_button "facebook-profile-campaign-spreader-submit-button"
+      within("form.facebook-profile-campaign-spreader") do
+        fill_in "campaign_spreader[timeline][user][email]", with: email
+        click_button "facebook-profile-campaign-spreader-submit-button"
+      end
 
       expect(me.facebook_profile).to_not be_nil
     end
 
     scenario "should save my Facebook profile uid" do
       visit campaign_path(campaign)
-      fill_in "campaign_spreader[timeline][user][email]", with: email
-      click_button "facebook-profile-campaign-spreader-submit-button"
+      within("form.facebook-profile-campaign-spreader") do
+        fill_in "campaign_spreader[timeline][user][email]", with: email
+        click_button "facebook-profile-campaign-spreader-submit-button"
+      end
 
       expect(me.facebook_profile.uid).to be_eql(facebook_uid)
     end
 
     scenario "should make me a campaign spreader" do
       visit campaign_path(campaign)
-      fill_in "campaign_spreader[timeline][user][email]", with: email
-      click_button "facebook-profile-campaign-spreader-submit-button"
+      within("form.facebook-profile-campaign-spreader") do
+        fill_in "campaign_spreader[timeline][user][email]", with: email
+        click_button "facebook-profile-campaign-spreader-submit-button"
+      end
 
       expect(me.facebook_profile.campaign_spreaders).to have(1).campaign_spreader
     end
 
     scenario "should add a campaign spreader to the campaign" do
       visit campaign_path(campaign)
-      fill_in "campaign_spreader[timeline][user][email]", with: email
-      click_button "facebook-profile-campaign-spreader-submit-button"
+      within("form.facebook-profile-campaign-spreader") do
+        fill_in "campaign_spreader[timeline][user][email]", with: email
+        click_button "facebook-profile-campaign-spreader-submit-button"
+      end
 
       expect(campaign.campaign_spreaders).to have(1).campaign_spreader
     end
 
     scenario "should redirect me to the campaign page" do
       visit campaign_path(campaign)
-      fill_in "campaign_spreader[timeline][user][email]", with: email
-      click_button "facebook-profile-campaign-spreader-submit-button"
+      within("form.facebook-profile-campaign-spreader") do
+        fill_in "campaign_spreader[timeline][user][email]", with: email
+        click_button "facebook-profile-campaign-spreader-submit-button"
+      end
 
       expect(current_path).to be_eql(campaign_path(campaign))
     end
 
     scenario "should show me the alert box" do
       visit campaign_path(campaign)
-      fill_in "campaign_spreader[timeline][user][email]", with: email
-      click_button "facebook-profile-campaign-spreader-submit-button"
+      within("form.facebook-profile-campaign-spreader") do
+        fill_in "campaign_spreader[timeline][user][email]", with: email
+        click_button "facebook-profile-campaign-spreader-submit-button"
+      end
 
       expect(page).to have_css(".alert-box")
     end
 
     scenario "should clean up my session" do
       visit campaign_path(campaign)
-      fill_in "campaign_spreader[timeline][user][email]", with: email
-      click_button "facebook-profile-campaign-spreader-submit-button"
+      within("form.facebook-profile-campaign-spreader") do
+        fill_in "campaign_spreader[timeline][user][email]", with: email
+        click_button "facebook-profile-campaign-spreader-submit-button"
+      end
 
       expect(page.get_rack_session['campaign_spreader']).to be_nil
     end
@@ -114,9 +132,11 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
         message = "My custom message"
 
         visit campaign_path(campaign)
-        fill_in "campaign_spreader[message]", with: message
-        fill_in "campaign_spreader[timeline][user][email]", with: email
-        click_button "facebook-profile-campaign-spreader-submit-button"
+        within("form.facebook-profile-campaign-spreader") do
+          fill_in "campaign_spreader[message]", with: message
+          fill_in "campaign_spreader[timeline][user][email]", with: email
+          click_button "facebook-profile-campaign-spreader-submit-button"
+        end
 
         expect(CampaignSpreader.first.message).to be_eql(message)
       end
@@ -130,8 +150,10 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
       context "when I don't have a Facebook profile" do
         scenario "should create Facebook profile for me" do
           visit campaign_path(campaign)
-          fill_in "campaign_spreader[timeline][user][email]", with: email
-          click_button "facebook-profile-campaign-spreader-submit-button"
+          within("form.facebook-profile-campaign-spreader") do
+            fill_in "campaign_spreader[timeline][user][email]", with: email
+            click_button "facebook-profile-campaign-spreader-submit-button"
+          end
 
           expect(@user.facebook_profile).to_not be_nil
         end
@@ -142,16 +164,20 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
 
         scenario "should update my Facebook profile expiring date" do
           visit campaign_path(campaign)
-          fill_in "campaign_spreader[timeline][user][email]", with: email
-          click_button "facebook-profile-campaign-spreader-submit-button"
+          within("form.facebook-profile-campaign-spreader") do
+            fill_in "campaign_spreader[timeline][user][email]", with: email
+            click_button "facebook-profile-campaign-spreader-submit-button"
+          end
 
           expect(@facebook_profile.reload.expires_at).to be_eql(Time.at(expires_at))
         end
 
         scenario "should update my Facebook profile token" do
           visit campaign_path(campaign)
-          fill_in "campaign_spreader[timeline][user][email]", with: email
-          click_button "facebook-profile-campaign-spreader-submit-button"
+          within("form.facebook-profile-campaign-spreader") do
+            fill_in "campaign_spreader[timeline][user][email]", with: email
+            click_button "facebook-profile-campaign-spreader-submit-button"
+          end
 
           expect(@facebook_profile.reload.token).to be_eql(token)
         end
@@ -164,7 +190,9 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
       context "when I don't have a Facebook profile" do
         scenario "should not show the user email field" do
           visit campaign_path(campaign)
-          expect(page).to_not have_css("input[name='campaign_spreader[timeline][user][email]']")
+          within("form.facebook-profile-campaign-spreader") do
+            expect(page).to_not have_css("input[name='campaign_spreader[timeline][user][email]']")
+          end
         end
 
         scenario "should create a Facebook profile for me" do
@@ -183,8 +211,10 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
 
     scenario "should show me an error message" do
       visit campaign_path(campaign)
-      fill_in "campaign_spreader[timeline][user][email]", with: email
-      click_button "facebook-profile-campaign-spreader-submit-button"
+      within("form.facebook-profile-campaign-spreader") do
+        fill_in "campaign_spreader[timeline][user][email]", with: email
+        click_button "facebook-profile-campaign-spreader-submit-button"
+      end
 
       expect(page).to have_css(".alert-box.alert")
     end

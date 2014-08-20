@@ -1,6 +1,7 @@
 .row
   = image_tag @campaign.image.url if @campaign.image.present?
-  = form_for @facebook_profile_campaign_spreader, data: { abide: true } do |form|
+
+  = form_for @facebook_profile_campaign_spreader, url: create_for_facebook_profile_campaign_spreaders_path, data: { abide: true }, html: { class: "facebook-profile-campaign-spreader" } do |form|
     .message-field
       = form.label :message
       = form.text_area :message
@@ -13,3 +14,16 @@
             small.error O email é obrigatório
     = form.hidden_field :campaign_id
     = form.submit "Ceder meu Perfil do Facebook", id: "facebook-profile-campaign-spreader-submit-button", class: [:button]
+
+  = form_for @facebook_profile_campaign_spreader, url: create_for_twitter_profile_campaign_spreaders_path, data: { abide: true }, html: { class: "twitter-profile-campaign-spreader" } do |form|
+    = form.fields_for :timeline do |timeline_form|
+      .message-field
+        = form.label :message
+        = form.text_area :message
+      = timeline_form.fields_for :user do |user_form|
+        .user-email-field
+          = user_form.label :email
+          = user_form.email_field(:email, required: true)
+          small.error O email é obrigatório
+    = form.hidden_field :campaign_id
+    = form.submit "Ceder meu Perfil do Twitter", id: "twitter-profile-campaign-spreader-submit-button", class: [:button]

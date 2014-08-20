@@ -22,6 +22,7 @@ FacebookProfile.blueprint do
   user { User.make! }
 end
 
-Timeline.blueprint do
-  # Attributes here
+TwitterProfile.blueprint do
+  user { User.make! }
+  uid { "uid-#{sn}" }
 end

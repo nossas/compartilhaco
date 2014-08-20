@@ -64,3 +64,4 @@ gem "koala", "~> 1.10.0rc"
 gem 'vcr', group: :test
 gem 'webmock', group: :test
 gem 'sidekiq'
+gem 'omniauth-twitter'

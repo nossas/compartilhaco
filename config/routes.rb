@@ -4,9 +4,25 @@ Rails.application.routes.draw do
       get 'images/:trash', to: 'campaigns#serve_image', as: :serve_image
     end
   end
-  resources :campaign_spreaders
 
-  get '/auth/:provider/callback', to: 'campaign_spreaders#create'
+  resources :campaign_spreaders do
+    collection do
+      post(
+        'create_for_facebook_profile',
+        to: 'campaign_spreaders#create_for_facebook_profile',
+        as: :create_for_facebook_profile
+      )
+
+      post(
+        'create_for_twitter_profile',
+        to: 'campaign_spreaders#create_for_twitter_profile',
+        as: :create_for_twitter_profile
+      )
+    end
+  end
+
+  get '/auth/facebook/callback', to: 'campaign_spreaders#create_for_facebook_profile'
+  get '/auth/twitter/callback', to: 'campaign_spreaders#create_for_twitter_profile'
   get '/auth/failure', to: 'campaign_spreaders#failure'
 
   # The priority is based upon order of creation: first created -> highest priority.
