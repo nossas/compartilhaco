@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://graph.facebook.com/me?access_token=CAAD1aLqhhQEBAJKE5akFEyRD4rBiaLmZALBZBbSMPKVUwvU9B7GGbX0W9GfRyH1gbNJAkHYD6pZCyRZAy3xMc1627TuaWeGv7xIprGI9x7EmYW2jpd7ka0piJDj95hl3sB6tgrtZBj3cHOXE3bStJ4FiXmhZBTUTXT76QRaO4fDEXn3thU6sZAtxaHTUVDANyTKbQHLplp5r9U887qI6o70
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Last-Modified:
+      - '2014-06-02T17:16:43+0000'
+      Facebook-Api-Version:
+      - v2.0
+      Etag:
+      - '"ae4f2f175c5174ba2fc1bc7d473e3aa2f4325e41"'
+      Content-Type:
+      - application/json; charset=UTF-8
+      Pragma:
+      - no-cache
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Fb-Rev:
+      - '1378560'
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      Expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      X-Fb-Debug:
+      - z2WY+YlNvbPOH2alE09lWDu7cBJMjqCxee16jCGa+/zcNxUj5+KhtL54wgZmt1mvsZcaQanUhTZ/VNhWTZQ1JA==
+      Date:
+      - Wed, 20 Aug 2014 17:59:35 GMT
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '276'
+    body:
+      encoding: UTF-8
+      string: '{"id":"729202793793397","first_name":"Josias","gender":"male","last_name":"Schneider","link":"https:\/\/www.facebook.com\/app_scoped_user_id\/729202793793397\/","locale":"en_US","name":"Josias
+        Schneider","timezone":-3,"updated_time":"2014-06-02T17:16:43+0000","verified":true}'
+    http_version: 
+  recorded_at: Wed, 20 Aug 2014 17:59:36 GMT
+recorded_with: VCR 2.8.0

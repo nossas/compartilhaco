@@ -6,8 +6,9 @@ class Campaign < ActiveRecord::Base
   validate :ends_at_cannot_be_in_the_past
   validate :ends_at_cannot_be_in_more_than_50_days
 
-  scope :unshared, -> { where("shared_at IS NULL") }
-  scope :ended, -> { where("? >= ends_at", Time.now) }
+  scope :unshared,  -> { where("shared_at IS NULL") }
+  scope :upcoming,  -> { where("? < ends_at", Time.now) }
+  scope :ended,     -> { where("? >= ends_at", Time.now) }
   scope :succeeded, -> { where("(
     SELECT count(*)
     FROM campaign_spreaders
@@ -28,7 +29,11 @@ class Campaign < ActiveRecord::Base
       ends_at.nil? || ends_at > 50.days.from_now
   end
 
-  def check_expired_tokens
-    campaign_spreaders.facebook_profiles.each { |s| s.timeline.check_expired_token }
+  def facebook_profiles
+    FacebookProfile.joins(:campaign_spreaders).where(campaign_spreaders: { campaign_id: self.id })
   end
+
+  def check_expired_tokens
+    facebook_profiles.each { |fp| fp.check_expired_token }
+  end  
 end

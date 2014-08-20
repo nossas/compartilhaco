@@ -34,6 +34,29 @@ RSpec.describe Campaign, :type => :model do
     end
   end
 
+  describe ".upcoming" do
+    context "when there is at least one upcoming campaign" do
+      before do
+        Campaign.make! ends_at: 10.days.from_now
+      end
+
+      it "should have one campaign" do
+        expect(Campaign.upcoming).to have(1).campaign
+      end
+    end
+
+    context "when there is no upcoming campaign" do
+      before do
+        Campaign.make! ends_at: 1.day.from_now
+        allow(Time).to receive(:now).and_return(2.days.from_now)
+      end
+
+      it "should be empty" do
+        expect(Campaign.upcoming).to be_empty
+      end
+    end
+  end
+
   describe ".ended" do
     context "when there is at least one ended campaign" do
       before do
@@ -92,6 +115,38 @@ RSpec.describe Campaign, :type => :model do
       expect{
         subject.share
       }.to change{subject.shared_at}.from(nil).to(time)
+    end
+  end
+
+  describe "#facebook_profiles" do
+    subject { Campaign.make! }
+
+    context "when there is at least one facebook profile" do
+      before { CampaignSpreader.make!(:facebook_profile, campaign: subject) }
+
+      it "should have one facebook profile" do
+        expect(subject.facebook_profiles).to have(1).facebook_profile
+      end
+    end
+
+    context "when there is no facebook profile" do
+      it "should be empty" do
+        expect(subject.facebook_profiles).to be_empty
+      end
+    end
+  end
+
+  describe "#check_expired_tokens" do
+    subject { Campaign.make! }
+
+    context "when there is a facebook profile" do
+      let(:profile) { double() }
+      before { allow(subject).to receive(:facebook_profiles).and_return([ profile ]) }
+
+      it "should call FacebookProfile#check_expired_token" do
+        expect(profile).to receive(:check_expired_token)
+        subject.check_expired_tokens
+      end
     end
   end
 end
