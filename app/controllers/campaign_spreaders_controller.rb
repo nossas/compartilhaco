@@ -2,11 +2,11 @@ class CampaignSpreadersController < ApplicationController
   before_filter except: [:failure] do
     @auth_params = request.env['omniauth.auth']
     @campaign_spreader_params = session.delete(:campaign_spreader)
+    session[:campaign_spreader] = params[:campaign_spreader] if params[:campaign_spreader].present?
   end
 
   def create_for_facebook_profile
     if @auth_params.nil?
-      session[:campaign_spreader] = params[:campaign_spreader]
       redirect_to '/auth/facebook?scope=publish_actions,user_friends'
     else
       user = current_user || User.find_by_email(@campaign_spreader_params["timeline"]["user"]["email"])
@@ -33,7 +33,6 @@ class CampaignSpreadersController < ApplicationController
 
   def create_for_twitter_profile
     if @auth_params.nil?
-      session[:campaign_spreader] = params[:campaign_spreader]
       redirect_to '/auth/twitter'
     else
       user = User.create(
