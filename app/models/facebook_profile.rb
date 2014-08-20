@@ -3,7 +3,6 @@ class FacebookProfile < Timeline
   after_create { FacebookProfileWorker.perform_async(self.id) }
 
   def fetch_friends_count
-    graph = Koala::Facebook::API.new(token)
     result = graph.api("me/friends")
     if result["error"]
       logger.warn result.inspect
@@ -13,7 +12,6 @@ class FacebookProfile < Timeline
   end
 
   def fetch_subscribers_count
-    graph = Koala::Facebook::API.new(token)
     result = graph.api("me/subscribers")
     if result["error"]
       logger.warn result.inspect
@@ -23,7 +21,6 @@ class FacebookProfile < Timeline
   end
 
   def share campaign_spreader
-    graph = Koala::Facebook::API.new(token)
     begin
       result = graph.put_connections("me", "feed",
         message: campaign_spreader.message,
@@ -33,5 +30,9 @@ class FacebookProfile < Timeline
     rescue Koala::Facebook::AuthenticationError => e
       logger.warn e.message
     end
+  end
+
+  def graph
+    @graph ||= Koala::Facebook::API.new(token)
   end
 end
