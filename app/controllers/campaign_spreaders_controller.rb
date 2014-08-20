@@ -56,7 +56,7 @@ class CampaignSpreadersController < ApplicationController
         campaign_id: campaign_spreader["campaign_id"]
       )
 
-      render text: "yey"
+      redirect_to campaign_path(campaign_spreader["campaign_id"])
     end
   end
 

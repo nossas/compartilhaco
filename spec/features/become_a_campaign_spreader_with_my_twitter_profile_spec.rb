@@ -77,5 +77,15 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
 
       expect(campaign.campaign_spreaders).to have(1).campaign_spreader
     end
+
+    scenario "should redirect me to the campaign page" do
+      visit campaign_path(campaign)
+      within("form.twitter-profile-campaign-spreader") do
+        fill_in "campaign_spreader[timeline][user][email]", with: email
+        click_button "twitter-profile-campaign-spreader-submit-button"
+      end
+
+      expect(current_path).to be_eql(campaign_path(campaign))
+    end
   end
 end
