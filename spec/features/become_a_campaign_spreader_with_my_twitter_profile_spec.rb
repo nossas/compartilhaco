@@ -87,5 +87,15 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
 
       expect(current_path).to be_eql(campaign_path(campaign))
     end
+
+    scenario "should show me the alert box" do
+      visit campaign_path(campaign)
+      within("form.twitter-profile-campaign-spreader") do
+        fill_in "campaign_spreader[timeline][user][email]", with: email
+        click_button "twitter-profile-campaign-spreader-submit-button"
+      end
+
+      expect(page).to have_css(".alert-box")
+    end
   end
 end

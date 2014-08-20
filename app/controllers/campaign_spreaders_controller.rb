@@ -56,7 +56,7 @@ class CampaignSpreadersController < ApplicationController
         campaign_id: campaign_spreader["campaign_id"]
       )
 
-      redirect_to campaign_path(campaign_spreader["campaign_id"])
+      redirect_to campaign_path(campaign_spreader["campaign_id"]), notice: "Pronto! Obrigado por se juntar a este compartilhaço"
     end
   end
 
