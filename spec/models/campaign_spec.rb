@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Campaign, :type => :model do
   it { should have_many :campaign_spreaders }
+  it { should validate_presence_of :ends_at }
+  it { should validate_presence_of :share_link }
+  it { should validate_presence_of :goal }
 
   context "when the ends_at is in the past" do
     subject { Campaign.make ends_at: 1.hour.ago }

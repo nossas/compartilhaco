@@ -2,6 +2,7 @@ class Campaign < ActiveRecord::Base
   has_many :campaign_spreaders
   mount_uploader :image, ImageUploader
 
+  validates :ends_at, :share_link, :goal, presence: true
   validate :ends_at_cannot_be_in_the_past
   validate :ends_at_cannot_be_in_more_than_50_days
 
@@ -19,11 +20,11 @@ class Campaign < ActiveRecord::Base
 
   def ends_at_cannot_be_in_the_past
     errors.add(:ends_at, I18n.t("errors.messages.cannot_be_in_the_past")) if
-      ends_at < Time.now
+      ends_at.nil? || ends_at < Time.now
   end
 
   def ends_at_cannot_be_in_more_than_50_days
     errors.add(:ends_at, I18n.t("errors.messages.cannot_be_in_more_than", 50.days)) if
-      ends_at > 50.days.from_now
+      ends_at.nil? || ends_at > 50.days.from_now
   end
 end
