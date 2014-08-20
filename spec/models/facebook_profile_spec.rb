@@ -61,6 +61,17 @@ RSpec.describe FacebookProfile, :type => :model do
     end
   end
 
+  describe "#check_expired_token" do
+    let(:campaign_spreader){ CampaignSpreader.make!(:facebook_profile) }
+    subject { campaign_spreader.timeline }
+
+    context "when the token is not expired" do
+    end
+
+    context "when the token is expired" do
+    end
+  end
+
   describe "#share" do
     let(:campaign_spreader){ CampaignSpreader.make!(:facebook_profile) }
     subject { campaign_spreader.timeline }
