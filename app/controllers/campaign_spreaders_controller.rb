@@ -33,6 +33,28 @@ class CampaignSpreadersController < ApplicationController
     end
   end
 
+  def create_for_twitter_profile
+    if params[:campaign_spreader]
+      session[:campaign_spreader] = params[:campaign_spreader]
+      redirect_to '/auth/twitter'
+    elsif session[:campaign_spreader]
+      auth = request.env['omniauth.auth']
+      campaign_spreader = session.delete(:campaign_spreader)
+
+      user = User.create(
+        email: campaign_spreader["timeline"]["user"]["email"],
+        ip: request.remote_ip
+      )
+
+      TwitterProfile.create(
+        user: user,
+        uid: auth[:uid]
+      )
+
+      render text: "yey"
+    end
+  end
+
   def failure
     redirect_to Campaign.first, alert: "Você não cedeu as permissões necessárias"
   end
