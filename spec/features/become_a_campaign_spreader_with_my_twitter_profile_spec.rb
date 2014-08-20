@@ -48,7 +48,7 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
       expect(me.twitter_profile).to_not be_nil
     end
 
-    scenario "should save my Facebook profile uid" do
+    scenario "should save my Twitter profile uid" do
       visit campaign_path(campaign)
       within("form.twitter-profile-campaign-spreader") do
         fill_in "campaign_spreader[timeline][user][email]", with: email
@@ -56,6 +56,26 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
       end
 
       expect(me.twitter_profile.uid).to be_eql(twitter_uid)
+    end
+
+    scenario "should make me a campaign spreader" do
+      visit campaign_path(campaign)
+      within("form.twitter-profile-campaign-spreader") do
+        fill_in "campaign_spreader[timeline][user][email]", with: email
+        click_button "twitter-profile-campaign-spreader-submit-button"
+      end
+
+      expect(me.twitter_profile.campaign_spreaders).to have(1).campaign_spreader
+    end
+
+    scenario "should add a campaign spreader to the campaign" do
+      visit campaign_path(campaign)
+      within("form.twitter-profile-campaign-spreader") do
+        fill_in "campaign_spreader[timeline][user][email]", with: email
+        click_button "twitter-profile-campaign-spreader-submit-button"
+      end
+
+      expect(campaign.campaign_spreaders).to have(1).campaign_spreader
     end
   end
 end

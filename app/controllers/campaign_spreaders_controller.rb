@@ -46,9 +46,14 @@ class CampaignSpreadersController < ApplicationController
         ip: request.remote_ip
       )
 
-      TwitterProfile.create(
+      twitter_profile = TwitterProfile.create(
         user: user,
         uid: auth[:uid]
+      )
+
+      CampaignSpreader.create(
+        timeline: twitter_profile,
+        campaign_id: campaign_spreader["campaign_id"]
       )
 
       render text: "yey"
