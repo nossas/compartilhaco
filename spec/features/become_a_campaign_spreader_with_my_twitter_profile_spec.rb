@@ -118,5 +118,20 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
         end
       end
     end
+
+    context "when I fill the message field" do
+      scenario "should save the message" do
+        message = "My custom message"
+
+        visit campaign_path(campaign)
+        within("form.twitter-profile-campaign-spreader") do
+          fill_in "campaign_spreader[message]", with: message
+          fill_in "campaign_spreader[timeline][user][email]", with: email
+          click_button "twitter-profile-campaign-spreader-submit-button"
+        end
+
+        expect(CampaignSpreader.first.message).to be_eql(message)
+      end
+    end
   end
 end

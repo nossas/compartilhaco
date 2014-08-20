@@ -53,7 +53,8 @@ class CampaignSpreadersController < ApplicationController
 
       CampaignSpreader.create(
         timeline: twitter_profile,
-        campaign_id: campaign_spreader["campaign_id"]
+        campaign_id: campaign_spreader["campaign_id"],
+        message: campaign_spreader["message"]
       )
 
       redirect_to campaign_path(campaign_spreader["campaign_id"]), notice: "Pronto! Obrigado por se juntar a este compartilhaço"

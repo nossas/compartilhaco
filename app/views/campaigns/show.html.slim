@@ -17,6 +17,9 @@
 
   = form_for @facebook_profile_campaign_spreader, url: create_for_twitter_profile_campaign_spreaders_path, data: { abide: true }, html: { class: "twitter-profile-campaign-spreader" } do |form|
     = form.fields_for :timeline do |timeline_form|
+      .message-field
+        = form.label :message
+        = form.text_area :message
       = timeline_form.fields_for :user do |user_form|
         .user-email-field
           = user_form.label :email
