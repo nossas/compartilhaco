@@ -23,11 +23,7 @@ class CampaignSpreadersController < ApplicationController
         token: auth[:credentials][:token]
       )
 
-      CampaignSpreader.create(
-        timeline: facebook_profile,
-        campaign_id: campaign_spreader["campaign_id"],
-        message: campaign_spreader["message"]
-      )
+      CampaignSpreader.create campaign_spreader.merge(timeline: facebook_profile)
 
       redirect_to Campaign.first, notice: "Pronto! Obrigado por se juntar a este compartilhaço"
     end
@@ -51,11 +47,7 @@ class CampaignSpreadersController < ApplicationController
         uid: auth[:uid]
       )
 
-      CampaignSpreader.create(
-        timeline: twitter_profile,
-        campaign_id: campaign_spreader["campaign_id"],
-        message: campaign_spreader["message"]
-      )
+      CampaignSpreader.create campaign_spreader.merge(timeline: twitter_profile)
 
       redirect_to campaign_path(campaign_spreader["campaign_id"]), notice: "Pronto! Obrigado por se juntar a este compartilhaço"
     end
