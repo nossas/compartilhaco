@@ -2,6 +2,10 @@ class FacebookProfile < Timeline
   belongs_to :user
   after_create { FacebookProfileWorker.perform_async(self.id) }
 
+  validates :user_id, :uid, :token, :expires_at, presence: true
+  validates :uid, uniqueness: true
+  validates :user_id, uniqueness: true
+
   def fetch_friends_count
     result = graph.api("me/friends")
     if result["error"]

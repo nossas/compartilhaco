@@ -2,6 +2,16 @@ require 'rails_helper'
 
 RSpec.describe FacebookProfile, :type => :model do
   it { should belong_to :user }
+  it { should validate_presence_of :user_id }
+  it { should validate_presence_of :uid }
+  it { should validate_presence_of :token }
+  it { should validate_presence_of :expires_at }
+
+  context "when there is one Facebook profile" do
+    before { FacebookProfile.make! }
+    it { should validate_uniqueness_of :uid }
+    it { should validate_uniqueness_of :user_id }
+  end
 
   describe "#fetch_friends_count" do
     subject { FacebookProfile.make! }
