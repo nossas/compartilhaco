@@ -107,5 +107,16 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
 
       expect(page.get_rack_session['campaign_spreader']).to be_nil
     end
+
+    context "when I leave the email field blank" do
+      scenario "should show me an error message", js: true do
+        visit campaign_path(campaign)
+        click_button "twitter-profile-campaign-spreader-submit-button"
+
+        within("form.twitter-profile-campaign-spreader") do
+          expect(page).to have_css("input#campaign_spreader_timeline_user_email[data-invalid]")
+        end
+      end
+    end
   end
 end
