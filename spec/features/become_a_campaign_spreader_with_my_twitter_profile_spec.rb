@@ -97,5 +97,15 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
 
       expect(page).to have_css(".alert-box")
     end
+
+    scenario "should clean up my session" do
+      visit campaign_path(campaign)
+      within("form.twitter-profile-campaign-spreader") do
+        fill_in "campaign_spreader[timeline][user][email]", with: email
+        click_button "twitter-profile-campaign-spreader-submit-button"
+      end
+
+      expect(page.get_rack_session['campaign_spreader']).to be_nil
+    end
   end
 end
