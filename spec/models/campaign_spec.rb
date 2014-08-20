@@ -3,6 +3,37 @@ require 'rails_helper'
 RSpec.describe Campaign, :type => :model do
   it { should have_many :campaign_spreaders }
 
+  context "when the ends_at is in the past" do
+    subject { Campaign.make ends_at: 1.hour.ago }
+    it { should have(1).error_on(:ends_at) }
+  end
+
+  context "when the ends_at is in more than 50 days from now" do
+    subject { Campaign.make ends_at: 51.days.from_now }
+    it { should have(1).error_on(:ends_at) }
+  end
+
+  describe ".ended" do
+    context "when there is at least one ended campaign" do
+      before do
+        Campaign.make! ends_at: 1.day.from_now
+        allow(Time).to receive(:now).and_return(2.days.from_now)
+      end
+
+      it "should have one campaign" do
+        expect(Campaign.ended).to have(1).campaign
+      end
+    end
+
+    context "when there is no ended campaign" do
+      before { Campaign.make! ends_at: Time.now + 1.day }
+
+      it "should be empty" do
+        expect(Campaign.ended).to be_empty
+      end
+    end
+  end
+
   describe ".unshared" do
     context "when there is at least one unshared campaign" do
       before { Campaign.make! }

@@ -2,6 +2,7 @@ require 'machinist/active_record'
 
 Campaign.blueprint do
   share_link { "http://www.minhascidades.org.br/" }
+  ends_at { Time.now + 1.month }
 end
 
 CampaignSpreader.blueprint(:facebook_profile) do
