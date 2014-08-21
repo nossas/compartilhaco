@@ -1,59 +1,58 @@
 class CampaignSpreadersController < ApplicationController
-  before_filter except: [:failure] do
-    @auth_params = request.env['omniauth.auth']
-    @campaign_spreader_params = session.delete(:campaign_spreader)
+  before_filter only: [:create_for_facebook_profile, :create_for_twitter_profile] do
     session[:campaign_spreader] = params[:campaign_spreader] if params[:campaign_spreader].present?
   end
 
+  before_filter only: [:create_for_facebook_profile_callback, :create_for_twitter_profile_callback] do
+    @auth_params = request.env['omniauth.auth']
+    @campaign_spreader_params = session.delete(:campaign_spreader)
+    
+    @user = current_user || User.where(email: @campaign_spreader_params["timeline"]["user"]["email"]).first_or_create(
+      first_name: @auth_params[:info][:first_name] || @auth_params[:info][:name].split(" ")[0],
+      last_name: @auth_params[:info][:last_name] || @auth_params[:info][:name].split(" ")[-1],
+      ip: request.remote_ip
+    )
+  end
+
+  def create_for_facebook_profile_callback
+    facebook_profile = FacebookProfile.find_or_initialize_by(uid: @auth_params[:uid])
+    facebook_profile.update_attributes(
+      user_id: @user.id,
+      uid: @auth_params[:uid],
+      expires_at: Time.at(@auth_params[:credentials][:expires_at]),
+      token: @auth_params[:credentials][:token]
+    )
+
+    CampaignSpreader.create @campaign_spreader_params.merge(timeline: facebook_profile)
+
+    redirect_to(
+      campaign_path(@campaign_spreader_params["campaign_id"]),
+      notice: "Pronto! Obrigado por se juntar a este compartilhaço"
+    )
+  end
+
+  def create_for_twitter_profile_callback
+    twitter_profile = TwitterProfile.find_or_initialize_by(uid: @auth_params[:uid])
+    twitter_profile.update_attributes(
+      user: @user,
+      uid: @auth_params[:uid],
+      token: @auth_params[:credentials][:token]
+    )
+
+    CampaignSpreader.create @campaign_spreader_params.merge(timeline: twitter_profile)
+
+    redirect_to(
+      campaign_path(@campaign_spreader_params["campaign_id"]),
+      notice: "Pronto! Obrigado por se juntar a este compartilhaço"
+    )
+  end
+
   def create_for_facebook_profile
-    if @auth_params.nil?
-      redirect_to '/auth/facebook?scope=publish_actions,user_friends'
-    else
-      user = current_user || User.find_by_email(@campaign_spreader_params["timeline"]["user"]["email"])
-      user = User.create(
-        email: @campaign_spreader_params["timeline"]["user"]["email"],
-        first_name: @auth_params[:info][:first_name],
-        last_name: @auth_params[:info][:last_name],
-        ip: request.remote_ip
-      ) if user.nil?
-
-      facebook_profile = FacebookProfile.find_or_initialize_by(uid: @auth_params[:uid])
-      facebook_profile.update_attributes(
-        user_id: user.id,
-        uid: @auth_params[:uid],
-        expires_at: Time.at(@auth_params[:credentials][:expires_at]),
-        token: @auth_params[:credentials][:token]
-      )
-
-      CampaignSpreader.create @campaign_spreader_params.merge(timeline: facebook_profile)
-
-      redirect_to campaign_path(@campaign_spreader_params["campaign_id"]), notice: "Pronto! Obrigado por se juntar a este compartilhaço"
-    end
+    redirect_to '/auth/facebook?scope=publish_actions,user_friends'
   end
 
   def create_for_twitter_profile
-    if @auth_params.nil?
-      redirect_to '/auth/twitter'
-    else
-      user = current_user || User.find_by_email(@campaign_spreader_params["timeline"]["user"]["email"])
-      user = User.create(
-        email: @campaign_spreader_params["timeline"]["user"]["email"],
-        first_name: @auth_params[:info][:name].split(" ")[0],
-        last_name: @auth_params[:info][:name].split(" ")[-1],
-        ip: request.remote_ip
-      ) if user.nil?
-
-      twitter_profile = TwitterProfile.find_or_initialize_by(uid: @auth_params[:uid])
-      twitter_profile.update_attributes(
-        user: user,
-        uid: @auth_params[:uid],
-        token: @auth_params[:credentials][:token]
-      )
-
-      CampaignSpreader.create @campaign_spreader_params.merge(timeline: twitter_profile)
-
-      redirect_to campaign_path(@campaign_spreader_params["campaign_id"]), notice: "Pronto! Obrigado por se juntar a este compartilhaço"
-    end
+    redirect_to '/auth/twitter'
   end
 
   def failure

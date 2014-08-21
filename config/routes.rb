@@ -21,8 +21,8 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/auth/facebook/callback', to: 'campaign_spreaders#create_for_facebook_profile'
-  get '/auth/twitter/callback', to: 'campaign_spreaders#create_for_twitter_profile'
+  get '/auth/facebook/callback', to: 'campaign_spreaders#create_for_facebook_profile_callback'
+  get '/auth/twitter/callback', to: 'campaign_spreaders#create_for_twitter_profile_callback'
   get '/auth/failure', to: 'campaign_spreaders#failure'
 
   # The priority is based upon order of creation: first created -> highest priority.
