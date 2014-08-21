@@ -185,4 +185,20 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
       end
     end
   end
+
+  context "when I don't allow Twitter permitions" do
+    before do
+      OmniAuth.config.mock_auth[:twitter] = :invalid_credentials
+    end
+
+    scenario "should show me an error message" do
+      visit campaign_path(campaign)
+      within("form.twitter-profile-campaign-spreader") do
+        fill_in "campaign_spreader[timeline][user][email]", with: email
+        click_button "twitter-profile-campaign-spreader-submit-button"
+      end
+
+      expect(page).to have_css(".alert-box.alert")
+    end
+  end
 end
