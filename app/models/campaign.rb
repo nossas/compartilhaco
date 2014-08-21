@@ -35,5 +35,5 @@ class Campaign < ActiveRecord::Base
 
   def check_expired_tokens
     facebook_profiles.each { |fp| fp.check_expired_token }
-  end  
+  end
 end

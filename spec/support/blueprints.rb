@@ -11,6 +11,11 @@ CampaignSpreader.blueprint(:facebook_profile) do
   campaign { Campaign.make! }
 end
 
+CampaignSpreader.blueprint(:twitter_profile) do
+  timeline { TwitterProfile.make! }
+  campaign { Campaign.make! }
+end
+
 User.blueprint do
   # Attributes here
 end
