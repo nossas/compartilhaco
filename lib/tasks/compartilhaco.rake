@@ -1,11 +1,11 @@
 namespace :compartilhaco do
   namespace :facebook do
     task :check_expired_tokens => :environment do
-      Campaign.unshared.each {|c| c.check_expired_tokens}
+      Campaign.upcoming.each { |c| c.check_expired_tokens }
     end
   end
 
   task :share_campaigns => :environment do
-    Campaign.unshared.ended.succeeded.each {|c| c.share}
+    Campaign.unshared.ended.succeeded.each { |c| c.share }
   end
 end

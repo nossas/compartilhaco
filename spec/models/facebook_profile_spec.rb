@@ -62,13 +62,26 @@ RSpec.describe FacebookProfile, :type => :model do
   end
 
   describe "#check_expired_token" do
-    let(:campaign_spreader){ CampaignSpreader.make!(:facebook_profile) }
-    subject { campaign_spreader.timeline }
+    subject { FacebookProfile.make! }
 
     context "when the token is not expired" do
+      it "should not change the expires_at attribute" do
+        expect {
+          VCR.use_cassette('facebook valid token', match_requests_on: [:host, :path]) do
+            subject.check_expired_token
+          end
+        }.to_not change{subject.expires_at}
+      end
     end
 
     context "when the token is expired" do
+      it "should update the expires_at attribute" do
+        expect {
+          VCR.use_cassette('facebook expired token', match_requests_on: [:host, :path]) do
+            subject.check_expired_token
+          end
+        }.to change{subject.expires_at}
+      end
     end
   end
 

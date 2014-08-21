@@ -39,9 +39,9 @@ class FacebookProfile < Timeline
   def check_expired_token
     begin
       Koala::Facebook::API.new(token).get_object('me')
-    rescue => e
-      puts e.message
-      self.update(expires_at: Time.now) if e.message.include?("OAuthException: Error validating access token:")
+    rescue Koala::Facebook::AuthenticationError => e
+      update_attribute :expires_at, Time.now
+      logger.warn e.message
     end
   end
 
