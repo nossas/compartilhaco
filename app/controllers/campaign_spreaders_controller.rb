@@ -38,6 +38,8 @@ class CampaignSpreadersController < ApplicationController
       user = current_user || User.find_by_email(@campaign_spreader_params["timeline"]["user"]["email"])
       user = User.create(
         email: @campaign_spreader_params["timeline"]["user"]["email"],
+        first_name: @auth_params[:info][:name].split(" ")[0],
+        last_name: @auth_params[:info][:name].split(" ")[-1],
         ip: request.remote_ip
       ) if user.nil?
 

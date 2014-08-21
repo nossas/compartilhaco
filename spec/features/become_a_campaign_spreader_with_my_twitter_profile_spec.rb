@@ -12,7 +12,8 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
     OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
       provider: 'twitter',
       uid: twitter_uid,
-      credentials: { token: token }
+      credentials: { token: token },
+      info: { name: "Nícolas Iensen" }
     })
 
     allow_any_instance_of(ActionDispatch::Request).to receive(:remote_ip).and_return(ip)
