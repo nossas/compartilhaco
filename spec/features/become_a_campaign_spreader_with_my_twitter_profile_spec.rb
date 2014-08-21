@@ -5,11 +5,14 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
   let(:email){ "nicolas@trashmail.com" }
   let(:ip){ "192.168.0.1" }
   let(:twitter_uid){ "123" }
+  let(:expires_at){ 1321747205 }
+  let(:token){ "abcde" }
 
   before do
     OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
       provider: 'twitter',
-      uid: twitter_uid
+      uid: twitter_uid,
+      credentials: { token: token }
     })
 
     allow_any_instance_of(ActionDispatch::Request).to receive(:remote_ip).and_return(ip)
@@ -131,6 +134,35 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
         end
 
         expect(CampaignSpreader.first.message).to be_eql(message)
+      end
+    end
+  end
+
+  context "when I'm not a new user" do
+    before { @user = User.make! email: email }
+
+    context "when I'm not logged in" do
+      context "when I don't have a Twitter profile" do
+        scenario "should create Twitter profile for me" do
+          visit campaign_path(campaign)
+          within("form.twitter-profile-campaign-spreader") do
+            fill_in "campaign_spreader[timeline][user][email]", with: email
+            click_button "twitter-profile-campaign-spreader-submit-button"
+          end
+          expect(@user.twitter_profile).to_not be_nil
+        end
+      end
+
+      context "when I have a Twitter profile" do
+        before { @twitter_profile = TwitterProfile.make! user_id: @user.id, uid: twitter_uid }
+        scenario "should update my Twitter profile token" do
+          visit campaign_path(campaign)
+          within("form.twitter-profile-campaign-spreader") do
+            fill_in "campaign_spreader[timeline][user][email]", with: email
+            click_button "twitter-profile-campaign-spreader-submit-button"
+          end
+          expect(@twitter_profile.reload.token).to be_eql(token)
+        end
       end
     end
   end

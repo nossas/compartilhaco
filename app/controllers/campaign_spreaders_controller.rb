@@ -35,14 +35,17 @@ class CampaignSpreadersController < ApplicationController
     if @auth_params.nil?
       redirect_to '/auth/twitter'
     else
+      user = User.find_by_email(@campaign_spreader_params["timeline"]["user"]["email"])
       user = User.create(
         email: @campaign_spreader_params["timeline"]["user"]["email"],
         ip: request.remote_ip
-      )
+      ) if user.nil?
 
-      twitter_profile = TwitterProfile.create(
+      twitter_profile = TwitterProfile.find_or_initialize_by(uid: @auth_params[:uid])
+      twitter_profile.update_attributes(
         user: user,
-        uid: @auth_params[:uid]
+        uid: @auth_params[:uid],
+        token: @auth_params[:credentials][:token]
       )
 
       CampaignSpreader.create @campaign_spreader_params.merge(timeline: twitter_profile)
