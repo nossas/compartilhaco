@@ -16,4 +16,13 @@
 //= require turbolinks
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
+$(function(){
+  $(document).foundation();
+
+  $("[maxlength]").parent().append("<span></span>");
+  $("[maxlength]").keyup(function(e){
+    var remaining;
+    remaining = parseInt($(e.target).attr("maxlength")) - $(e.target).val().length;
+    $(e.target).next("span").html(remaining);
+  });
+});
