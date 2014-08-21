@@ -35,7 +35,7 @@ class CampaignSpreadersController < ApplicationController
     if @auth_params.nil?
       redirect_to '/auth/twitter'
     else
-      user = User.find_by_email(@campaign_spreader_params["timeline"]["user"]["email"])
+      user = current_user || User.find_by_email(@campaign_spreader_params["timeline"]["user"]["email"])
       user = User.create(
         email: @campaign_spreader_params["timeline"]["user"]["email"],
         ip: request.remote_ip

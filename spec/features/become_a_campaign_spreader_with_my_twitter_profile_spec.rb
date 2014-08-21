@@ -165,5 +165,24 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
         end
       end
     end
+
+    context "when I'm logged in" do
+      before { page.set_rack_session('cas' => {'user' => @user.email}) }
+
+      context "when I don't have a Twitter profile" do
+        scenario "should not show the user email field" do
+          visit campaign_path(campaign)
+          within("form.twitter-profile-campaign-spreader") do
+            expect(page).to_not have_css("input[name='campaign_spreader[timeline][user][email]']")
+          end
+        end
+
+        scenario "should create a Twitter profile for me" do
+          visit campaign_path(campaign)
+          click_button "twitter-profile-campaign-spreader-submit-button"
+          expect(@user.twitter_profile).to_not be_nil
+        end
+      end
+    end
   end
 end
