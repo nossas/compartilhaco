@@ -6,4 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Campaign.create ends_at: 10.days.from_now, share_link: "http://minhascidades.org.br", goal: 5
+Campaign.create(
+  ends_at: 10.days.from_now,
+  share_link: "http://minhascidades.org.br",
+  goal: 5,
+  organization: Organization.first
+)
