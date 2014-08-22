@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140821183328) do
+ActiveRecord::Schema.define(version: 20140822125119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,10 +20,11 @@ ActiveRecord::Schema.define(version: 20140821183328) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image"
-    t.string   "share_link", null: false
+    t.string   "share_link",      null: false
     t.datetime "shared_at"
-    t.datetime "ends_at",    null: false
-    t.integer  "goal",       null: false
+    t.datetime "ends_at",         null: false
+    t.integer  "goal",            null: false
+    t.integer  "organization_id", null: false
   end
 
   create_table "campaign_spreaders", force: true do |t|
@@ -49,6 +50,9 @@ ActiveRecord::Schema.define(version: 20140821183328) do
     t.integer  "subscribers_count"
     t.index ["uid"], :name => "index_facebook_profiles_on_uid", :unique => true
     t.index ["user_id"], :name => "index_facebook_profiles_on_user_id", :unique => true
+  end
+
+  create_table "organizations", force: true do |t|
   end
 
   create_table "twitter_profiles", force: true do |t|
