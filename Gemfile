@@ -65,3 +65,4 @@ gem 'vcr', group: :test
 gem 'webmock', group: :test
 gem 'sidekiq'
 gem 'omniauth-twitter'
+gem 'httparty'
