@@ -35,6 +35,8 @@ RSpec.describe CampaignSpreader, :type => :model do
     subject { CampaignSpreader.make!(:facebook_profile) }
 
     it "should call Accounts API" do
+      ENV["ACCOUNTS_HOST"] = "http://accounts.meurio-staging.org.br"
+      ENV["ACCOUNTS_API_TOKEN"] = "123"
       subject.create_segment_subscription
 
       expect(WebMock).to have_requested(
