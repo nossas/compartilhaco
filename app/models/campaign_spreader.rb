@@ -6,6 +6,8 @@ class CampaignSpreader < ActiveRecord::Base
   validates :timeline_id, uniqueness: { scope: [:timeline_type, :campaign_id] }
   validates_length_of :message, maximum: 140, if: :facebook?
 
+  after_create { CampaignSpreaderWorker.perform_async(self.id) }
+
   def share
     timeline.share(self)
   end
