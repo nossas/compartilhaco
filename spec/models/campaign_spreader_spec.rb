@@ -30,4 +30,23 @@ RSpec.describe CampaignSpreader, :type => :model do
       subject.share
     end
   end
+
+  describe "#create_segment_subscription" do
+    subject { CampaignSpreader.make!(:facebook_profile) }
+
+    it "should call Accounts API" do
+      subject.create_segment_subscription
+
+      expect(WebMock).to have_requested(
+        :post,
+        "#{ENV["ACCOUNTS_HOST"]}/users/#{subject.timeline.user_id}/segment_subscriptions.json"
+      ).with({
+        token: ENV["ACCOUNTS_API_TOKEN"],
+        segment_subscription: {
+          organization_id: subject.campaign.organization_id,
+          segment_id: subject.campaign.mailchimp_segment_uid
+        }
+      })
+    end
+  end
 end

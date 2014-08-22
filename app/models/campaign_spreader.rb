@@ -13,4 +13,19 @@ class CampaignSpreader < ActiveRecord::Base
   def facebook?
     timeline_type == "FacebookProfile"
   end
+
+  # TODO: move it to a gem
+  def create_segment_subscription
+    url = "#{ENV["ACCOUNTS_HOST"]}/users/#{timeline.user_id}/segment_subscriptions.json"
+
+    body = {
+      token: ENV["ACCOUNTS_API_TOKEN"],
+      segment_subscription: {
+        organization_id: campaign.organization_id,
+        segment_id: campaign.mailchimp_segment_uid
+      }
+    }
+
+    HTTParty.post(url, body: body.to_json, headers: { 'Content-Type' => 'application/json' })
+  end
 end
