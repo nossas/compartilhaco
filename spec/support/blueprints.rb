@@ -32,6 +32,7 @@ TwitterProfile.blueprint do
   user { User.make! }
   uid { "uid-#{sn}" }
   token { "token-#{sn}" }
+  secret { "secret-#{sn}" }
 end
 
 Organization.blueprint do
