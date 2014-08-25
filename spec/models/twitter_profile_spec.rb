@@ -19,10 +19,10 @@ RSpec.describe TwitterProfile, :type => :model do
     context "when it's a valid credential" do
       it "should update followers_count" do
         expect {
-          # VCR.use_cassette('facebook 861 followers', match_requests_on: [:host, :path]) do
-          subject.fetch_followers_count
-          # end
-        }.to change{subject.followers_count}.from(nil).to(861)
+          VCR.use_cassette('twitter 415 followers', match_requests_on: [:host, :path]) do
+            subject.fetch_followers_count
+          end
+        }.to change{subject.followers_count}.from(nil).to(415)
       end
     end
 
