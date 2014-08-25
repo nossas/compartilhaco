@@ -11,4 +11,7 @@ RSpec.describe TwitterProfile, :type => :model do
     it { should validate_uniqueness_of :user_id }
     it { should validate_uniqueness_of :uid }
   end
+
+  describe "#fetch_followers_count" do
+  end
 end
