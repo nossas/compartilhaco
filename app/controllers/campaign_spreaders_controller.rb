@@ -6,7 +6,7 @@ class CampaignSpreadersController < ApplicationController
   before_filter only: [:create_for_facebook_profile_callback, :create_for_twitter_profile_callback] do
     @auth_params = request.env['omniauth.auth']
     @campaign_spreader_params = session.delete(:campaign_spreader)
-    
+
     @user = current_user || User.where(email: @campaign_spreader_params["timeline"]["user"]["email"]).first_or_create(
       first_name: @auth_params[:info][:first_name] || @auth_params[:info][:name].split(" ")[0],
       last_name: @auth_params[:info][:last_name] || @auth_params[:info][:name].split(" ")[-1],
@@ -26,7 +26,7 @@ class CampaignSpreadersController < ApplicationController
     CampaignSpreader.create @campaign_spreader_params.merge(timeline: facebook_profile)
 
     redirect_to(
-      campaign_path(@campaign_spreader_params["campaign_id"]),
+      campaign_path(@campaign_spreader_params["campaign_id"], anchor: "share"),
       notice: "Pronto! Obrigado por se juntar a este compartilhaço"
     )
   end
@@ -43,7 +43,7 @@ class CampaignSpreadersController < ApplicationController
     CampaignSpreader.create @campaign_spreader_params.merge(timeline: twitter_profile)
 
     redirect_to(
-      campaign_path(@campaign_spreader_params["campaign_id"]),
+      campaign_path(@campaign_spreader_params["campaign_id"], anchor: "share"),
       notice: "Pronto! Obrigado por se juntar a este compartilhaço"
     )
   end

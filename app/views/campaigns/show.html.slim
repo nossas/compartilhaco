@@ -50,3 +50,7 @@
     .ends_at faltam #{distance_of_time_in_words_to_now @campaign.ends_at}
     = simple_format @campaign.description
   .campaign-right-col
+
+.reveal-modal.share.medium data={reveal: true}
+  = link_to "Compartilhar no Facebook", "#", class: ['share-on-facebook-button', :button]
+  a.close-reveal-modal &#215;

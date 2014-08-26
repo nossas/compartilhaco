@@ -32,4 +32,9 @@ feature "Share campaign on Facebook", :type => :feature do
     visit campaign_path(campaign)
     expect(page).to have_css("meta[property='og:image'][content='#{campaign.image.url}']", visible: false)
   end
+
+  scenario "should see the Facebook share button", js: true do
+    visit campaign_path(campaign, anchor: 'share')
+    expect(page).to have_css("a.share-on-facebook-button")
+  end
 end

@@ -25,4 +25,8 @@ $(function(){
     remaining = parseInt($(e.target).attr("maxlength")) - $(e.target).val().length;
     $(e.target).next("span").html(remaining);
   });
+
+  if(location.hash == "#share"){
+    $(".reveal-modal.share").foundation('reveal', 'open');
+  }
 });
