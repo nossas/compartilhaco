@@ -52,5 +52,5 @@
   .campaign-right-col
 
 .reveal-modal.share.medium data={reveal: true}
-  = link_to "Compartilhar no Facebook", "#", class: ['share-on-facebook-button', :button]
+  = link_to "Compartilhar no Facebook", "#", class: ['share-on-facebook-button', :button], data: { href: "https://www.facebook.com/sharer/sharer.php?u=#{URI::encode(campaign_url(@campaign))}" }
   a.close-reveal-modal &#215;

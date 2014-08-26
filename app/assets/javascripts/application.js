@@ -29,4 +29,13 @@ $(function(){
   if(location.hash == "#share"){
     $(".reveal-modal.share").foundation('reveal', 'open');
   }
+
+  $(".share-on-facebook-button").click(function(){
+    window.open(
+      $(event.target).attr("data-href"),
+      'facebox-share-dialog',
+      'width=626,height=436'
+    );
+    return false;
+  });
 });
