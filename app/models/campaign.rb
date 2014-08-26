@@ -1,6 +1,7 @@
 class Campaign < ActiveRecord::Base
   has_many :campaign_spreaders
   belongs_to :organization
+  belongs_to :user
   mount_uploader :image, ImageUploader
 
   validates :ends_at, :share_link, :goal, :organization_id, presence: true

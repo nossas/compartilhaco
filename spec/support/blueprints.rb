@@ -8,6 +8,7 @@ Campaign.blueprint do
   title { "Campaign #{sn}" }
   image { File.new("#{Rails.root}/spec/support/images/whale.jpg") }
   description { Faker::Lorem.paragraph(3) }
+  user { User.make! }
 end
 
 CampaignSpreader.blueprint(:facebook_profile) do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140826120523) do
+ActiveRecord::Schema.define(version: 20140826123323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20140826120523) do
     t.string   "mailchimp_segment_uid"
     t.string   "title",                 null: false
     t.text     "description",           null: false
+    t.integer  "user_id",               null: false
   end
 
   create_table "campaign_spreaders", force: true do |t|

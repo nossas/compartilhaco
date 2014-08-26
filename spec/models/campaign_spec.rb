@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Campaign, :type => :model do
   it { should have_many :campaign_spreaders }
   it { should belong_to :organization }
+  it { should belong_to :user }
   it { should validate_presence_of :ends_at }
   it { should validate_presence_of :share_link }
   it { should validate_presence_of :goal }

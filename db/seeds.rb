@@ -13,5 +13,6 @@ Campaign.create(
   organization: Organization.first,
   title: "Salvem as baleias",
   image: File.new("#{Rails.root}/spec/support/images/whale.jpg"),
-  description: Faker::Lorem.paragraphs(3).join("\n\n")
+  description: Faker::Lorem.paragraphs(3).join("\n\n"),
+  user: User.first
 )
