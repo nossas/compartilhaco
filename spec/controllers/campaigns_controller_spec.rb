@@ -14,4 +14,13 @@ RSpec.describe CampaignsController, :type => :controller do
       expect(assigns(:campaign)).to be_eql(campaign)
     end
   end
+
+  describe "GET serve_image" do
+    let(:campaign){ Campaign.make! }
+
+    it "should do anything" do
+      get :serve_image, id: campaign.id, trash: 'blablabla'
+      expect(response.header["Content-Type"]).to eq "image/jpeg"
+    end
+  end
 end
