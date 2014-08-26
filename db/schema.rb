@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20140826201915) do
   create_table "campaigns", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image",                 null: false
+    t.string   "image"
     t.string   "share_link",            null: false
     t.datetime "shared_at"
     t.datetime "ends_at",               null: false
