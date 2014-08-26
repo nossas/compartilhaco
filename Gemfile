@@ -66,3 +66,4 @@ gem 'webmock', group: :test
 gem 'sidekiq'
 gem 'omniauth-twitter'
 gem 'httparty'
+gem 'faker', group: [:test, :development]
