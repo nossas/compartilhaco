@@ -5,51 +5,55 @@
 - set_meta_tags og: { url: campaign_url(@campaign) }
 - set_meta_tags og: { image: @campaign.image.url }
 
-.row
-  .title
-    h2
-      = @campaign.title
-      small por #{@campaign.user.name}
+.campaign-highlight
+  .row
+    .campaign-data
+      .category= @campaign.category.name
+      h2= @campaign.title
+      / TODO: write a test for it
+      .short-description= @campaign.short_description
+      .ends-at
+        .ends-at-label-and-distance
+          .ends-at-label Tempo para o encerramento
+          .ends-at-distance= distance_of_time_in_words_to_now @campaign.ends_at
+        .ends-at-progress-bar
+          .progress.round.alert
+            span.meter style="width: #{campaign_progress @campaign}%"
+    .campaign-forms
+      = form_for @campaign_spreader, url: create_for_facebook_profile_campaign_spreaders_path, data: { abide: true }, html: { class: "facebook-profile-campaign-spreader" } do |form|
+        .message-field
+          = form.label :message
+          = form.text_area :message, rows: 3
+        - if current_user.nil?
+          = form.fields_for :timeline do |timeline_form|
+            = timeline_form.fields_for :user do |user_form|
+              .user-email-field
+                = user_form.label :email
+                = user_form.email_field(:email, required: true)
+                small.error O email é obrigatório
+        = form.hidden_field :campaign_id
+        = form.submit "Ceder meu Perfil do Facebook", id: "facebook-profile-campaign-spreader-submit-button", class: [:button, :radius]
 
-.row
-  .stats
-    span Stats
-
-  = form_for @campaign_spreader, url: create_for_facebook_profile_campaign_spreaders_path, data: { abide: true }, html: { class: "facebook-profile-campaign-spreader" } do |form|
-    .message-field
-      = form.label :message
-      = form.text_area :message, rows: 3
-    - if current_user.nil?
-      = form.fields_for :timeline do |timeline_form|
-        = timeline_form.fields_for :user do |user_form|
-          .user-email-field
-            = user_form.label :email
-            = user_form.email_field(:email, required: true)
-            small.error O email é obrigatório
-    = form.hidden_field :campaign_id
-    = form.submit "Ceder meu Perfil do Facebook", id: "facebook-profile-campaign-spreader-submit-button", class: [:button, :radius]
-
-  = form_for @campaign_spreader, url: create_for_twitter_profile_campaign_spreaders_path, data: { abide: true }, html: { class: "twitter-profile-campaign-spreader" } do |form|
-    .message-field
-      = form.label :message
-      = form.text_area :message, maxlength: 140, rows: 3
-    - if current_user.nil?
-      = form.fields_for :timeline do |timeline_form|
-        = timeline_form.fields_for :user do |user_form|
-          .user-email-field
-            = user_form.label :email
-            = user_form.email_field(:email, required: true)
-            small.error O email é obrigatório
-    = form.hidden_field :campaign_id
-    = form.submit "Ceder meu Perfil do Twitter", id: "twitter-profile-campaign-spreader-submit-button", class: [:button, :radius]
+      = form_for @campaign_spreader, url: create_for_twitter_profile_campaign_spreaders_path, data: { abide: true }, html: { class: "twitter-profile-campaign-spreader" } do |form|
+        .message-field
+          = form.label :message
+          = form.text_area :message, maxlength: 140, rows: 3
+        - if current_user.nil?
+          = form.fields_for :timeline do |timeline_form|
+            = timeline_form.fields_for :user do |user_form|
+              .user-email-field
+                = user_form.label :email
+                = user_form.email_field(:email, required: true)
+                small.error O email é obrigatório
+        = form.hidden_field :campaign_id
+        = form.submit "Ceder meu Perfil do Twitter", id: "twitter-profile-campaign-spreader-submit-button", class: [:button, :radius]
 
 .row
   .campaign-left-col
     = image_tag @campaign.image
-    .category= @campaign.category.name
-    .ends_at faltam #{distance_of_time_in_words_to_now @campaign.ends_at}
     = simple_format @campaign.description
   .campaign-right-col
+    small por #{@campaign.user.name}
 
 .reveal-modal.share.medium data={reveal: true}
   = link_to "Compartilhar no Facebook", "#", class: ['share-on-facebook-button', :button], data: { href: "https://www.facebook.com/sharer/sharer.php?u=#{URI::encode(campaign_url(@campaign))}" }

@@ -1,31 +1,36 @@
 body.campaigns.show
-  .title
-    +grid-column(12)
-    text-align: center
-    margin-bottom: 2em
-    small
-      display: block
-  .stats
-    +grid-column(2)
-    span
-      display: block
-      background: #666
+  .campaign-highlight
+    background: #0296CC
+    color: white
+    padding: 2em 0
+    h2, label
       color: white
-      text-align: center
-      padding: 100px 0
-  form
-    +grid-column(5)
-    margin-bottom: 2em
-    .message-field
-      position: relative
-      span
-        font-size: .9em
-        position: absolute
-        right: 2px
-        bottom: 1px
-      textarea
-        resize: none
-        padding-right: 20px
+    .campaign-data
+      +grid-column(6)
+      .short-description
+        margin-bottom: 2em
+      .ends-at
+        .ends-at-label-and-distance
+          overflow: hidden
+          .ends-at-label
+            float: left
+          .ends-at-distance
+            float: right
+            font-size: 1.5em
+    .campaign-forms
+      +grid-column(6)
+      form
+        margin-bottom: 2em
+        .message-field
+          position: relative
+          span
+            font-size: .9em
+            position: absolute
+            right: 2px
+            bottom: 1px
+          textarea
+            resize: none
+            padding-right: 20px
   .campaign-left-col
     +grid-column(8)
     img

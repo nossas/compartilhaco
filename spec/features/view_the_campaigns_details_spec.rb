@@ -21,7 +21,7 @@ feature "View the campaign's details", :type => :feature do
 
   scenario "should see the campaign's creator" do
     visit campaign_path(campaign)
-    expect(page).to have_css(".title", campaign.user.name)
+    expect(page).to have_css("small", campaign.user.name)
   end
 
   scenario "should see the campaign's category" do
@@ -31,6 +31,6 @@ feature "View the campaign's details", :type => :feature do
 
   scenario "should see the campaign's end date" do
     visit campaign_path(campaign)
-    expect(page).to have_css(".ends_at", distance_of_time_in_words_to_now(campaign.ends_at))
+    expect(page).to have_css(".ends-at-distance", distance_of_time_in_words_to_now(campaign.ends_at))
   end
 end
