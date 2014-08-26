@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Campaign.create(
+Campaign.create!(
   ends_at: 10.days.from_now,
   share_link: "http://minhascidades.org.br",
   goal: 5,
@@ -14,5 +14,6 @@ Campaign.create(
   title: "Salvem as baleias",
   image: File.new("#{Rails.root}/spec/support/images/whale.jpg"),
   description: Faker::Lorem.paragraphs(3).join("\n\n"),
-  user: User.first
+  user: User.first,
+  category: Category.first
 )
