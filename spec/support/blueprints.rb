@@ -5,6 +5,9 @@ Campaign.blueprint do
   ends_at { 1.month.from_now }
   goal { 100 }
   organization { Organization.make! }
+  title { "Campaign #{sn}" }
+  image { File.new("#{Rails.root}/spec/support/images/whale.jpg") }
+  description { Faker::Lorem.paragraph(3) }
 end
 
 CampaignSpreader.blueprint(:facebook_profile) do

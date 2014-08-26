@@ -10,5 +10,8 @@ Campaign.create(
   ends_at: 10.days.from_now,
   share_link: "http://minhascidades.org.br",
   goal: 5,
-  organization: Organization.first
+  organization: Organization.first,
+  title: "Salvem as baleias",
+  image: File.new("#{Rails.root}/spec/support/images/whale.jpg"),
+  description: Faker::Lorem.paragraphs(3).join("\n\n")
 )
