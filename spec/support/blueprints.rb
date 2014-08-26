@@ -10,6 +10,7 @@ Campaign.blueprint do
   description { Faker::Lorem.paragraph(3) }
   user { User.make! }
   category { Category.make! }
+  short_description { Faker::Lorem.sentence }
 end
 
 CampaignSpreader.blueprint(:facebook_profile) do

@@ -13,6 +13,8 @@ RSpec.describe Campaign, :type => :model do
   it { should validate_presence_of :title }
   it { should validate_presence_of :description }
   it { should validate_presence_of :user_id }
+  it { should validate_presence_of :short_description }
+  it { should ensure_length_of(:short_description).is_at_most(250) }
 
   context "when the ends_at is in the past" do
     subject { Campaign.make ends_at: 1.hour.ago }

@@ -5,9 +5,10 @@ class Campaign < ActiveRecord::Base
   belongs_to :category
   mount_uploader :image, ImageUploader
 
-  validates :ends_at, :share_link, :goal, :organization_id, :image, :title, :description, :user_id, presence: true
+  validates :ends_at, :share_link, :goal, :organization_id, :image, :title, :description, :user_id, :short_description, presence: true
   validate :ends_at_cannot_be_in_the_past
   validate :ends_at_cannot_be_in_more_than_50_days
+  validates_length_of :short_description, maximum: 250
 
   scope :unshared,  -> { where("shared_at IS NULL") }
   scope :upcoming,  -> { where("? < ends_at", Time.now) }

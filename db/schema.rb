@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140826181658) do
+ActiveRecord::Schema.define(version: 20140826201915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20140826181658) do
     t.text     "description",           null: false
     t.integer  "user_id",               null: false
     t.integer  "category_id",           null: false
+    t.text     "short_description",     null: false
     t.index ["category_id"], :name => "fk__campaigns_category_id"
     t.foreign_key ["category_id"], "categories", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_campaigns_category_id"
   end
