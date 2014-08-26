@@ -58,4 +58,4 @@ gem 'mini_magick'
 gem 'fog'
 gem 'sidekiq'
 gem 'httparty'
-gem 'faker', group: [:test, :development]
+gem 'faker'
