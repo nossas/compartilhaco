@@ -1,3 +1,10 @@
+- set_meta_tags title: @campaign.title
+- set_meta_tags description: @campaign.short_description
+- set_meta_tags og: { title: @campaign.title }
+- set_meta_tags og: { description: @campaign.short_description }
+- set_meta_tags og: { url: campaign_url(@campaign) }
+- set_meta_tags og: { image: @campaign.image.url }
+
 .row
   .title
     h2

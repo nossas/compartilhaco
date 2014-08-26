@@ -28,5 +28,6 @@ Category.create([
 #   image: File.new("#{Rails.root}/spec/support/images/whale.jpg"),
 #   description: Faker::Lorem.paragraphs(3).join("\n\n"),
 #   user: User.first,
-#   category: Category.first
+#   category: Category.first,
+#   description: Faker::Lorem.paragraphs(1)
 # )
