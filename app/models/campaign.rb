@@ -4,7 +4,7 @@ class Campaign < ActiveRecord::Base
   belongs_to :user
   mount_uploader :image, ImageUploader
 
-  validates :ends_at, :share_link, :goal, :organization_id, presence: true
+  validates :ends_at, :share_link, :goal, :organization_id, :image, :title, :description, :user_id, presence: true
   validate :ends_at_cannot_be_in_the_past
   validate :ends_at_cannot_be_in_more_than_50_days
 
