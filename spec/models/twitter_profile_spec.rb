@@ -36,4 +36,29 @@ RSpec.describe TwitterProfile, :type => :model do
       end
     end
   end
+
+  describe "#share" do
+    let(:campaign_spreader){ CampaignSpreader.make!(:twitter_profile) }
+    subject { campaign_spreader.timeline }
+
+    context "when it's a valid credential" do
+      it "should update campaign_spreader#uid" do
+        expect {
+          VCR.use_cassette('twitter profile share', match_requests_on: [:host, :path]) do
+            subject.share campaign_spreader
+          end
+        }.to change{campaign_spreader.uid}.from(nil).to(504279360619429888)
+      end
+    end
+
+    context "when it's an invalid credential" do
+      it "should not update campaign_spreader#uid" do
+        expect {
+          VCR.use_cassette('twitter invalid credentials', match_requests_on: [:host]) do
+            subject.share campaign_spreader
+          end
+        }.to_not change{campaign_spreader.uid}
+      end
+    end
+  end
 end

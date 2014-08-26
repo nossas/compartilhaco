@@ -12,6 +12,15 @@ class TwitterProfile < Timeline
     logger.warn e.message
   end
 
+  def share campaign_spreader
+    begin
+      result = api.update("#{campaign_spreader.message} #{campaign_spreader.campaign.share_link}")
+      campaign_spreader.update_attribute :uid, result["id"]
+    rescue Exception => e
+      puts e.message
+    end
+  end
+
   def api
     @api ||= Twitter::REST::Client.new do |config|
       config.consumer_key = ENV['TWITTER_KEY']
