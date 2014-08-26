@@ -9,6 +9,7 @@ Campaign.blueprint do
   image { File.new("#{Rails.root}/spec/support/images/whale.jpg") }
   description { Faker::Lorem.paragraph(3) }
   user { User.make! }
+  category { Category.make! }
 end
 
 CampaignSpreader.blueprint(:facebook_profile) do
@@ -41,4 +42,8 @@ end
 
 Organization.blueprint do
   # Attributes here
+end
+
+Category.blueprint do
+  name { "Category #{sn}" }
 end

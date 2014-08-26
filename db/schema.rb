@@ -11,15 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140826123323) do
+ActiveRecord::Schema.define(version: 20140826181658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "categories", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name",       null: false
+  end
+
   create_table "campaigns", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image"
+    t.string   "image",                 null: false
     t.string   "share_link",            null: false
     t.datetime "shared_at"
     t.datetime "ends_at",               null: false
@@ -29,6 +35,9 @@ ActiveRecord::Schema.define(version: 20140826123323) do
     t.string   "title",                 null: false
     t.text     "description",           null: false
     t.integer  "user_id",               null: false
+    t.integer  "category_id",           null: false
+    t.index ["category_id"], :name => "fk__campaigns_category_id"
+    t.foreign_key ["category_id"], "categories", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_campaigns_category_id"
   end
 
   create_table "campaign_spreaders", force: true do |t|
