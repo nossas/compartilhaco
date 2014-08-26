@@ -44,18 +44,14 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'koala', '~> 1.10.0rc'
 gem 'twitter'
-
 gem 'rails_12factor', group: [:production, :staging]
 gem 'coveralls', require: false
 gem 'appsignal'
-
 gem 'slim-rails'
 gem 'foundation-rails'
 gem 'schema_plus'
-
-gem 'carrierwave'
 gem 'mini_magick'
-gem 'fog'
 gem 'sidekiq'
 gem 'httparty'
 gem 'faker'
+gem 'carrierwave-aws'
