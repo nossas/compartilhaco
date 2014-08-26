@@ -29,5 +29,5 @@ Category.create([
 #   description: Faker::Lorem.paragraphs(3).join("\n\n"),
 #   user: User.first,
 #   category: Category.first,
-#   description: Faker::Lorem.paragraphs(1)
+#   short_description: Faker::Lorem.paragraph
 # )
