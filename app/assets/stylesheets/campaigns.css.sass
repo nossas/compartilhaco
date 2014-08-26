@@ -1,6 +1,10 @@
 body.campaigns.show
   .title
     +grid-column(12)
+    text-align: center
+    margin-bottom: 2em
+    small
+      display: block
   .stats
     +grid-column(2)
     span
@@ -11,6 +15,7 @@ body.campaigns.show
       padding: 100px 0
   form
     +grid-column(5)
+    margin-bottom: 2em
     .message-field
       position: relative
       span

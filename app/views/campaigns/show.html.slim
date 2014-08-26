@@ -1,6 +1,8 @@
 .row
   .title
-    h2= @campaign.title
+    h2
+      = @campaign.title
+      small por #{@campaign.user.name}
 
 .row
   .stats

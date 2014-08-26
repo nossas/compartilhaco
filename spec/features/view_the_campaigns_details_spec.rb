@@ -17,4 +17,9 @@ feature "View the campaign's details", :type => :feature do
     visit campaign_path(campaign)
     expect(page).to have_content(campaign.description)
   end
+
+  scenario "should see the campaign's creator" do
+    visit campaign_path(campaign)
+    expect(page).to have_css(".title", campaign.user.name)
+  end
 end
