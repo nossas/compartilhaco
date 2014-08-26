@@ -4,6 +4,7 @@ RSpec.describe Campaign, :type => :model do
   it { should have_many :campaign_spreaders }
   it { should belong_to :organization }
   it { should belong_to :user }
+  it { should belong_to :category }
   it { should validate_presence_of :ends_at }
   it { should validate_presence_of :share_link }
   it { should validate_presence_of :goal }
@@ -12,7 +13,6 @@ RSpec.describe Campaign, :type => :model do
   it { should validate_presence_of :title }
   it { should validate_presence_of :description }
   it { should validate_presence_of :user_id }
-
 
   context "when the ends_at is in the past" do
     subject { Campaign.make ends_at: 1.hour.ago }

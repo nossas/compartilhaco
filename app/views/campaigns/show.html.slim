@@ -39,5 +39,6 @@
 .row
   .campaign-left-col
     = image_tag @campaign.image
+    .category= @campaign.category.name
     = simple_format @campaign.description
   .campaign-right-col

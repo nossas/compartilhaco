@@ -22,4 +22,9 @@ feature "View the campaign's details", :type => :feature do
     visit campaign_path(campaign)
     expect(page).to have_css(".title", campaign.user.name)
   end
+
+  scenario "should see the campaign's category" do
+    visit campaign_path(campaign)
+    expect(page).to have_css(".category", campaign.category.name)
+  end
 end
