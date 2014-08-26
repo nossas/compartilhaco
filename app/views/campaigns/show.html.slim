@@ -1,4 +1,8 @@
 .row
+  .title
+    h2= @campaign.title
+
+.row
   .stats
     span Stats
 
@@ -29,3 +33,9 @@
             small.error O email é obrigatório
     = form.hidden_field :campaign_id
     = form.submit "Ceder meu Perfil do Twitter", id: "twitter-profile-campaign-spreader-submit-button", class: [:button, :radius]
+
+.row
+  .campaign-left-col
+    = image_tag @campaign.image
+    = simple_format @campaign.description
+  .campaign-right-col

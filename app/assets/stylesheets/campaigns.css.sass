@@ -1,4 +1,6 @@
 body.campaigns.show
+  .title
+    +grid-column(12)
   .stats
     +grid-column(2)
     span
@@ -19,3 +21,9 @@ body.campaigns.show
       textarea
         resize: none
         padding-right: 20px
+  .campaign-left-col
+    +grid-column(8)
+    img
+      margin-bottom: 1em
+  .campaign-right-col
+    +grid-column(4)
