@@ -7,12 +7,13 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
   let(:twitter_uid){ "123" }
   let(:expires_at){ 1321747205 }
   let(:token){ "abcde" }
+  let(:secret){ "abcde" }
 
   before do
     OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
       provider: 'twitter',
       uid: twitter_uid,
-      credentials: { token: token },
+      credentials: { token: token, secret: secret },
       info: { name: "Nícolas Iensen" }
     })
 
@@ -163,6 +164,15 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
             click_button "twitter-profile-campaign-spreader-submit-button"
           end
           expect(@twitter_profile.reload.token).to be_eql(token)
+        end
+
+        scenario "should update my Twitter profile secret" do
+          visit campaign_path(campaign)
+          within("form.twitter-profile-campaign-spreader") do
+            fill_in "campaign_spreader[timeline][user][email]", with: email
+            click_button "twitter-profile-campaign-spreader-submit-button"
+          end
+          expect(@twitter_profile.reload.secret).to be_eql(secret)
         end
       end
     end

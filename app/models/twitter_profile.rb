@@ -1,6 +1,23 @@
 class TwitterProfile < Timeline
   belongs_to :user
-  validates :user_id, :uid, :token, presence: true
+  after_create { TwitterProfileWorker.perform_async(self.id) }
+
+  validates :user_id, :uid, :token, :secret, presence: true
   validates :user_id, uniqueness: true
   validates :uid, uniqueness: true
+
+  def fetch_followers_count
+    update_attribute :followers_count, api.user.followers_count
+  rescue Exception => e
+    logger.warn e.message
+  end
+
+  def api
+    @api ||= Twitter::REST::Client.new do |config|
+      config.consumer_key = ENV['TWITTER_KEY']
+      config.consumer_secret = ENV['TWITTER_SECRET']
+      config.access_token = self.token
+      config.access_token_secret = self.secret
+    end
+  end
 end

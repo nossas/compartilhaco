@@ -36,7 +36,8 @@ class CampaignSpreadersController < ApplicationController
     twitter_profile.update_attributes(
       user: @user,
       uid: @auth_params[:uid],
-      token: @auth_params[:credentials][:token]
+      token: @auth_params[:credentials][:token],
+      secret: @auth_params[:credentials][:secret]
     )
 
     CampaignSpreader.create @campaign_spreader_params.merge(timeline: twitter_profile)

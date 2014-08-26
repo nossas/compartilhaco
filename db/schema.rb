@@ -62,9 +62,11 @@ ActiveRecord::Schema.define(version: 20140826123323) do
   create_table "twitter_profiles", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id",    null: false
-    t.string   "uid",        null: false
-    t.string   "token",      null: false
+    t.integer  "user_id",         null: false
+    t.string   "uid",             null: false
+    t.string   "token",           null: false
+    t.integer  "followers_count"
+    t.string   "secret",          null: false
     t.index ["uid"], :name => "index_twitter_profiles_on_uid", :unique => true
     t.index ["user_id"], :name => "index_twitter_profiles_on_user_id", :unique => true
   end
