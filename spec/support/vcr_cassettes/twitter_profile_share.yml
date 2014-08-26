@@ -1,0 +1,75 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.twitter.com/1.1/statuses/update.json
+    body:
+      encoding: UTF-8
+      string: status=+http%3A%2F%2Fwww.minhascidades.org.br%2F
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Twitter Ruby Gem 5.11.0
+      Authorization:
+      - OAuth oauth_consumer_key="4TMCHdTDsDDRcIA5M95m4TfsH", oauth_nonce="46c1ea38bce9f44b269c5a0a23a0b462",
+        oauth_signature="jXPxufV1u7PcjK1qMMK8unWMqvc%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1409064542", oauth_token="48455210-MiyQ8S77L8QYxk9aEZ4qnRAUscfxkStUMa8pNToUf",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+      Content-Length:
+      - '1069'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Tue, 26 Aug 2014 14:49:37 UTC
+      Expires:
+      - Tue, 31 Mar 1981 05:00:00 GMT
+      Last-Modified:
+      - Tue, 26 Aug 2014 14:49:03 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - tsa_d
+      Set-Cookie:
+      - guest_id=v1%3A140906454322552773; Domain=.twitter.com; Path=/; Expires=Thu,
+        25-Aug-2016 14:49:03 UTC
+      - lang=en
+      Status:
+      - 200 OK
+      Strict-Transport-Security:
+      - max-age=631138519
+      X-Access-Level:
+      - read-write
+      X-Connection-Hash:
+      - 1c10097e915e83f9fb92d2cfde9145b8
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Transaction:
+      - 263f7f2c97b8d203
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: UTF-8
+      string: '{"created_at":"Tue Aug 26 14:49:03 +0000 2014","id":504279360619429888,"id_str":"504279360619429888","text":"http:\/\/t.co\/thvMcYiVD6","source":"\u003ca
+        href=\"http:\/\/compartilhaco-staging.herokuapp.com\/campaigns\/1\" rel=\"nofollow\"\u003eCompartilha\u00e7o
+        (Staging)\u003c\/a\u003e","truncated":false,"in_reply_to_status_id":null,"in_reply_to_status_id_str":null,"in_reply_to_user_id":null,"in_reply_to_user_id_str":null,"in_reply_to_screen_name":null,"user":{"id":48455210,"id_str":"48455210","name":"Josias
+        Schneider","screen_name":"josiasds","location":"Igrejinha, RS","description":"Web
+        developer, RoR addicted, m\u00fasico. Fa\u00e7o piadas que ningu\u00e9m entende;
+        quando falo s\u00e9rio, ningu\u00e9m acredita. Mas eu continuo.","url":"http:\/\/t.co\/Y6P0spMBq0","entities":{"url":{"urls":[{"url":"http:\/\/t.co\/Y6P0spMBq0","expanded_url":"http:\/\/about.me\/josias.schneider","display_url":"about.me\/josias.schneid\u2026","indices":[0,22]}]},"description":{"urls":[]}},"protected":false,"followers_count":416,"friends_count":1014,"listed_count":6,"created_at":"Thu
+        Jun 18 19:15:23 +0000 2009","favourites_count":38,"utc_offset":-10800,"time_zone":"Brasilia","geo_enabled":true,"verified":false,"statuses_count":2637,"lang":"en","contributors_enabled":false,"is_translator":false,"is_translation_enabled":false,"profile_background_color":"022330","profile_background_image_url":"http:\/\/abs.twimg.com\/images\/themes\/theme15\/bg.png","profile_background_image_url_https":"https:\/\/abs.twimg.com\/images\/themes\/theme15\/bg.png","profile_background_tile":false,"profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/473518012016783362\/vYsKQRap_normal.jpeg","profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/473518012016783362\/vYsKQRap_normal.jpeg","profile_banner_url":"https:\/\/pbs.twimg.com\/profile_banners\/48455210\/1398215558","profile_link_color":"0084B4","profile_sidebar_border_color":"A8C7F7","profile_sidebar_fill_color":"C0DFEC","profile_text_color":"333333","profile_use_background_image":false,"default_profile":false,"default_profile_image":false,"following":false,"follow_request_sent":false,"notifications":false},"geo":null,"coordinates":null,"place":null,"contributors":null,"retweet_count":0,"favorite_count":0,"entities":{"hashtags":[],"symbols":[],"urls":[{"url":"http:\/\/t.co\/thvMcYiVD6","expanded_url":"http:\/\/www.minhascidades.org.br\/","display_url":"minhascidades.org.br","indices":[0,22]}],"user_mentions":[]},"favorited":false,"retweeted":false,"possibly_sensitive":false,"lang":"und"}'
+    http_version: 
+  recorded_at: Tue, 26 Aug 2014 14:49:03 GMT
+recorded_with: VCR 2.8.0
