@@ -58,7 +58,7 @@
     .campaign-user
       = image_tag @campaign.user.avatar_url
       .user-name= @campaign.user.name
-      .user-link= link_to("Ver perfil", "#")
+      .user-link= link_to("Ver perfil", user_path(@campaign.user))
     .campaign-spreaders
 
 .reveal-modal.share.medium data={reveal: true}
