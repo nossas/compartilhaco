@@ -18,20 +18,26 @@
           .ends-at-distance= distance_of_time_in_words_to_now @campaign.ends_at
         .progress.round.alert
           span.meter style="width: #{campaign_progress @campaign}%"
-        span Fim do compartilhaço: #{l(@campaign.ends_at, format: :short)}
+        span Encerra: #{l(@campaign.ends_at, format: :short)}
 
     .campaign-forms
       .form-buttons
-        = link_to "Compartilhe no Facebook", "#", class: "facebook-form-button", id: "facebook-form-button"
-        = link_to "Compartilhe no Twitter", "#", class: "twitter-form-button", id: "twitter-form-button"
+        = link_to "#", class: "facebook-form-button", id: "facebook-form-button" do
+          span Compartilhe no
+          |  Facebook
+        = link_to "#", class: "twitter-form-button", id: "twitter-form-button" do
+          span Compartilhe no
+          |  Twitter
       = form_for @campaign_spreader, url: create_for_facebook_profile_campaign_spreaders_path, data: { abide: true }, html: { class: "facebook-profile-campaign-spreader" } do |form|
         = form.hidden_field(:campaign_id)
         .message-field= form.text_area :message, rows: 3, placeholder: "Escreva algo..."
         .preview
-          = image_tag @campaign.share_image.thumb
-          .share-title= @campaign.share_title
-          .share-description= @campaign.share_description
-          .share-link= link_to @campaign.share_link, @campaign.share_link, target: :blank
+          .row
+            .preview-image= image_tag @campaign.share_image.thumb
+            .preview-text
+              .share-title= @campaign.share_title
+              .share-description= @campaign.share_description
+              .share-link= link_to @campaign.share_link, @campaign.share_link, target: :blank
         .row
           - if current_user.nil?
             = form.fields_for :timeline do |timeline_form|

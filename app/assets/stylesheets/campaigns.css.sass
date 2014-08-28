@@ -85,16 +85,16 @@ body.campaigns.show
           padding: 1em
           overflow: hidden
           margin-bottom: 1em
-          img
-            margin-right: 1em
-            float: left
-            width: 125px
-          .share-title
-            font-weight: bold
-            margin-bottom: .5em
-          .share-description
-            font-size: .9em
-            margin-bottom: .5em
+          .preview-image
+            +grid-column(4)
+          .preview-text
+            +grid-column(8)
+            .share-title
+              font-weight: bold
+              margin-bottom: .5em
+            .share-description
+              font-size: .9em
+              margin-bottom: .5em
 
   .campaign-left-col
     +grid-column(8)
@@ -144,11 +144,19 @@ body.campaigns.show
       .campaign-forms
         .form-buttons
           a
-            font-size: .9em
+            span
+              display: none
         .row
           .user-email-field, .submit-field
             +grid-column(12)
-            input[type='email']
-              margin-bottom: 1em
+          .user-email-field
+            margin-bottom: 1em
+      .campaign-data
+        .ends-at
+          .ends-at-label-and-distance
+            .ends-at-label
+              span
+                display: none
+
     .campaign-left-col, .campaign-right-col
       +grid-column(12)
