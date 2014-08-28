@@ -894,7 +894,7 @@ $magellan-padding: 0 !important;
 
 // We use this to set the progress bar height
 $progress-bar-height: rem-calc(15);
-$progress-bar-color: #576067;
+$progress-bar-color: $gray;
 
 // We use these to control the border styles
 // $progress-bar-border-color: scale-color(#fff, $lightness: 20%);
