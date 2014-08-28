@@ -47,9 +47,42 @@ body.campaigns.show
     +grid-column(8)
     img
       margin-bottom: 1em
+
   .campaign-right-col
     +grid-column(4)
+    h3
+      font-size: 1.25em
+    .campaign-user, .campaign-spreaders
+      background: white
+      padding: .75em
+    .campaign-user
+      margin-bottom: 2em
+      overflow: hidden
+      img
+        float: left
+        margin-right: .5em
+        width: 50px
+      .user-name
+        margin-top: 10px
+        font-weight: bold
+
   .share
     text-align: center
     .button
       margin: 0
+
+@media #{$medium-down}
+  body.campaigns.show
+    .campaign-highlight
+      .campaign-data, .campaign-forms
+        +grid-column($columns: 10, $center: true)
+    .campaign-left-col, .campaign-right-col
+      +grid-column(6)
+
+@media #{$small-only}
+  body.campaigns.show
+    .campaign-highlight
+      .campaign-data, .campaign-forms
+        +grid-column(12)
+    .campaign-left-col, .campaign-right-col
+      +grid-column(12)

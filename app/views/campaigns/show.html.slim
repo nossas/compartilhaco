@@ -54,7 +54,12 @@
     = image_tag @campaign.image
     = simple_format @campaign.description
   .campaign-right-col
-    small por #{@campaign.user.name}
+    h3 Quem compartilha
+    .campaign-user
+      = image_tag @campaign.user.avatar_url
+      .user-name= @campaign.user.name
+      .user-link= link_to("Ver perfil", "#")
+    .campaign-spreaders
 
 .reveal-modal.share.medium data={reveal: true}
   = link_to "Compartilhar no Facebook", "#", class: ['share-on-facebook-button', :button], data: { href: "https://www.facebook.com/sharer/sharer.php?u=#{URI::encode(campaign_url(@campaign))}" }
