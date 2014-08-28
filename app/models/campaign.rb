@@ -4,8 +4,9 @@ class Campaign < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
   mount_uploader :image, ImageUploader
+  mount_uploader :share_image, ImageUploader
 
-  validates :ends_at, :share_link, :goal, :organization_id, :image, :title, :description, :user_id, :short_description, presence: true
+  validates :ends_at, :share_link, :goal, :organization_id, :image, :title, :description, :user_id, :short_description, :share_image, :share_title, :share_description, :tweet, presence: true
   validate :ends_at_cannot_be_in_the_past
   validate :ends_at_cannot_be_in_more_than_50_days
   validates_length_of :short_description, maximum: 250

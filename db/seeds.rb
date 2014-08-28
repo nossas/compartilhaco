@@ -29,5 +29,9 @@ Category.create([
 #   description: Faker::Lorem.paragraphs(3).join("\n\n"),
 #   user: User.first,
 #   category: Category.first,
-#   short_description: Faker::Lorem.paragraph
+#   short_description: Faker::Lorem.paragraph,
+#   share_image: File.new("#{Rails.root}/spec/support/images/whale.jpg"),
+#   share_title: "Salvem as baleias",
+#   share_description: Faker::Lorem.paragraph,
+#   tweet: Faker::Lorem.sentence
 # )
