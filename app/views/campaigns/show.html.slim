@@ -53,6 +53,7 @@
   .campaign-left-col
     = image_tag @campaign.image
     = simple_format @campaign.description
+    .fb-comments data-href=campaign_url(@campaign) data-width="100%" data-numposts="10"
   .campaign-right-col
     h3 Quem compartilha
     .campaign-user

@@ -4,11 +4,16 @@ html
     = display_meta_tags
     meta charset="utf-8"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag "vendor/modernizr"
+    meta name="facebook_app_id" content=ENV['FACEBOOK_KEY']
+
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'vendor/modernizr'
     = meurio_ui_assets
     = csrf_meta_tags
+
   body class=[controller.controller_name, controller.action_name]
+    #fb-root
+    
     - if flash[:notice]
       .alert-box= flash[:notice]
 
