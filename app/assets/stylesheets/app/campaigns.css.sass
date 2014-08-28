@@ -11,23 +11,20 @@ body.campaigns.show
       .short-description
         margin-bottom: 2em
       .ends-at
-        .ends-at-label-and-distance
-          margin-bottom: .75em
-          overflow: hidden
-          .ends-at-label
-            float: left
-            span
-              font-weight: bold
-            &:before
-              margin-right: .25em
-              font-size: 1.25em
-            &.icon-clock2:before
-              position: relative
-              top: 3px
-              left: 1px
-          .ends-at-distance
-            float: right
-            font-size: 1.5em
+        .left
+          span
+            font-weight: bold
+          &:before
+            margin-right: .25em
+            font-size: 1.25em
+          &.icon-clock2:before
+            position: relative
+            top: 3px
+            left: 1px
+        .right
+          font-size: 1.5em
+      .progress
+        margin-top: .5em
     .campaign-forms
       +grid-column(6)
       .form-buttons
@@ -153,10 +150,9 @@ body.campaigns.show
             margin-bottom: 1em
       .campaign-data
         .ends-at
-          .ends-at-label-and-distance
-            .ends-at-label
-              span
-                display: none
+          .left
+            span
+              display: none
 
     .campaign-left-col, .campaign-right-col
       +grid-column(12)
