@@ -1,7 +1,28 @@
+@import compass
+@import meurio_ui
 @import fonts
+@import colors
 @import foundation_and_overrides
 
 .row
   +grid-row
+
+[class^="icon-"], [class*=" icon-"]
+  span
+    font-family: $body-font-family
+
+.progress
+  span.meter
+    position: relative
+    &:after
+      content: ""
+      padding: 16px
+      background: white
+      display: block
+      position: relative
+      top: -9px
+      position: absolute
+      right: 0
+      +border-radius(100%)
 
 @import campaigns
