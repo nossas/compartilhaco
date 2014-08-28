@@ -33,4 +33,9 @@ feature "View the campaign's details", :type => :feature do
     visit campaign_path(campaign)
     expect(page).to have_css(".ends-at-distance", distance_of_time_in_words_to_now(campaign.ends_at))
   end
+
+  scenario "should see the campaign's short description" do
+    visit campaign_path(campaign)
+    expect(page).to have_css(".short-description", campaign.short_description)
+  end
 end
