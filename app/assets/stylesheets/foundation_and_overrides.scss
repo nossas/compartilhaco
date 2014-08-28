@@ -46,7 +46,7 @@ $row-width: rem-calc(1200);
 // $body-bg: #fff;
 // $body-font-color: #222;
 $body-font-family: "Proxima Nova Soft", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-$font-weight-normal:normal;
+$font-weight-normal: normal;
 $body-font-weight: $font-weight-normal;
 // $body-font-style: normal;
 
@@ -59,9 +59,9 @@ $body-font-weight: $font-weight-normal;
 // $default-float: left;
 
 // We use these as default colors throughout
-$primary-color: #008CBA;
+$primary-color: $green;
 // $secondary-color: #e7e7e7;
-// $alert-color: #f04124;
+$alert-color: $red;
 // $success-color: #43AC6A;
 // $warning-color: #f08a24;
 // $info-color: #a0d3e8;
@@ -893,17 +893,17 @@ $magellan-padding: 0 !important;
 // $include-html-media-classes: $include-html-classes;
 
 // We use this to set the progress bar height
-// $progress-bar-height: rem-calc(25);
-// $progress-bar-color: #f6f6f6  ;
+$progress-bar-height: rem-calc(15);
+$progress-bar-color: #576067;
 
 // We use these to control the border styles
 // $progress-bar-border-color: scale-color(#fff, $lightness: 20%);
-// $progress-bar-border-size: 1px;
+$progress-bar-border-size: 0;
 // $progress-bar-border-style: solid;
 // $progress-bar-border-radius: $global-radius;
 
 // We use these to control the margin & padding
-// $progress-bar-pad: rem-calc(2);
+$progress-bar-pad: 0;
 // $progress-bar-margin-bottom: rem-calc(10);
 
 // We use these to set the meter colors

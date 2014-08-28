@@ -1,6 +1,6 @@
 body.campaigns.show
   .campaign-highlight
-    background: #0296CC
+    background: url('bg-campaign.jpg')
     color: white
     padding: 2em 0
     h2, label
@@ -11,9 +11,18 @@ body.campaigns.show
         margin-bottom: 2em
       .ends-at
         .ends-at-label-and-distance
+          margin-bottom: .75em
           overflow: hidden
           .ends-at-label
             float: left
+            span
+              font-weight: bold
+            &:before
+              margin-right: .25em
+              font-size: 1.25em
+            &.icon-clock2:before
+              position: relative
+              top: 3px
           .ends-at-distance
             float: right
             font-size: 1.5em

@@ -14,11 +14,13 @@
       .short-description= @campaign.short_description
       .ends-at
         .ends-at-label-and-distance
-          .ends-at-label Tempo para o encerramento
+          .ends-at-label.icon-clock2
+            span Tempo para o encerramento
           .ends-at-distance= distance_of_time_in_words_to_now @campaign.ends_at
         .ends-at-progress-bar
           .progress.round.alert
             span.meter style="width: #{campaign_progress @campaign}%"
+        span Fim do compartilhaço: #{l(@campaign.ends_at, format: :short)}
     .campaign-forms
       = form_for @campaign_spreader, url: create_for_facebook_profile_campaign_spreaders_path, data: { abide: true }, html: { class: "facebook-profile-campaign-spreader" } do |form|
         .message-field
