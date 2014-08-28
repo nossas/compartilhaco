@@ -116,6 +116,7 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
     context "when I leave the email field blank" do
       scenario "should show me an error message", js: true do
         visit campaign_path(campaign)
+        click_link "twitter-form-button"
         click_button "twitter-profile-campaign-spreader-submit-button"
 
         within("form.twitter-profile-campaign-spreader") do

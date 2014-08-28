@@ -59,8 +59,8 @@ $body-font-weight: $font-weight-normal;
 // $default-float: left;
 
 // We use these as default colors throughout
-$primary-color: $green;
-// $secondary-color: #e7e7e7;
+$primary-color: $blue;
+$secondary-color: $green;
 $alert-color: $red;
 // $success-color: #43AC6A;
 // $warning-color: #f08a24;
@@ -369,7 +369,7 @@ $medium-down: "#{$screen} and (max-width:#{upper-bound($medium-range)})";
 // We use these to control button border styles.
 // $button-border-width: 0px;
 // $button-border-style: solid;
-// $button-bg: $primary-color;
+$button-bg: $secondary-color;
 // $button-border-color: scale-color($button-bg, $lightness: $button-function-factor);
 
 // We use this to set the default radius used throughout the core.

@@ -21,33 +21,38 @@
         span Fim do compartilhaço: #{l(@campaign.ends_at, format: :short)}
 
     .campaign-forms
+      .form-buttons
+        = link_to "Compartilhe no Facebook", "#", class: "facebook-form-button", id: "facebook-form-button"
+        = link_to "Compartilhe no Twitter", "#", class: "twitter-form-button", id: "twitter-form-button"
       = form_for @campaign_spreader, url: create_for_facebook_profile_campaign_spreaders_path, data: { abide: true }, html: { class: "facebook-profile-campaign-spreader" } do |form|
-        .message-field
-          = form.label :message
-          = form.text_area :message, rows: 3
-        - if current_user.nil?
-          = form.fields_for :timeline do |timeline_form|
-            = timeline_form.fields_for :user do |user_form|
-              .user-email-field
-                = user_form.label :email
-                = user_form.email_field(:email, required: true)
-                small.error O email é obrigatório
-        = form.hidden_field :campaign_id
-        = form.submit "Ceder meu Perfil do Facebook", id: "facebook-profile-campaign-spreader-submit-button", class: [:button, :radius]
+        = form.hidden_field(:campaign_id)
+        .message-field= form.text_area :message, rows: 3, placeholder: "Escreva algo..."
+        .preview
+          = image_tag @campaign.share_image.thumb
+          .share-title= @campaign.share_title
+          .share-description= @campaign.share_description
+          .share-link= link_to @campaign.share_link, @campaign.share_link, target: :blank
+        .row
+          - if current_user.nil?
+            = form.fields_for :timeline do |timeline_form|
+              = timeline_form.fields_for :user do |user_form|
+                .user-email-field
+                  = user_form.email_field(:email, required: true, placeholder: "Insira seu email")
+                  small.error Email é obrigatório
+          .submit-field= form.submit "Ceder timeline!", id: "facebook-profile-campaign-spreader-submit-button", class: [:button, :radius, :large]
 
       = form_for @campaign_spreader, url: create_for_twitter_profile_campaign_spreaders_path, data: { abide: true }, html: { class: "twitter-profile-campaign-spreader" } do |form|
+        = form.hidden_field(:campaign_id)
         .message-field
-          = form.label :message
-          = form.text_area :message, maxlength: 140, rows: 3
-        - if current_user.nil?
-          = form.fields_for :timeline do |timeline_form|
-            = timeline_form.fields_for :user do |user_form|
-              .user-email-field
-                = user_form.label :email
-                = user_form.email_field(:email, required: true)
-                small.error O email é obrigatório
-        = form.hidden_field :campaign_id
-        = form.submit "Ceder meu Perfil do Twitter", id: "twitter-profile-campaign-spreader-submit-button", class: [:button, :radius]
+          = form.text_area :message, maxlength: 140, rows: 3, value: @campaign.tweet
+        .row
+          - if current_user.nil?
+            = form.fields_for :timeline do |timeline_form|
+              = timeline_form.fields_for :user do |user_form|
+                .user-email-field
+                  = user_form.email_field(:email, required: true, placeholder: "Insira seu email")
+                  small.error Email é obrigatório
+          .submit-field= form.submit "Ceder timeline!", id: "twitter-profile-campaign-spreader-submit-button", class: [:button, :radius, :large]
 
 .row
   .campaign-left-col

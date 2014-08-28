@@ -30,8 +30,33 @@ body.campaigns.show
             font-size: 1.5em
     .campaign-forms
       +grid-column(6)
+      .form-buttons
+        a
+          display: inline-block
+          width: 50%
+          text-align: center
+          color: white
+          padding: 10px 0
+          background: $gray
+          top: 5px
+          position: relative
+          &.facebook-form-button.active
+            background: $facebook-blue
+            top: 0
+            padding: 15px 0
+            +speech_bubble(bottom, $facebook-blue)
+          &.twitter-form-button.active
+            background: $twitter-blue
+            top: 0
+            padding: 15px 0
+            +speech_bubble(bottom, $twitter-blue)
+      form.facebook-profile-campaign-spreader
+        textarea
+          margin: 0
       form
-        margin-bottom: 2em
+        textarea
+          &:focus
+            +box-shadow(none)
         .message-field
           position: relative
           span
@@ -42,7 +67,35 @@ body.campaigns.show
             color: $gray
           textarea
             resize: none
-            padding-right: 20px
+            padding: 20px
+        textarea, input[type='email']
+          border: 0
+        .user-email-field, .submit-field
+          +grid-column(6)
+          input
+            width: 100%
+            margin: 0
+          .button
+            padding: 0
+            line-height: 37px
+            margin: 0
+        .preview
+          background: $light-gray
+          color: $gray
+          padding: 1em
+          overflow: hidden
+          margin-bottom: 1em
+          img
+            margin-right: 1em
+            float: left
+            width: 125px
+          .share-title
+            font-weight: bold
+            margin-bottom: .5em
+          .share-description
+            font-size: .9em
+            margin-bottom: .5em
+
   .campaign-left-col
     +grid-column(8)
     img
@@ -78,6 +131,8 @@ body.campaigns.show
     .campaign-highlight
       .campaign-data, .campaign-forms
         +grid-column($columns: 10, $center: true)
+      .campaign-forms
+        margin-top: 2em
     .campaign-left-col, .campaign-right-col
       +grid-column(6)
 
@@ -86,5 +141,14 @@ body.campaigns.show
     .campaign-highlight
       .campaign-data, .campaign-forms
         +grid-column(12)
+      .campaign-forms
+        .form-buttons
+          a
+            font-size: .9em
+        .row
+          .user-email-field, .submit-field
+            +grid-column(12)
+            input[type='email']
+              margin-bottom: 1em
     .campaign-left-col, .campaign-right-col
       +grid-column(12)
