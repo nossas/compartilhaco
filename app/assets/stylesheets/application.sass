@@ -1,15 +1,11 @@
+// Libraries
 @import compass
 @import meurio_ui
-@import fonts
-@import colors
-@import foundation_and_overrides
-@import speech_bubble
+@import lib/fonts
+@import lib/colors
+@import lib/foundation_and_overrides
+@import lib/speech_bubble
 
-.row
-  +grid-row
-
-[class^="icon-"], [class*=" icon-"]
-  span
-    font-family: $body-font-family
-
-@import campaigns
+// Project files
+@import app/layout
+@import app/campaigns
