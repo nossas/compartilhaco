@@ -15,6 +15,7 @@ Campaign.blueprint do
   share_title { Faker::Lorem.sentence }
   share_description { Faker::Lorem.paragraph(3) }
   tweet { Faker::Lorem.sentence }
+  timelines_target { 100 }
 end
 
 CampaignSpreader.blueprint(:facebook_profile) do
