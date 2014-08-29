@@ -8,9 +8,9 @@ body.campaigns.show
       color: white
     .campaign-data
       +grid-column(6)
-      .short-description
+      .short-description, .total-spreaders
         margin-bottom: 2em
-      .ends-at
+      .ends-at, .total-spreaders
         .left
           span
             font-weight: bold
@@ -22,7 +22,8 @@ body.campaigns.show
             top: 3px
             left: 1px
         .right
-          font-size: 1.5em
+          span.ends-at-distance, span.total-spreaders-count
+            font-size: 1.5em
       .progress
         margin-top: .5em
     .campaign-forms

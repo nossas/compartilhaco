@@ -11,13 +11,26 @@
       .category= @campaign.category.name
       h2= @campaign.title
       .short-description= @campaign.short_description
+
+      .total-spreaders
+        .left.icon-users
+          span Timelines cedidas
+        .right
+          span.total-spreaders-count= @campaign.campaign_spreaders.count
+          | /
+          span.total-spreaders-target= @campaign.timelines_target
+        .clear
+        .progress.round.secondary
+          span.meter style="width: #{campaign_timelines_target_progress @campaign}%"
+
       .ends-at
         .left.icon-clock2
           span Tempo para o encerramento
-        .right= distance_of_time_in_words_to_now @campaign.ends_at
+        .right
+          span.ends-at-distance= distance_of_time_in_words_to_now @campaign.ends_at
         .clear
         .progress.round.alert
-          span.meter style="width: #{campaign_progress @campaign}%"
+          span.meter style="width: #{campaign_ends_at_progress @campaign}%"
         span Encerra: #{l(@campaign.ends_at, format: :short)}
 
     .campaign-forms
