@@ -10,6 +10,6 @@ feature "View the campaign's total spreaders", :type => :feature do
 
   scenario "should see the campaign's target" do
     visit campaign_path(campaign)
-    expect(page).to have_css(".total-spreaders-target", campaign.timelines_target)
+    expect(page).to have_css(".total-spreaders-goal", campaign.goal)
   end
 end

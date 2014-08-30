@@ -18,7 +18,7 @@
         .right
           span.total-spreaders-count= @campaign.campaign_spreaders.count
           | /
-          span.total-spreaders-target= @campaign.timelines_target
+          span.total-spreaders-goal= @campaign.goal
         .clear
         .progress.round.secondary
           span.meter style="width: #{number_to_percentage([@campaign.progress_of_goal, 100].min, precision: 0)}"

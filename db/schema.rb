@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140829180445) do
+ActiveRecord::Schema.define(version: 20140828175716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 20140829180445) do
     t.string   "share_image",           null: false
     t.text     "share_description",     null: false
     t.text     "tweet",                 null: false
-    t.integer  "timelines_target",      null: false
     t.index ["category_id"], :name => "fk__campaigns_category_id"
     t.foreign_key ["category_id"], "categories", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_campaigns_category_id"
   end
