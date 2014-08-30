@@ -42,11 +42,11 @@ class Campaign < ActiveRecord::Base
     facebook_profiles.each { |fp| fp.check_expired_token }
   end
 
-  def progress_of_success
-    campaign_spreaders.count.to_f/timelines_target.to_f * 100
+  def progress_of_goal
+    campaign_spreaders.count.to_f/goal.to_f * 100
   end
 
-  def progress_of_the_end
+  def progress_of_time
     (Time.now - created_at)/(ends_at - created_at) * 100
   end
 end
