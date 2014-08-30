@@ -29,7 +29,9 @@ CampaignSpreader.blueprint(:twitter_profile) do
 end
 
 User.blueprint do
-  # Attributes here
+  email { Faker::Internet.email }
+  first_name { Faker::Name.first_name }
+  last_name { Faker::Name.last_name }
 end
 
 FacebookProfile.blueprint do
