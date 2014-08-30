@@ -9,11 +9,11 @@ RSpec.describe NotificationMailer, :type => :mailer do
       expect(email.to).to include(campaign_spreader.timeline.user.email)
     end
 
-    it "should use the campaign title as the title" do
+    it "should use the campaign title as the mail title" do
       expect(email.subject).to be_eql(campaign_spreader.campaign.title)
     end
 
-    it "should contain user name in the body" do
+    it "should contain user name in the mail body" do
       expect(email.body).to match(campaign_spreader.timeline.user.name)
     end
   end
