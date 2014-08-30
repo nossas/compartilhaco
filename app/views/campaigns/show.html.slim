@@ -21,7 +21,7 @@
           span.total-spreaders-target= @campaign.timelines_target
         .clear
         .progress.round.secondary
-          span.meter style="width: #{campaign_timelines_target_progress @campaign}%"
+          span.meter style="width: #{number_to_percentage([@campaign.succeess_progress, 100].min, precision: 0)}"
 
       .ends-at
         .left.icon-clock2
@@ -30,7 +30,7 @@
           span.ends-at-distance= distance_of_time_in_words_to_now @campaign.ends_at
         .clear
         .progress.round.alert
-          span.meter style="width: #{campaign_ends_at_progress @campaign}%"
+          span.meter style="width: #{number_to_percentage([@campaign.ends_progress, 100].min, precision: 0)}"
         span Encerra: #{l(@campaign.ends_at, format: :short)}
 
     .campaign-forms

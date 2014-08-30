@@ -163,4 +163,57 @@ RSpec.describe Campaign, :type => :model do
       end
     end
   end
+
+  describe "#progress_of_success" do
+    context "when the timeline target is 2" do
+      subject { Campaign.make! timelines_target: 2 }
+
+      context "when there is no campaign spreader" do
+        it "should be zero" do
+          expect(subject.progress_of_success).to be_zero
+        end
+      end
+
+      context "when there is one campaign spreader" do
+        before { CampaignSpreader.make! :facebook_profile, campaign: subject }
+        it "should be 50" do
+          expect(subject.progress_of_success).to be_eql(50.0)
+        end
+      end
+
+      context "when there are two campaign spreaders" do
+        before { 2.times { CampaignSpreader.make! :facebook_profile, campaign: subject } }
+        it "should be 100" do
+          expect(subject.progress_of_success).to be_eql(100.0)
+        end
+      end
+    end
+  end
+
+  describe "#progress_of_the_end" do
+    context "when it's duration is 2 days" do
+      subject { Campaign.make! ends_at: 2.days.from_now }
+
+      context "when it's day 0" do
+        before { allow(Time).to receive(:now).and_return(subject.created_at) }
+        it "should be zero" do
+          expect(subject.progress_of_the_end).to be_zero
+        end
+      end
+
+      context "when it's day 1" do
+        before { allow(Time).to receive(:now).and_return(subject.created_at + 1.day) }
+        it "should be 50" do
+          expect(subject.progress_of_the_end).to be_within(0.1).of(50.0)
+        end
+      end
+
+      context "when it's day 2" do
+        before { allow(Time).to receive(:now).and_return(subject.created_at + 2.days) }
+        it "should be 100" do
+          expect(subject.progress_of_the_end).to be_within(0.1).of(100.0)
+        end
+      end
+    end
+  end
 end
