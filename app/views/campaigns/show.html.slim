@@ -63,7 +63,8 @@
       = form_for @campaign_spreader, url: create_for_twitter_profile_campaign_spreaders_path, data: { abide: true }, html: { class: "twitter-profile-campaign-spreader" } do |form|
         = form.hidden_field(:campaign_id)
         .message-field
-          = form.text_area :message, maxlength: 140, rows: 3, value: @campaign.tweet
+          = form.text_area :message, required: true, maxlength: 140, rows: 3, value: @campaign.tweet
+          small.error Você precisa escrever uma mensagem de até 140 caracteres
         .row
           - if current_user.nil?
             = form.fields_for :timeline do |timeline_form|

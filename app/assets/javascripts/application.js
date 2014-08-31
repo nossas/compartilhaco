@@ -29,11 +29,11 @@ $(function(){
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
-  $("[maxlength]").parent().append("<span></span>");
+  $("[maxlength]").parent().append("<span class='maxlength-count'></span>");
   $("[maxlength]").keyup(function(e){
     var remaining;
     remaining = parseInt($(e.target).attr("maxlength")) - $(e.target).val().length;
-    $(e.target).next("span").html(remaining);
+    $(e.target).parent().find(".maxlength-count").html(remaining);
   });
 
   if(location.hash == "#share"){
