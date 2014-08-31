@@ -4,3 +4,13 @@
 [class^="icon-"], [class*=" icon-"]
   span
     font-family: $body-font-family
+
+.flash-messages
+  position: absolute
+  z-index: 1
+  width: 100%
+  top: 1em
+  .flash-message-grid
+    +grid-column($columns: 10, $center: true)
+    .alert-box
+      text-align: center

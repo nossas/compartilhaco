@@ -13,12 +13,19 @@ html
 
   body class=[controller.controller_name, controller.action_name]
     #fb-root
-    
-    - if flash[:notice]
-      .alert-box= flash[:notice]
 
-    - if flash[:alert]
-      .alert-box.alert= flash[:alert]
+    .flash-messages
+      .row
+        .flash-message-grid
+          - if flash[:notice]
+            .alert-box.secondary.radius data={alert: true}
+              = flash[:notice]
+              a.close href="#" &times;
+
+          - if flash[:alert]
+            .alert-box.alert.radius data={alert: true}
+              = flash[:alert]
+              a.close href="#" &times;
 
     = yield
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
