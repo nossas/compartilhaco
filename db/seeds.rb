@@ -33,6 +33,5 @@ Category.create([
 #   share_image: File.new("#{Rails.root}/spec/support/images/whale.jpg"),
 #   share_title: "Salvem as baleias",
 #   share_description: Faker::Lorem.paragraph,
-#   tweet: Faker::Lorem.sentence,
-#   timelines_target: 100
+#   tweet: Faker::Lorem.sentence
 # )
