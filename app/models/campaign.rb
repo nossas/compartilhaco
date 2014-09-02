@@ -39,7 +39,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def last_spreaders count = 5
-    CampaignSpreader.where(campaign_id: self.id).order(created_at: :desc).limit(count).pluck(:user)
+    CampaignSpreader.where(campaign_id: self.id).order(created_at: :desc).limit(count)
   end
 
   def check_expired_tokens

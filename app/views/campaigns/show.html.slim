@@ -85,13 +85,12 @@
       = image_tag @campaign.user.avatar_url
       .user-name= @campaign.user.name
       .user-link= link_to("Ver perfil", user_path(@campaign.user))
-    - if @campaign.last_spreaders.any?
-      h3 Atividade atual
-      .last-spreaders
-        - @campaign.last_spreaders.each do |spreader|
-          .spreader-user
-            = image_tag spreader.user.avatar_url
-            .user-name= spreader.user.name
+    h3 Atividade atual
+    .last-spreaders
+      - @campaign.last_spreaders.each do |spreader|
+        .spreader-user
+          = image_tag spreader.user.avatar_url
+          .user-name= spreader.user.name
 
 .reveal-modal.share.medium data={reveal: true}
   = image_tag "share-campaign.png"
