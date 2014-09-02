@@ -3,6 +3,7 @@ include ActionView::Helpers::DateHelper
 
 feature "View the campaign's details", :type => :feature do
   let(:campaign) { Campaign.make! }
+  let(:spreader) { CampaignSpreader.make! :facebook_profile, campaign: campaign }
 
   scenario "should see the campaign's title" do
     visit campaign_path(campaign)
@@ -37,5 +38,10 @@ feature "View the campaign's details", :type => :feature do
   scenario "should see the campaign's short description" do
     visit campaign_path(campaign)
     expect(page).to have_css(".short-description", campaign.short_description)
+  end
+
+  scenario "should see the campaign's last spreaders" do
+    visit campaign_path(campaign)
+    expect(page).to have_css(".last-spreaders", spreader.user.name)
   end
 end

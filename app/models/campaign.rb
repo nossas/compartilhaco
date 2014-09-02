@@ -38,6 +38,10 @@ class Campaign < ActiveRecord::Base
     FacebookProfile.joins(:campaign_spreaders).where(campaign_spreaders: { campaign_id: self.id })
   end
 
+  def last_spreaders count = 5
+    CampaignSpreader.where(campaign_id: self.id).order(created_at: :desc).limit(count).pluck(:user)
+  end
+
   def check_expired_tokens
     facebook_profiles.each { |fp| fp.check_expired_token }
   end
