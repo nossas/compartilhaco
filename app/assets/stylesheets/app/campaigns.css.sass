@@ -8,7 +8,7 @@ body.campaigns.show
       color: white
     .campaign-data
       +grid-column(6)
-      .short-description, .total-spreaders
+      .short-description, .total-spreaders, .ends-at
         margin-bottom: 2em
       .ends-at, .total-spreaders
         .left
@@ -23,9 +23,14 @@ body.campaigns.show
             left: 1px
         .right
           span.ends-at-distance, span.total-spreaders-count
-            font-size: 1.5em
+            font-size: rem-calc(25)
       .progress
         margin-top: .5em
+      .reach
+        img
+          margin-right: .5em
+        span.reach-count
+          font-size: rem-calc(25)
     .campaign-forms
       +grid-column(6)
       .form-buttons

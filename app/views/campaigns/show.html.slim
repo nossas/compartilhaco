@@ -33,6 +33,12 @@
           span.meter style="width: #{number_to_percentage([@campaign.progress_of_time, 100].min, precision: 0)}"
         span Encerra: #{l(@campaign.ends_at, format: :short)}
 
+      .reach
+        span.reach-count
+          = image_tag "reach.png"
+          = number_with_delimiter @campaign.reach
+        span  pessoas alcançadas
+
     .campaign-forms
       .form-buttons
         = link_to "#", class: "facebook-form-button", id: "facebook-form-button" do
