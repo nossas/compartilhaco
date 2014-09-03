@@ -33,6 +33,9 @@ body.campaigns.show
           font-size: rem-calc(25)
     .campaign-forms
       +grid-column(6)
+      small.warn
+        display: block
+        text-align: center
       .form-buttons
         a
           display: inline-block
@@ -57,6 +60,7 @@ body.campaigns.show
         textarea
           margin: 0
       form
+        margin-bottom: rem-calc(20)
         textarea
           &:focus
             +box-shadow(none)
@@ -99,6 +103,10 @@ body.campaigns.show
               font-size: .9em
               margin-bottom: .5em
 
+  .campaign-left-col, .campaign-right-col
+    h3
+      font-size: rem-calc(20)
+
   .campaign-left-col
     +grid-column(8)
     img
@@ -106,8 +114,6 @@ body.campaigns.show
 
   .campaign-right-col
     +grid-column(4)
-    h3
-      font-size: 1.25em
     .campaign-user, .last-spreaders
       background: white
       padding: .75em
