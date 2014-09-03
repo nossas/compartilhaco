@@ -36,6 +36,10 @@ class Campaign < ActiveRecord::Base
       ends_at.nil? || ends_at > 50.days.from_now
   end
 
+  def last_spreaders count = 5
+    CampaignSpreader.where(campaign_id: self.id).order(created_at: :desc).limit(count)
+  end
+
   def check_expired_tokens
     facebook_profiles.each { |fp| fp.check_expired_token }
   end

@@ -270,4 +270,22 @@ RSpec.describe Campaign, :type => :model do
       end
     end
   end
+
+  describe "#last_spreaders" do
+    subject { Campaign.make! }
+
+    context "when there are no spreaders" do
+      it "should be empty" do
+        expect(subject.last_spreaders).to be_empty
+      end
+    end
+
+    context "when there are 5 spreaders" do
+      before { 5.times { CampaignSpreader.make! :facebook_profile, campaign: subject } }
+
+      it "should have 5 spreaders" do
+        expect(subject.last_spreaders.count).to eq(5)
+      end
+    end
+  end
 end
