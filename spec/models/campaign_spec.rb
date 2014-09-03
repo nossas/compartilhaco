@@ -150,6 +150,24 @@ RSpec.describe Campaign, :type => :model do
     end
   end
 
+  describe "#twitter_profiles" do
+    subject { Campaign.make! }
+
+    context "when there is at least one twitter profile" do
+      before { CampaignSpreader.make!(:twitter_profile, campaign: subject) }
+
+      it "should have one twitter profile" do
+        expect(subject.twitter_profiles).to have(1).twitter_profile
+      end
+    end
+
+    context "when there is no twitter profile" do
+      it "should be empty" do
+        expect(subject.twitter_profiles).to be_empty
+      end
+    end
+  end
+
   describe "#check_expired_tokens" do
     subject { Campaign.make! }
 
@@ -213,6 +231,42 @@ RSpec.describe Campaign, :type => :model do
         it "should be 100" do
           expect(subject.progress_of_time).to be_within(0.1).of(100.0)
         end
+      end
+    end
+  end
+
+  describe "#reach" do
+    subject { Campaign.make! }
+
+    context "when there is no campaign spreader" do
+      it "should be zero" do
+        expect(subject.reach).to be_zero
+      end
+    end
+
+    context "when there is a campaign spreader for Facebook profile with 100 friends" do
+      let(:facebook_profile){ FacebookProfile.make! friends_count: 100 }
+      before { CampaignSpreader.make!(:facebook_profile, campaign: subject, timeline: facebook_profile) }
+
+      it "should be 100" do
+        expect(subject.reach).to be_eql(100)
+      end
+
+      context "when this Facebook profile has also 100 subscribers" do
+        before { facebook_profile.update_attribute :subscribers_count, 100 }
+
+        it "should be 200" do
+          expect(subject.reach).to be_eql(200)
+        end
+      end
+    end
+
+    context "when there is a campaign spreader for Twitter profile with 100 followers" do
+      let(:twitter_profile){ TwitterProfile.make! followers_count: 100 }
+      before { CampaignSpreader.make!(:twitter_profile, campaign: subject, timeline: twitter_profile) }
+
+      it "should be 100" do
+        expect(subject.reach).to be_eql(100)
       end
     end
   end

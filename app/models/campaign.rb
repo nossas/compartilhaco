@@ -1,5 +1,7 @@
 class Campaign < ActiveRecord::Base
   has_many :campaign_spreaders
+  has_many :facebook_profiles, through: :campaign_spreaders, source: :timeline, source_type: "FacebookProfile"
+  has_many :twitter_profiles, through: :campaign_spreaders, source: :timeline, source_type: "TwitterProfile"
   belongs_to :organization
   belongs_to :user
   belongs_to :category
@@ -34,10 +36,6 @@ class Campaign < ActiveRecord::Base
       ends_at.nil? || ends_at > 50.days.from_now
   end
 
-  def facebook_profiles
-    FacebookProfile.joins(:campaign_spreaders).where(campaign_spreaders: { campaign_id: self.id })
-  end
-
   def check_expired_tokens
     facebook_profiles.each { |fp| fp.check_expired_token }
   end
@@ -48,5 +46,11 @@ class Campaign < ActiveRecord::Base
 
   def progress_of_time
     (Time.now - created_at)/(ends_at - created_at) * 100
+  end
+
+  def reach
+    facebook_profiles.sum(:friends_count) +
+      facebook_profiles.sum(:subscribers_count) +
+      twitter_profiles.sum(:followers_count)
   end
 end
