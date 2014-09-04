@@ -1,9 +1,9 @@
 require "rails_helper"
 
-RSpec.describe NotificationMailer, :type => :mailer do
+RSpec.describe Notifier, :type => :mailer do
   describe ".new_spreader" do
     let(:campaign_spreader){ CampaignSpreader.make!(:facebook_profile) }
-    let(:email){ NotificationMailer.new_spreader(campaign_spreader) }
+    let(:email){ Notifier.new_spreader(campaign_spreader) }
 
     it "should send email to the spreader" do
       expect(email.to).to include(campaign_spreader.timeline.user.email)
