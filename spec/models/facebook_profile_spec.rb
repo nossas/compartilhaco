@@ -13,6 +13,13 @@ RSpec.describe FacebookProfile, :type => :model do
     it { should validate_uniqueness_of :user_id }
   end
 
+  describe "#service" do
+    before { FacebookProfile.make! }
+    it "should be facebook" do
+      expect(subject.service).to eq(:facebook)
+    end
+  end
+
   describe "#fetch_friends_count" do
     subject { FacebookProfile.make! }
 

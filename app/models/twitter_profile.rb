@@ -6,6 +6,10 @@ class TwitterProfile < Timeline
   validates :user_id, uniqueness: true
   validates :uid, uniqueness: true
 
+  def service
+    :twitter
+  end
+
   def fetch_followers_count
     update_attribute :followers_count, api.user.followers_count
   rescue Exception => e

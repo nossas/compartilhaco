@@ -13,6 +13,13 @@ RSpec.describe TwitterProfile, :type => :model do
     it { should validate_uniqueness_of :uid }
   end
 
+  describe "#service" do
+    before { TwitterProfile.make! }
+    it "should be twitter" do
+      expect(subject.service).to eq(:twitter)
+    end
+  end
+
   describe "#fetch_followers_count" do
     subject { TwitterProfile.make! }
 

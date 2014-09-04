@@ -116,19 +116,28 @@ body.campaigns.show
     +grid-column(4)
     .campaign-user, .last-spreaders
       background: white
+    .campaign-user
       padding: .75em
-    .campaign-user, .spreader-user
       margin-bottom: 2em
+    .last-spreaders
+      padding: 1em 2em
+      h3
+        border-bottom: medium solid $light-gray
+        margin-bottom: 1em
+    .spreader-user
+      margin-bottom: 1em
+    .campaign-user, .spreader-user
       overflow: hidden
       img
         float: left
         margin-right: .5em
         width: 50px
       .user-name
-        margin-top: 11px
+        margin-top: 7px
         font-weight: bold
-      .user-link
+      .user-link, .spreader-info
         font-size: .9em
+        margin-top: 5px
 
   .share
     text-align: center

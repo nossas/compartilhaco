@@ -100,8 +100,8 @@
       = image_tag @campaign.user.avatar_url
       .user-name= @campaign.user.name
       .user-link= link_to("Ver perfil", user_path(@campaign.user))
-    h3 Apoiadores Recentes
     .last-spreaders
+      h3 Atividade atual (#{@campaign.campaign_spreaders.try(:count)})
       = render @last_spreaders
 
 .reveal-modal.share.medium data={reveal: true}

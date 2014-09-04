@@ -6,6 +6,10 @@ class FacebookProfile < Timeline
   validates :uid, uniqueness: true
   validates :user_id, uniqueness: true
 
+  def service
+    :facebook
+  end
+
   def fetch_friends_count
     result = graph.api("me/friends")
     if result["error"]
