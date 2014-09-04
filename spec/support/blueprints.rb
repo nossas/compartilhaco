@@ -48,7 +48,7 @@ TwitterProfile.blueprint do
 end
 
 Organization.blueprint do
-  # Attributes here
+  email_signature_html { Faker::Lorem.sentence }
 end
 
 Category.blueprint do
