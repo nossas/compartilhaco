@@ -134,6 +134,8 @@ body.campaigns.show
     text-align: center
     .button
       margin: 0
+    .share-on-facebook-button
+      margin-right: rem-calc(10)
 
 @media #{$medium-down}
   body.campaigns.show
@@ -144,6 +146,10 @@ body.campaigns.show
         margin-top: 2em
     .campaign-left-col, .campaign-right-col
       +grid-column($columns: 10, $center: true)
+    .share-buttons
+      .share-on-facebook-button
+        margin-right: 0
+        margin-bottom: rem-calc(10)
 
 @media #{$small-only}
   body.campaigns.show

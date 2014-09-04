@@ -32,4 +32,9 @@ feature "Share campaign on Twitter", :type => :feature do
     visit campaign_path(campaign)
     expect(page).to have_css("meta[name='twitter:site'][content='@meu_rio']", visible: false)
   end
+
+  scenario "should see Twitter share button", js: true do
+    visit campaign_path(campaign, anchor: 'share')
+    expect(page).to have_css("a.share-on-twitter-button")
+  end
 end
