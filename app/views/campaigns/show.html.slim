@@ -4,6 +4,12 @@
 - set_meta_tags og: { description: @campaign.short_description }
 - set_meta_tags og: { url: campaign_url(@campaign) }
 - set_meta_tags og: { image: @campaign.image.url }
+- set_meta_tags twitter: { card: "summary" }
+- set_meta_tags twitter: { title: @campaign.title }
+- set_meta_tags twitter: { description: @campaign.short_description }
+- set_meta_tags twitter: { image: @campaign.image.thumb.url }
+- set_meta_tags twitter: { url: campaign_url(@campaign) }
+- set_meta_tags twitter: { site: "@meu_rio" }
 
 .campaign-highlight
   .row
@@ -102,5 +108,7 @@
   = image_tag "share-campaign.png"
   h3 Espalhe esse compartilhaço!
   p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-  = link_to "Compartilhar no Facebook", "#", class: ['share-on-facebook-button', :button, :radius], data: { href: "https://www.facebook.com/sharer/sharer.php?u=#{URI::encode(campaign_url(@campaign))}" }
+  .share-buttons
+    = link_to "Compartilhar no Facebook", "#", class: ['share-on-facebook-button', :button, :radius], data: { href: "https://www.facebook.com/sharer/sharer.php?u=#{URI::encode(campaign_url(@campaign))}" }
+    = link_to "Compartilhar no Twitter", "#", class: ['share-on-twitter-button', :button, :radius], data: { href: "https://twitter.com/share?url=#{campaign_url(@campaign)}&text=#{@campaign.title}" }
   a.close-reveal-modal &#215;

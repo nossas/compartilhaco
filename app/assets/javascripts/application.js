@@ -40,7 +40,7 @@ $(function(){
     $(".reveal-modal.share").foundation('reveal', 'open');
   }
 
-  $(".share-on-facebook-button").click(function(){
+  $(".share-on-facebook-button, .share-on-twitter-button").click(function(){
     window.open(
       $(event.target).attr("data-href"),
       'facebox-share-dialog',

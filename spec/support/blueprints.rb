@@ -15,6 +15,7 @@ Campaign.blueprint do
   share_title { Faker::Lorem.sentence }
   share_description { Faker::Lorem.paragraph(3) }
   tweet { Faker::Lorem.sentence }
+  new_campaign_spreader_mail { Faker::Lorem.paragraph(3) }
 end
 
 CampaignSpreader.blueprint(:facebook_profile) do
@@ -48,7 +49,7 @@ TwitterProfile.blueprint do
 end
 
 Organization.blueprint do
-  # Attributes here
+  email_signature_html { Faker::Lorem.sentence }
 end
 
 Category.blueprint do
