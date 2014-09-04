@@ -1,7 +1,7 @@
 class CampaignsController < ApplicationController
   def show
     @campaign = Campaign.find(params[:id])
-    @last_spreaders = @campaign.campaign_spreaders.order(created_at: :desc).limit(5) || []
+    @last_spreaders = @campaign.campaign_spreaders.order(created_at: :desc).limit(5)
     @campaign_spreader = CampaignSpreader.new(campaign: @campaign)
   end
 

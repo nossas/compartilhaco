@@ -96,10 +96,7 @@
       .user-link= link_to("Ver perfil", user_path(@campaign.user))
     h3 Apoiadores Recentes
     .last-spreaders
-      - @last_spreaders.each do |spreader|
-        .spreader-user
-          = image_tag spreader.user.avatar_url
-          .user-name= spreader.user.name
+      = render @last_spreaders
 
 .reveal-modal.share.medium data={reveal: true}
   = image_tag "share-campaign.png"
