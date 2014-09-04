@@ -96,7 +96,7 @@
       .user-link= link_to("Ver perfil", user_path(@campaign.user))
     h3 Apoiadores Recentes
     .last-spreaders
-      - @campaign.last_spreaders.each do |spreader|
+      - @last_spreaders.each do |spreader|
         .spreader-user
           = image_tag spreader.user.avatar_url
           .user-name= spreader.user.name
