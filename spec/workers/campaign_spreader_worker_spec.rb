@@ -13,7 +13,7 @@ RSpec.describe CampaignSpreaderWorker, :type => :worker do
 
     it "should deliver the new spreader mail" do
       new_spreader_mail = double("new_spreader_mail")
-      allow(NotificationMailer).to receive(:new_spreader).with(campaign_spreader).and_return(new_spreader_mail)
+      allow(Notifier).to receive(:new_spreader).with(campaign_spreader).and_return(new_spreader_mail)
       expect(new_spreader_mail).to receive(:deliver)
       subject.perform(campaign_spreader.id)
     end
