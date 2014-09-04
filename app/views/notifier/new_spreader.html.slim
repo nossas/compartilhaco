@@ -1,6 +1,3 @@
-p= @user.name
+p #{@user.name},
 
-p Agradecer por ter cedido a timeline
-p Avisar sobre o dia e hora do disparo para compartilhaço.
-p Explicar a necessidade de atingir a meta de x compartilhadores
-p Pedir para convidar mais pessoas para atingirmos a meta
+= simple_format @campaign.new_campaign_spreader_mail
