@@ -6,6 +6,6 @@ namespace :compartilhaco do
   end
 
   task :share_campaigns => :environment do
-    Campaign.unshared.ended.succeeded.each { |c| c.share }
+    Campaign.unarchived.unshared.ended.succeeded.each { |c| c.share }
   end
 end
