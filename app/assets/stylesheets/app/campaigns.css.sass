@@ -112,23 +112,20 @@ body.campaigns.show
     img
       margin-bottom: 1em
 
+  .campaign-user, .last-spreaders, .campaign-comments
+    background: white
+    padding: .75em
+    margin-bottom: 2em
+    h3
+      border-bottom: medium solid $light-gray
+      margin-bottom: 1em
+      margin-top: 0
+      span
+        color: $blue
+
   .campaign-right-col
     +grid-column(4)
-    .campaign-user, .last-spreaders
-      background: white
-    .campaign-user
-      padding: .75em
-      margin-bottom: 2em
-    .last-spreaders
-      padding: 1em 2em
-      h3
-        border-bottom: medium solid $light-gray
-        margin-bottom: 1em
-        span
-          color: $blue
-    .spreader-user
-      margin-bottom: 1em
-    .campaign-user, .spreader-user
+    .user
       overflow: hidden
       img
         float: left
