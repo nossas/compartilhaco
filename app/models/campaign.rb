@@ -58,4 +58,8 @@ class Campaign < ActiveRecord::Base
       facebook_profiles.sum(:subscribers_count) +
       twitter_profiles.sum(:followers_count)
   end
+
+  def archived?
+    !self.archived_at.nil?
+  end
 end
