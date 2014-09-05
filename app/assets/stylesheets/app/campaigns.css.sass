@@ -121,24 +121,24 @@ body.campaigns.show
     img
       margin-bottom: 1em
 
+  .campaign-user, .last-spreaders, .campaign-comments
+    background: white
+    padding: .75em
+    margin-bottom: 2em
+    h3
+      border-bottom: medium solid $light-gray
+      margin-bottom: 1em
+      margin-top: 0
+      span
+        color: $blue
+
   .campaign-right-col
     +grid-column(4)
-    .campaign-user, .last-spreaders
-      background: white
-    .campaign-user
-      padding: .75em
-      margin-bottom: 2em
-    .last-spreaders
-      padding: 1em 2em
-      h3
-        border-bottom: medium solid $light-gray
-        margin-bottom: 1em
-        span
-          color: $blue
-    .spreader-user
-      margin-bottom: 1em
-    .campaign-user, .spreader-user
+    .user
       overflow: hidden
+      margin-bottom: rem-calc(10)
+      &:last-child
+        margin-bottom: 0
       img
         float: left
         margin-right: .5em
@@ -163,6 +163,9 @@ body.campaigns.show
     .campaign-highlight
       .campaign-data, .campaign-forms
         +grid-column($columns: 10, $center: true)
+        .reach
+          .reach-label
+            display: none
       .campaign-forms
         margin-top: 2em
     .campaign-left-col, .campaign-right-col

@@ -48,7 +48,7 @@
         span.reach-count
           = image_tag "reach.png"
           = number_with_delimiter @campaign.reach
-        span  pessoas serão alcançadas
+        span.reach-label  pessoas serão alcançadas
 
     .campaign-forms
       .form-buttons
@@ -97,14 +97,16 @@
   .campaign-left-col
     = image_tag @campaign.image
     = simple_format @campaign.description
-    h3 Comentários
-    .fb-comments data-href=campaign_url(@campaign) data-width="100%" data-numposts="10"
+    .campaign-comments
+      h3 Comentários
+      .fb-comments data-href=campaign_url(@campaign) data-width="100%" data-numposts="10"
   .campaign-right-col
-    h3 Criado por
     .campaign-user
-      = image_tag @campaign.user.avatar_url
-      .user-name= @campaign.user.name
-      .user-link= link_to("Ver perfil", user_path(@campaign.user))
+      h3 Criado por
+      .user
+        = image_tag @campaign.user.avatar_url
+        .user-name= @campaign.user.name
+        .user-link= link_to("Ver perfil", user_path(@campaign.user))
     .last-spreaders
       h3 Apoiadores recentes #{content_tag :span, "(#{@campaign.campaign_spreaders.try(:count)})"}
       = render @last_spreaders
