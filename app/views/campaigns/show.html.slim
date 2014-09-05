@@ -11,11 +11,11 @@
 - set_meta_tags twitter: { url: campaign_url(@campaign) }
 - set_meta_tags twitter: { site: "@meu_rio" }
 
-/ - if current_user && current_user.admin?
-.admin-panel
-  .row
-    .actions
-      = button_to "Arquivar", archive_campaign_path(@campaign), method: :patch, disabled: @campaign.archived?, id: :archive_campaign_button, class: [:button, :alert, :radius, :tiny, (:disabled if @campaign.archived?)]
+- if current_user && current_user.admin?
+  .admin-panel
+    .row
+      .actions
+        = button_to "Arquivar", archive_campaign_path(@campaign), method: :patch, disabled: @campaign.archived?, id: :archive_campaign_button, class: [:button, :alert, :radius, :tiny, (:disabled if @campaign.archived?)]
 .campaign-highlight
   .row
     .campaign-data
