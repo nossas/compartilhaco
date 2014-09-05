@@ -109,8 +109,8 @@
 .reveal-modal.share.medium data={reveal: true}
   = image_tag "share-campaign.png"
   h3 Espalhe esse compartilhaço!
-  p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+  p Precisamos de muitas vozes para que essa mensagem chegue mais longe. Mostre pra toda sua rede que a ajuda de cada um deles pode fazer essa causa impactar milhares de pessoas!
   .share-buttons
-    = link_to "Compartilhar no Facebook", "#", class: ['share-on-facebook-button', :button, :radius], data: { href: "https://www.facebook.com/sharer/sharer.php?u=#{URI::encode(campaign_url(@campaign))}" }
-    = link_to "Compartilhar no Twitter", "#", class: ['share-on-twitter-button', :button, :radius], data: { href: "https://twitter.com/share?url=#{campaign_url(@campaign)}&text=#{@campaign.title}" }
+    = link_to "Compartilhe no Facebook", "#", class: ['share-on-facebook-button', :button, :radius], data: { href: "https://www.facebook.com/sharer/sharer.php?u=#{URI::encode(campaign_url(@campaign))}" }
+    = link_to "Compartilhe no Twitter", "#", class: ['share-on-twitter-button', :button, :radius], data: { href: "https://twitter.com/share?url=#{campaign_url(@campaign)}&text=#{@campaign.title}" }
   a.close-reveal-modal &#215;
