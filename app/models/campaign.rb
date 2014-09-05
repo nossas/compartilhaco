@@ -13,10 +13,11 @@ class Campaign < ActiveRecord::Base
   validate :ends_at_cannot_be_in_more_than_50_days
   validates_length_of :short_description, maximum: 250
 
-  scope :unshared,  -> { where("shared_at IS NULL") }
-  scope :upcoming,  -> { where("? < ends_at", Time.now) }
-  scope :ended,     -> { where("? >= ends_at", Time.now) }
-  scope :succeeded, -> { where("(
+  scope :unshared,   -> { where("shared_at IS NULL") }
+  scope :unarchived, -> { where("archived_at IS NULL") }
+  scope :upcoming,   -> { where("? < ends_at", Time.now) }
+  scope :ended,      -> { where("? >= ends_at", Time.now) }
+  scope :succeeded,  -> { where("(
     SELECT count(*)
     FROM campaign_spreaders
     WHERE campaign_spreaders.campaign_id = campaigns.id) >= campaigns.goal")}
@@ -24,6 +25,10 @@ class Campaign < ActiveRecord::Base
   def share
     campaign_spreaders.each {|cs| cs.share}
     update_attribute :shared_at, Time.now
+  end
+
+  def archive
+    update_attribute :archived_at, Time.now
   end
 
   def ends_at_cannot_be_in_the_past

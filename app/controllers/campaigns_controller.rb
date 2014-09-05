@@ -1,8 +1,16 @@
 class CampaignsController < ApplicationController
+  respond_to :html, :json
+
   def show
     @campaign = Campaign.find(params[:id])
     @last_spreaders = @campaign.campaign_spreaders.order(created_at: :desc).limit(5)
     @campaign_spreader = CampaignSpreader.new(campaign: @campaign)
+  end
+
+  def archive
+    @campaign = Campaign.find(params[:id])
+    @campaign.archive
+    respond_with @campaign
   end
 
   def serve_image

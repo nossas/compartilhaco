@@ -110,6 +110,35 @@ RSpec.describe Campaign, :type => :model do
     end
   end
 
+  describe ".unarchived" do
+    context "when there is at least one unarchived campaign" do
+      before { Campaign.make! }
+
+      it "should have one campaign" do
+        expect(Campaign.unarchived).to have(1).campaign
+      end
+    end
+
+    context "when there is no unarchived campaign" do
+      before { Campaign.make! archived_at: Time.now }
+
+      it "should be empty" do
+        expect(Campaign.unarchived).to be_empty
+      end
+    end
+  end
+
+  describe "#archive" do
+    subject { Campaign.make! }
+
+    it "should archive the campaign" do
+      time = Time.now
+      allow(Time).to receive(:now).and_return(time)
+
+      expect{ subject.archive }.to change{ subject.archived_at }.from(nil).to(time)
+    end
+  end
+
   describe "#share" do
     subject { Campaign.make! }
     before { @campaign_spreader = CampaignSpreader.make!(:facebook_profile, campaign: subject) }

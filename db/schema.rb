@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20140905191443) do
     t.text     "share_description",          null: false
     t.text     "tweet",                      null: false
     t.text     "new_campaign_spreader_mail", null: false
+    t.datetime "archived_at"
     t.index ["category_id"], :name => "fk__campaigns_category_id"
     t.foreign_key ["category_id"], "categories", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_campaigns_category_id"
   end
