@@ -1,8 +1,8 @@
 .meurio_header
   .meurio_apps
-    +grid-column(3)
+    +grid-column(4)
   .alert
-    +grid-column(1)
+    display: none
   .application_menu
     +grid-column(8)
 
@@ -32,3 +32,19 @@
   background: $twitter-blue
   &:hover
     background: darken($twitter-blue, 10%)
+
+@media #{$medium-down}
+  .meurio_header
+    .meurio_apps_and_application_menu
+      .meurio_apps
+        .current_app
+          span
+            display: none
+  .meurio_header
+    .top-bar
+      section.top-bar-section
+        ul.left
+          display: none
+      ul.title-area
+        li.name
+          border: 0
