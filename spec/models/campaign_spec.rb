@@ -128,6 +128,24 @@ RSpec.describe Campaign, :type => :model do
     end
   end
 
+  describe "#archived?" do
+    context "when is archived" do
+      subject { Campaign.make! archived_at: Time.now }
+      
+      it "should be true" do
+        expect(subject.archived?).to be_truthy
+      end
+    end
+
+    context "when isn't archived" do
+      subject { Campaign.make! archived_at: nil }
+      
+      it "should be false" do
+        expect(subject.archived?).to be_falsy
+      end
+    end
+  end
+
   describe "#archive" do
     subject { Campaign.make! }
 
