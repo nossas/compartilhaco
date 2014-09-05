@@ -7,6 +7,7 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "action_view/railtie"
 require "sprockets/railtie"
+require 'rack-cas/session_store/active_record'
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -34,6 +35,7 @@ module Compartilhaco
     end
 
     config.rack_cas.server_url = ENV['CAS_SERVER_URL']
+    config.rack_cas.session_store = RackCAS::ActiveRecordStore
 
     ActionMailer::Base.delivery_method = :smtp
     ActionMailer::Base.smtp_settings = {

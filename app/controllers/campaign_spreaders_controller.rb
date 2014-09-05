@@ -1,6 +1,6 @@
 class CampaignSpreadersController < ApplicationController
   before_filter only: [:create_for_facebook_profile, :create_for_twitter_profile] do
-    session[:campaign_spreader] = params[:campaign_spreader] if params[:campaign_spreader].present?
+    session[:campaign_spreader] = campaign_spreader_params if campaign_spreader_params.present?
   end
 
   before_filter only: [:create_for_facebook_profile_callback, :create_for_twitter_profile_callback] do
@@ -58,5 +58,9 @@ class CampaignSpreadersController < ApplicationController
 
   def failure
     redirect_to Campaign.first, alert: "Você não cedeu as permissões necessárias"
+  end
+
+  def campaign_spreader_params
+    params.require(:campaign_spreader).permit(:campaign_id, :message, timeline: {user: :email})
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140904143032) do
+ActiveRecord::Schema.define(version: 20140905191443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,23 +25,23 @@ ActiveRecord::Schema.define(version: 20140904143032) do
   create_table "campaigns", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image"
-    t.string   "share_link",                              null: false
+    t.string   "image",                      null: false
+    t.string   "share_link",                 null: false
     t.datetime "shared_at"
-    t.datetime "ends_at",                                 null: false
-    t.integer  "goal",                                    null: false
-    t.integer  "organization_id",                         null: false
+    t.datetime "ends_at",                    null: false
+    t.integer  "goal",                       null: false
+    t.integer  "organization_id",            null: false
     t.string   "mailchimp_segment_uid"
-    t.string   "title",                                   null: false
-    t.text     "description",                             null: false
-    t.integer  "user_id",                                 null: false
-    t.integer  "category_id",                             null: false
-    t.text     "short_description",                       null: false
-    t.string   "share_title",                             null: false
-    t.string   "share_image",                             null: false
-    t.text     "share_description",                       null: false
-    t.text     "tweet",                                   null: false
-    t.text     "new_campaign_spreader_mail",              null: false
+    t.string   "title",                      null: false
+    t.text     "description",                null: false
+    t.integer  "user_id",                    null: false
+    t.integer  "category_id",                null: false
+    t.text     "short_description",          null: false
+    t.string   "share_title",                null: false
+    t.string   "share_image",                null: false
+    t.text     "share_description",          null: false
+    t.text     "tweet",                      null: false
+    t.text     "new_campaign_spreader_mail", null: false
     t.index ["category_id"], :name => "fk__campaigns_category_id"
     t.foreign_key ["category_id"], "categories", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_campaigns_category_id"
   end
@@ -73,6 +73,17 @@ ActiveRecord::Schema.define(version: 20140904143032) do
 
   create_table "organizations", force: true do |t|
     t.text "email_signature_html"
+  end
+
+  create_table "sessions", force: true do |t|
+    t.string   "session_id", null: false
+    t.string   "cas_ticket"
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["cas_ticket"], :name => "index_sessions_on_cas_ticket"
+    t.index ["session_id"], :name => "index_sessions_on_session_id"
+    t.index ["updated_at"], :name => "index_sessions_on_updated_at"
   end
 
   create_table "twitter_profiles", force: true do |t|
