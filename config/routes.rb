@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: 'campaign#index'
+
   resources :campaigns do
     member do
       get 'images/:trash', to: 'campaigns#serve_image', as: :serve_image

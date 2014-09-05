@@ -1,3 +1,11 @@
+.meurio_header
+  .meurio_apps
+    +grid-column(4)
+  .alert
+    display: none
+  .application_menu
+    +grid-column(8)
+
 .row
   +grid-row
 
@@ -24,3 +32,19 @@
   background: $twitter-blue
   &:hover
     background: darken($twitter-blue, 10%)
+
+@media #{$medium-down}
+  .meurio_header
+    .meurio_apps_and_application_menu
+      .meurio_apps
+        .current_app
+          span
+            display: none
+  .meurio_header
+    .top-bar
+      section.top-bar-section
+        ul.left
+          display: none
+      ul.title-area
+        li.name
+          border: 0

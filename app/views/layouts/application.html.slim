@@ -27,5 +27,9 @@ html
               = flash[:alert]
               a.close href="#" &times;
 
+    - content_for :application_menu do
+      = link_to "Como funciona?", "#"
+    = meurio_header_for :compartilhaco
+
     = yield
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
