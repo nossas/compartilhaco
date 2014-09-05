@@ -1,4 +1,13 @@
 body.campaigns.show
+  .admin-panel
+    background: $light-gray
+    padding: .5em 0
+    .actions
+      +grid-column(12)
+    .button
+      margin: 0
+      &:hover
+        background: darken($red, 10%)
   .campaign-highlight
     background: asset-url('bg-campaign.jpg')
     color: white
