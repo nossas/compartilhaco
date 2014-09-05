@@ -5,6 +5,10 @@ RSpec.describe CampaignsController, :type => :controller do
     let(:campaign){ Campaign.make! }
     before { get :show, id: campaign.id }
 
+    it "should be successful" do
+      expect(response).to be_successful
+    end
+
     it "should assign @campaign_spreader" do
       expect(assigns(:campaign_spreader)).to be_instance_of(CampaignSpreader)
     end
@@ -25,6 +29,15 @@ RSpec.describe CampaignsController, :type => :controller do
       it "should assign 5 items to @last_spreaders" do
         expect(assigns(:last_spreaders).count).to eq(5)
       end
+    end
+  end
+
+  describe "PATCH archive" do
+    let(:campaign){ Campaign.make! }
+    before { patch :archive, id: campaign.id }
+
+    it "should redirect to @campaign" do
+      expect(response).to redirect_to campaign
     end
   end
 

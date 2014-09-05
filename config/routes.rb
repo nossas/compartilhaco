@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :campaigns do
     member do
       get 'images/:trash', to: 'campaigns#serve_image', as: :serve_image
+      patch :archive, to: "campaigns#archive"
     end
   end
 
