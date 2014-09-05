@@ -33,6 +33,8 @@ module Compartilhaco
       g.fixture_replacement :machinist
     end
 
+    config.rack_cas.server_url = ENV['CAS_SERVER_URL']
+
     ActionMailer::Base.delivery_method = :smtp
     ActionMailer::Base.smtp_settings = {
       :user_name => ENV["SENDGRID_USERNAME"],
