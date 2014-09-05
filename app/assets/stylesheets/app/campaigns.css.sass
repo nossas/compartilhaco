@@ -105,7 +105,7 @@ body.campaigns.show
 
   .campaign-left-col, .campaign-right-col
     h3
-      font-size: rem-calc(20)
+      font-size: rem-calc(18)
 
   .campaign-left-col
     +grid-column(8)
@@ -116,19 +116,31 @@ body.campaigns.show
     +grid-column(4)
     .campaign-user, .last-spreaders
       background: white
+    .campaign-user
       padding: .75em
-    .campaign-user, .spreader-user
       margin-bottom: 2em
+    .last-spreaders
+      padding: 1em 2em
+      h3
+        border-bottom: medium solid $light-gray
+        margin-bottom: 1em
+        span
+          color: $blue
+    .spreader-user
+      margin-bottom: 1em
+    .campaign-user, .spreader-user
       overflow: hidden
       img
         float: left
         margin-right: .5em
         width: 50px
+        +border-radius(50%)
       .user-name
-        margin-top: 11px
+        margin-top: 7px
         font-weight: bold
-      .user-link
-        font-size: .9em
+      .user-link, .spreader-info
+        font-size: .8em
+        margin-top: 5px
 
   .share
     text-align: center
