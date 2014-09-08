@@ -41,4 +41,19 @@ feature "View all campains", :type => :feature do
       end
     end
   end
+
+  context "when campaigns have different end dates" do
+    before do
+      @campaign_c = Campaign.make! ends_at: 3.day.from_now
+      @campaign_b = Campaign.make! ends_at: 2.day.from_now
+      @campaign_a = Campaign.make! ends_at: 1.day.from_now
+    end
+
+    it "should show campaigns ordered by end date" do
+      visit root_path
+      expect(page).to have_css(".campaign:nth-child(1)", text: @campaign_a.title)
+      expect(page).to have_css(".campaign:nth-child(2)", text: @campaign_b.title)
+      expect(page).to have_css(".campaign:nth-child(3)", text: @campaign_c.title)
+    end
+  end
 end
