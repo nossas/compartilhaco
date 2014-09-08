@@ -1,6 +1,8 @@
-.row
-  .campaigns
+.campaigns-list
+  .row
     - if @campaigns.empty?
       .empty Nenhum compartilhaço encontrado
     - else
       = render @campaigns
+
+= paginate @campaigns

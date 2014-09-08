@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-infinite-scroll
 //= require meurio_ui
 //= require foundation
 //= require turbolinks
@@ -47,5 +48,11 @@ $(function(){
       'width=626,height=436'
     );
     return false;
+  });
+
+  $(".campaigns-list .row").infinitescroll({
+    navSelector: "nav.pagination",
+    nextSelector: "nav.pagination a[rel=next]",
+    itemSelector: ".campaigns-list .row .campaign"
   });
 });

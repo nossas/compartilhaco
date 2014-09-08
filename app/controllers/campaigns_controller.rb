@@ -2,7 +2,12 @@ class CampaignsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @campaigns = Campaign.unarchived.upcoming.order(:ends_at)
+    @campaigns = Campaign
+      .unarchived
+      .upcoming
+      .order(:ends_at)
+      .page(params[:page])
+      .per(6)
   end
 
   def show
