@@ -1,3 +1,6 @@
 .row
   .campaigns
-    .empty Nenhum compartilhaço encontrado
+    - if @campaigns.empty?
+      .empty Nenhum compartilhaço encontrado
+    - else
+      = render @campaigns

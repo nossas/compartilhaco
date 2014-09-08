@@ -2,6 +2,7 @@ class CampaignsController < ApplicationController
   respond_to :html, :json
 
   def index
+    @campaigns = Campaign.unarchived
   end
 
   def show
