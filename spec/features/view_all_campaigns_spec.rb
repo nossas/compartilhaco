@@ -30,5 +30,15 @@ feature "View all campains", :type => :feature do
         expect(page).to_not have_css("#campaign-#{campaign.id}")
       end
     end
+
+    context "when one of these campaigns is ended" do
+      let(:campaign) { Campaign.first }
+      before{ campaign.update_column :ends_at, 1.day.ago }
+
+      it "should not show the ended campaign" do
+        visit root_path
+        expect(page).to_not have_css("#campaign-#{campaign.id}")
+      end
+    end
   end
 end
