@@ -1,5 +1,6 @@
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     actionmailer (4.1.4)
       actionpack (= 4.1.4)
@@ -109,6 +110,9 @@ GEM
     json (1.8.1)
     jwt (0.1.11)
       multi_json (>= 1.5)
+    kaminari (0.16.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     kgio (2.9.2)
     koala (1.10.0)
       addressable
@@ -184,6 +188,7 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.4)
       sprockets-rails (~> 2.0)
+    rails-assets-jquery-infinite-scroll (2.0.2)
     rails_12factor (0.0.2)
       rails_serve_static_assets
       rails_stdout_logging
@@ -324,6 +329,7 @@ DEPENDENCIES
   httparty
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
   koala (~> 1.10.0rc)
   machinist
   meta-tags
@@ -336,6 +342,7 @@ DEPENDENCIES
   rack-cas
   rack_session_access
   rails (= 4.1.4)
+  rails-assets-jquery-infinite-scroll
   rails_12factor
   rspec-collection_matchers
   rspec-rails (~> 3.0.0)

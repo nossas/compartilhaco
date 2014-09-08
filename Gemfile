@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 ruby '2.1.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -59,3 +60,5 @@ gem 'meta-tags'
 gem 'meurio_ui'
 gem 'compass-rails'
 gem 'rack-cas'
+gem 'kaminari'
+gem 'rails-assets-jquery-infinite-scroll'
