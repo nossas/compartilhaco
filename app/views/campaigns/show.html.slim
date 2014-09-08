@@ -15,7 +15,7 @@
   .admin-panel
     .row
       .actions
-        = button_to "Arquivar", archive_campaign_path(@campaign), method: :patch, disabled: @campaign.archived?, id: :archive_campaign_button, class: [:button, :alert, :radius, (:disabled if @campaign.archived?)]
+        = button_to "Arquivar", archive_campaign_path(@campaign), method: :patch, disabled: @campaign.archived?, id: :archive_campaign_button, class: [:button, :radius, (:disabled if @campaign.archived?)]
 
 .campaign-highlight
   .row
