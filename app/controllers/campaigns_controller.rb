@@ -1,6 +1,9 @@
 class CampaignsController < ApplicationController
   respond_to :html, :json
 
+  def index
+  end
+
   def show
     @campaign = Campaign.find(params[:id])
     @last_spreaders = @campaign.campaign_spreaders.order(created_at: :desc).limit(5)
