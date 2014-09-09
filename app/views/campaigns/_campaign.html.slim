@@ -1,2 +1,16 @@
 .campaign id="campaign-#{campaign.id}"
-  h3= campaign.title
+  .ends-at
+    .icon-clock2
+      span Faltam #{distance_of_time_in_words_to_now campaign.ends_at}
+  = link_to image_tag(campaign.image.thumb), campaign
+  .box
+    = link_to campaign do
+      h4= campaign.title
+    .organization= campaign.organization.city
+    .user Por #{campaign.user.name}
+    .category Em #{campaign.category.name}
+    .progress.round.secondary
+      span.meter style="width: #{number_to_percentage([campaign.progress_of_goal, 100].min, precision: 0)}"
+    .goal
+      span= campaign.campaign_spreaders.count
+      |  de #{campaign.goal}

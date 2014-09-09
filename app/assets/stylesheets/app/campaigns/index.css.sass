@@ -1,8 +1,59 @@
 body.campaigns.index
-  .empty
+  .empty, .campaigns-list-title
     text-align: center
+    margin-top: rem-calc(50)
     +grid-column(12)
-  .campaign
-    +grid-column(4)
-    height: 400px
-    text-align: center
+  nav.pagination
+    display: none
+  .campaigns-list
+    margin-top: rem-calc(20)
+    #infscr-loading
+      +grid-column(12)
+      text-align: center
+      img
+        display: none
+    .campaign
+      +grid-column(4)
+      margin-bottom: rem-calc(20)
+      &:last-child
+        margin-bottom: 0
+      .ends-at
+        background: $primary-color
+        color: white
+        padding: rem-calc(10)
+        font-size: rem-calc(18)
+        .icon-clock2
+          &:before
+            margin-right: rem-calc(10)
+            color: lighten($primary-color, 20%)
+          span
+            position: relative
+            top: -2px
+            font-weight: bold
+      .box
+        background: white
+        padding: rem-calc(20)
+        font-size: rem-calc(14)
+        +box-shadow(0 5px  5px -2px darken($light-gray, 20%))
+        h4
+          margin: 0
+          line-height: normal
+          font-weight: bold
+        .organization, .category
+          margin-bottom: rem-calc(15)
+        .goal
+          span
+            font-size: rem-calc(28)
+            font-weight: bold
+
+@media #{$medium-down}
+  body.campaigns.index
+    .campaigns-list
+      .campaign
+        +grid-column(6)
+
+@media #{$small-only}
+  body.campaigns.index
+    .campaigns-list
+      .campaign
+        +grid-column(12)
