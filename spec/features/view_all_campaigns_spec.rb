@@ -8,17 +8,17 @@ feature "View all campains", :type => :feature do
     end
   end
 
-  context "when there are at least 6 campaigns" do
-    before { 6.times { Campaign.make! } }
+  context "when there are at least 9 campaigns" do
+    before { 9.times { Campaign.make! } }
 
     it "should not show an empty list" do
       visit root_path
       expect(page).to_not have_css(".campaigns .empty")
     end
 
-    it "should show all the 6 campaigns" do
+    it "should show all the 9 campaigns" do
       visit root_path
-      expect(page).to have_css(".campaign", count: 6)
+      expect(page).to have_css(".campaign", count: 9)
     end
 
     context "when one of these campaigns is archieved" do
@@ -42,19 +42,19 @@ feature "View all campains", :type => :feature do
     end
   end
 
-  context "when there are 12 campaigns" do
-    before { 12.times { Campaign.make! } }
+  context "when there are 18 campaigns" do
+    before { 18.times { Campaign.make! } }
 
-    it "should show 6 campaigns in the first page" do
+    it "should show 9 campaigns in the first page" do
       visit root_path
-      expect(page).to have_css(".campaign", count: 6)
+      expect(page).to have_css(".campaign", count: 9)
     end
 
     context "when the user scrolls down" do
-      it "should show all the 12 campaigns", js: true do
+      it "should show all the 18 campaigns", js: true do
         visit root_path
         page.execute_script('window.scrollTo(0,100000)')
-        expect(page).to have_css(".campaign", count: 12)
+        expect(page).to have_css(".campaign", count: 18)
       end
     end
   end
