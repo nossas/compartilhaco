@@ -7,7 +7,7 @@
     = link_to campaign do
       h4= campaign.title
     .organization= campaign.organization.city
-    .user Por #{campaign.user.name}
+    .user Por #{link_to campaign.user.name, user_path(campaign.user)}
     .category Em #{campaign.category.name}
     .progress.round.secondary
       span.meter style="width: #{number_to_percentage([campaign.progress_of_goal, 100].min, precision: 0)}"
