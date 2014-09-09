@@ -7,7 +7,7 @@ class CampaignsController < ApplicationController
       .upcoming
       .order(:ends_at)
       .page(params[:page])
-      .per(6)
+      .per(9)
   end
 
   def show
