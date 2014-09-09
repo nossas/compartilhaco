@@ -19,3 +19,4 @@ config/database.yml
 /config/initializers/01_env_vars.rb
 /public/uploads
 dump.rdb
+/.idea
