@@ -20,16 +20,16 @@ Category.create([
 ])
 
 # Campaign.create!(
-#   ends_at: 10.days.from_now,
+#   ends_at: (i + 10).days.from_now,
 #   share_link: "http://minhascidades.org.br",
-#   goal: 5,
+#   goal: i*10,
 #   organization: Organization.first,
-#   title: "Salvem as baleias",
+#   title: "Campaign #{i}",
 #   image: File.new("#{Rails.root}/spec/support/images/whale.jpg"),
-#   description: Faker::Lorem.paragraphs(3).join("\n\n"),
+#   description: Faker::Lorem.paragraphs(1).join("\n\n"),
 #   user: User.first,
 #   category: Category.first,
-#   short_description: Faker::Lorem.paragraph,
+#   short_description: Faker::Lorem.sentence,
 #   share_image: File.new("#{Rails.root}/spec/support/images/whale.jpg"),
 #   share_title: "Salvem as baleias",
 #   share_description: Faker::Lorem.paragraph,
