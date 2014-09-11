@@ -22,7 +22,9 @@ class CampaignsController < ApplicationController
 
   def create
     @campaign = Campaign.new(permitted_params)
-    @campaign.user = current_user
+
+    # TODO: implement authorization solution and only allow logged users to create campaigns
+    @campaign.user = current_user || User.first 
 
     if @campaign.save
       respond_with @campaign, notice: 'Campanha criada!'
@@ -44,6 +46,6 @@ class CampaignsController < ApplicationController
   end
 
   def permitted_params
-    params.fetch(:campaign, {}).permit(:title, :description, :short_description, :image, :ends_at, :goal, :organization_id, :user_id, :share_link, :tweet, :share_title, :share_description, :share_image)
+    params.fetch(:campaign, {}).permit(:title, :description, :short_description, :image, :ends_at, :goal, :organization_id, :user_id, :category_id, :share_link, :tweet, :share_title, :share_description, :share_image, :new_campaign_spreader_mail)
   end
 end
