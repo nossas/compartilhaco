@@ -1,6 +1,40 @@
+ul.about-orbit data={orbit: true, options: "slide_number:false; resume_on_mouseout:true; navigation_arrows: false;"}
+  li
+    .row
+      .illustration= image_tag "about-orbit/image-1.png"
+      .content
+        h2 Sua voz faz diferença.
+        p Conecte seu Facebook e Twitter com o Compartilhaço pra dar visibilidade a uma mobilização ou causa de interesse público.
+  li
+    .row
+      .illustration= image_tag "about-orbit/image-2.png"
+      .content
+        h2 Você não está falando sozinho.
+        p Junte-se a mais e mais pessoas emprestando seu perfil até a meta para disparo do Compartilhaço ser atingida.
+  li
+    .row
+      .illustration= image_tag "about-orbit/image-3.png"
+      .content
+        h2 Muitas vozes, uma mensagem.
+        p Veja o mesmo post, ao mesmo tempo, aparecer em todos os perfis de Facebook e Twitter conectados.
+  li
+    .row
+      .illustration= image_tag "about-orbit/image-4.png"
+      .content
+        h2 Juntos nossa voz chega mais longe!
+        p Surpreenda-se com milhares de pessoas impactadas pela ação coletiva na rede.
+
+.new-campaign
+  .row
+    .wrapper
+      h3 Quer dar voz a esse coro?
+      p= link_to "Criar Compartilhaço", new_campaign_path, class: [:button, :radius, :large]
+      p
+        small= link_to "Saiba mais", "#"
+
 .row
   .campaigns-list-title
-    h3 Veja os compartilhaços próximos do fim
+    h3 Compartilhaços na reta final!
 
 .campaigns-list
   .row

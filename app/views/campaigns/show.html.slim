@@ -26,7 +26,7 @@
 
       .total-spreaders
         .left.icon-users
-          span Timelines cedidas
+          span Perfis emprestados
         .right
           span.total-spreaders-count= @campaign.campaign_spreaders.count
           | /
@@ -76,7 +76,7 @@
                 .user-email-field
                   = user_form.email_field(:email, required: true, placeholder: "Insira seu e-mail")
                   small.error Email é obrigatório
-          .submit-field= form.submit "Ceder timeline!", id: "facebook-profile-campaign-spreader-submit-button", class: [:button, :radius, :large]
+          .submit-field= form.submit "Emprestar Facebook", id: "facebook-profile-campaign-spreader-submit-button", class: [:button, :radius, :large]
 
       = form_for @campaign_spreader, url: create_for_twitter_profile_campaign_spreaders_path, data: { abide: true }, html: { class: "twitter-profile-campaign-spreader" } do |form|
         = form.hidden_field(:campaign_id)
@@ -90,7 +90,7 @@
                 .user-email-field
                   = user_form.email_field(:email, required: true, placeholder: "Insira seu email")
                   small.error Email é obrigatório
-          .submit-field= form.submit "Ceder timeline!", id: "twitter-profile-campaign-spreader-submit-button", class: [:button, :radius, :large]
+          .submit-field= form.submit "Emprestar Twitter", id: "twitter-profile-campaign-spreader-submit-button", class: [:button, :radius, :large]
 
       small.warn Se a campanha for bem sucedida, essa mensagem será publicada automaticamente no seu perfil e de muitas outras pesssoas.
 
@@ -103,13 +103,13 @@
       .fb-comments data-href=campaign_url(@campaign) data-width="100%" data-numposts="10"
   .campaign-right-col
     .campaign-user
-      h3 Criado por
+      h3 Quem inicia o coro:
       .user
         = image_tag @campaign.user.avatar_url
         .user-name= @campaign.user.name
         .user-link= link_to("Ver perfil", user_path(@campaign.user))
     .last-spreaders
-      h3 Apoiadores recentes #{content_tag :span, "(#{@campaign.campaign_spreaders.try(:count)})"}
+      h3 Quem empresta sua voz #{content_tag :span, "(#{@campaign.campaign_spreaders.try(:count)})"}:
       = render @last_spreaders
 
 .reveal-modal.share.medium data={reveal: true}

@@ -1,4 +1,36 @@
 body.campaigns.index
+  .orbit-container
+    .orbit-timer
+      display: none
+    ul.about-orbit
+      .illustration
+        text-align: center
+        +grid-column(7)
+        img
+          display: inline-block
+      .content
+        padding-top: rem-calc(20)
+        +grid-column(5)
+        h2, p
+          color: white
+        p
+          font-size: rem-calc(18)
+    .orbit-bullets-container
+      background: $primary-color
+      margin-bottom: 0
+      padding: 10px 0
+      .orbit-bullets
+        margin-bottom: 0
+  .new-campaign
+    background: $primary-color
+    padding: rem-calc(20) 0
+    h3, a
+      color: white
+    .wrapper
+      text-align: center
+      +grid-column(12)
+    p, .button
+      margin-bottom: 0
   .empty, .campaigns-list-title
     text-align: center
     margin-top: rem-calc(50)
@@ -17,6 +49,8 @@ body.campaigns.index
       margin-bottom: rem-calc(20)
       &:last-child
         margin-bottom: 0
+      a
+        font-weight: bold
       .ends-at
         background: $primary-color
         color: white
@@ -30,6 +64,23 @@ body.campaigns.index
             position: relative
             top: -2px
             font-weight: bold
+      .progress
+        text-align: right
+        span.percentage
+          display: inline-block
+          width: 60px
+          padding: 30px 0 30px 0
+          line-height: 0
+          text-align: center
+          color: white
+          font-weight: bold
+          font-size: rem-calc(18)
+          background: $gray
+          top: -37px
+          position: relative
+          +border-radius(100%)
+          &.succeeded
+            background: $success-color
       .box
         background: white
         padding: rem-calc(20)
@@ -51,6 +102,12 @@ body.campaigns.index
     .campaigns-list
       .campaign
         +grid-column(6)
+    .orbit-container
+      ul.about-orbit
+        .illustration
+          +grid-column(12)
+        .content
+          +grid-column(12)
 
 @media #{$small-only}
   body.campaigns.index

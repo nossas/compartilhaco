@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    = display_meta_tags
+    = display_meta_tags(default_meta_tags)
     meta charset="utf-8"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     meta name="facebook_app_id" content=ENV['FACEBOOK_KEY']
@@ -10,7 +10,7 @@ html
     = javascript_include_tag 'vendor/modernizr'
     = meurio_ui_assets
     = csrf_meta_tags
-    = favicon_link_tag 'reach.png'
+    = favicon_link_tag 'favicon.png'
 
   body class=[controller.controller_name, controller.action_name]
     #fb-root
