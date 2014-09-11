@@ -1,4 +1,31 @@
 body.campaigns.index
+  .orbit-container
+    .orbit-timer
+      display: none
+    ul.about-orbit
+      .orbit-timer
+        display: none
+      .illustration
+        +grid-column(7)
+      .content
+        padding: rem-calc(20) 0
+        +grid-column(5)
+        .multiplatform
+          color: $primary-color
+          text-transform: uppercase
+          font-weight: bold
+        h3, p
+          color: white
+  .new-campaign
+    background: $primary-color
+    padding: rem-calc(20) 0
+    h3, a
+      color: white
+    .wrapper
+      text-align: center
+      +grid-column(12)
+    p
+      margin: 0
   .empty, .campaigns-list-title
     text-align: center
     margin-top: rem-calc(50)

@@ -1,3 +1,41 @@
+ul.about-orbit data={orbit: true, options: "slide_number:false; resume_on_mouseout:true;"}
+  li
+    .row
+      .illustration illustration1
+      .content
+        .multiplatform Múltiplas plataformas
+        h3 Sua voz faz diferença.
+        p Conecte seu Facebook e Twitter com o Compartilhaço pra dar visibilidade a uma mobilização ou causa de interesse público.
+  li
+    .row
+      .illustration illustration2
+      .content
+        .multiplatform Múltiplas plataformas
+        h3 Você não está falando sozinho.
+        p Junte-se a mais e mais pessoas emprestando seu perfil até a meta para disparo do Compartilhaço ser atingida.
+  li
+    .row
+      .illustration illustration3
+      .content
+        .multiplatform Múltiplas plataformas
+        h3 Muitas vozes, uma mensagem.
+        p Veja o mesmo post, ao mesmo tempo, aparecer em todos os perfis de Facebook e Twitter conectados.
+  li
+    .row
+      .illustration illustration3
+      .content
+        .multiplatform Múltiplas plataformas
+        h3 Juntos nossa voz chega mais longe!
+        p Surpreenda-se com milhares de pessoas impactadas pela ação coletiva na rede.
+
+.new-campaign
+  .row
+    .wrapper
+      h3 Quer dar voz a esse coro?
+      p= link_to "Criar Compartilhaço", new_campaign_path, class: [:button, :radius, :large]
+      p
+        small= link_to "Saiba mais", "#"
+
 .row
   .campaigns-list-title
     h3 Compartilhaços na reta final!
