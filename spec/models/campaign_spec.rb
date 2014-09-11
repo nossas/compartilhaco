@@ -9,6 +9,7 @@ RSpec.describe Campaign, :type => :model do
   it { should validate_presence_of :share_link }
   it { should validate_presence_of :goal }
   it { should validate_presence_of :organization_id }
+  it { should validate_presence_of :category_id }
   it { should validate_presence_of :image }
   it { should validate_presence_of :title }
   it { should validate_presence_of :description }
@@ -18,6 +19,7 @@ RSpec.describe Campaign, :type => :model do
   it { should validate_presence_of :share_image }
   it { should validate_presence_of :share_description }
   it { should validate_presence_of :tweet }
+  it { should validate_presence_of :new_campaign_spreader_mail }
   it { should ensure_length_of(:short_description).is_at_most(250) }
 
   context "when the ends_at is in the past" do
