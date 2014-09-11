@@ -14,54 +14,74 @@
 
       .field
         = f.label :organization_id, 'Escolha a cidade que é objeto da causa do seu Compartilhaço'
-        = f.number_field :organization_id
+        = f.collection_select :organization_id, Organization.all, :id, :city, required: true
+        small.error Queremos saber o que você quer mudar na sua cidade!
 
       .field
-        = f.label :category, 'Escolha a categoria de seu Compartilhaço (ajude as pessoas a encontrarem sua campanha)'
+        = f.label :category_id, 'Escolha a categoria de seu Compartilhaço (ajude as pessoas a encontrarem sua campanha)'
+        = f.collection_select :category_id, Category.all, :id, :name, required: true
 
       .field
         = f.label :short_description, 'Escreva um resumo sobre seu Compartilhaço (ajude as pessoas a entenderem a importância de cederem sua timeline para a sua campanha)'
-        = f.text_area :short_description
+        = f.text_area :short_description, required: true
+        small.error Queremos saber o que você quer mudar na sua cidade!
 
       .field
         = f.label :description, 'Descreva em alguns parágrafos o problema, causa ou mobilização que você quer dar voz ("a paz mundial" é coisa de miss - seja específico!)'
-        = f.text_area(:description, required: true)
+        = f.text_area :description, required: true
         small.error Queremos saber o que você quer mudar na sua cidade!
 
       .field
         = f.label :image, 'Escolha uma imagem que represente seu Compartilhaço e suba ela aqui'
-        = f.file_field :image
+        = f.file_field :image, required: true
+        small.error Queremos saber o que você quer mudar na sua cidade!
 
     fieldset
       legend Prepare seu grito em rede: informações sobre a seu Compartilhaço
 
       .field
         = f.label :share_link, 'Informe o link de destino do seu Compartilhaço (coloque o endereço completo, ex: http://www.exemplo.com.br)'
-        = f.text_field :share_link
+        = f.text_field :share_link, required: true
+        small.error Queremos saber o que você quer mudar na sua cidade!
 
       .field
         = f.label :share_title, 'Escreva o título do compartilhamento (ele será publicado nos perfis daqueles que compartilharem sua campanha)'
-        = f.text_field :share_title
+        = f.text_field :share_title, required: true
+        small.error Queremos saber o que você quer mudar na sua cidade!
 
       .field
         = f.label :share_description, 'Escreva o texto do compartilhamento (será publicado logo abaixo do título aí de cima)'
-        = f.text_field :share_description
+        = f.text_area :share_description, required: true
+        small.error Queremos saber o que você quer mudar na sua cidade!
 
       .field
         = f.label :share_image, 'Escolha uma imagem do seu computador (será publicada junto com o título e o texto)'
-        = f.text_field :share_image
+        = f.file_field :share_image, required: true
+        small.error Queremos saber o que você quer mudar na sua cidade!
 
       .field
         = f.label :tweet, 'Preencha o conteúdo do seu compartilhaço no Twitter (como seu post será publicado nos perfis conectados a sua campanha)'
-        = f.text_field :tweet
+        = f.text_area :tweet, required: true
+        small.error Queremos saber o que você quer mudar na sua cidade!
 
       .field
         = f.label :ends_at, 'Data e hora do disparo do Compartlihaço'
-        = f.datetime_field :ends_at
+        = f.text_field :ends_at, required: true
+        small.error Queremos saber o que você quer mudar na sua cidade!
 
       .field
         = f.label :goal, 'Quantidade mínima de timelines cedidas para ativar o Compartilhaço'
-        = f.number_field :goal
+        = f.number_field :goal, required: true
+        small.error Queremos saber o que você quer mudar na sua cidade!
+
+    fieldset
+      legend Agradeça o gogó amigo: informações para as pessoas que emprestaram seus perfis para o seu Compartilhaço
 
       .field
-        = f.submit 'Salvar', id: 'new-campaign-submit-button', class: [:button, :radius]
+        = f.label :new_campaign_spreader_mail, 'Escreva o email que será enviado para cada um que ajudar no seu Compartilhaço (Agradecer é de muito bom tom. Deixar o link da sua campanha e pedir para as pessoa compartilharem em suas redes é estratégico!)'
+        = f.text_area :new_campaign_spreader_mail, required: true
+        small.error Queremos saber o que você quer mudar na sua cidade!
+
+
+    .field
+      = f.submit 'Salvar', id: 'new-campaign-submit-button', class: [:button, :radius]
