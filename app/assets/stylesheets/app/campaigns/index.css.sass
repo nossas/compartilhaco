@@ -32,6 +32,23 @@ body.campaigns.index
             position: relative
             top: -2px
             font-weight: bold
+      .progress
+        text-align: right
+        span.percentage
+          display: inline-block
+          width: 60px
+          padding: 30px 0 30px 0
+          line-height: 0
+          text-align: center
+          color: white
+          font-weight: bold
+          font-size: rem-calc(18)
+          background: $gray
+          top: -37px
+          position: relative
+          +border-radius(100%)
+          &.succeeded
+            background: $success-color
       .box
         background: white
         padding: rem-calc(20)

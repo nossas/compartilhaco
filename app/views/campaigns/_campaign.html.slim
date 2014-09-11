@@ -11,6 +11,8 @@
     .category Em #{campaign.category.name}
     .progress.round.secondary
       span.meter style="width: #{number_to_percentage([campaign.progress_of_goal, 100].min, precision: 0)}"
+      span.percentage class="#{campaign.progress_of_goal >= 100 ? "succeeded" : ""}"
+        = number_to_percentage(campaign.progress_of_goal, precision: 0)
     .goal
       span= campaign.campaign_spreaders.count
-      |  de #{campaign.goal}
+      |  de #{campaign.goal} perfis emprestados
