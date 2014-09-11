@@ -3,25 +3,24 @@ body.campaigns.index
     .orbit-timer
       display: none
     ul.about-orbit
-      li
-        padding-top: rem-calc(20)
-      .orbit-timer
-        display: none
       .illustration
         text-align: center
         +grid-column(7)
         img
           display: inline-block
       .content
+        padding-top: rem-calc(20)
         +grid-column(5)
         h2, p
           color: white
         p
           font-size: rem-calc(18)
-    .orbit-bullets
+    .orbit-bullets-container
       background: $primary-color
       margin-bottom: 0
       padding: 10px 0
+      .orbit-bullets
+        margin-bottom: 0
   .new-campaign
     background: $primary-color
     padding: rem-calc(20) 0
