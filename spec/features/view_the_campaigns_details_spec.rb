@@ -44,4 +44,24 @@ feature "View the campaign's details", :type => :feature do
     visit campaign_path(campaign)
     expect(page).to have_css(".last-spreaders", spreader.user.name)
   end
+
+  context "when the campaign is ended" do
+    before { campaign.update_column(:ends_at, 1.day.ago) }
+
+    context "when the campaign is succeeded" do
+      before { campaign.goal.times { CampaignSpreader.make! :facebook_profile, campaign: campaign } }
+
+      it "should show the succeeded campaign message" do
+        visit campaign_path(campaign)
+        expect(page).to have_css(".succeeded")
+      end
+    end
+
+    context "when the campaign is unsucceeded" do
+      it "should show the unsucceeded campaign message" do
+        visit campaign_path(campaign)
+        expect(page).to have_css(".unsucceeded")
+      end
+    end
+  end
 end
