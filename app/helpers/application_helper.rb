@@ -39,4 +39,9 @@ module ApplicationHelper
   def twitter_form?
     params[:form] == "twitter"
   end
+
+  def campaign_highlight_class campaign
+    return "succeeded" if campaign.succeeded?
+    return "unsucceeded" if campaign.unsucceeded?
+  end
 end

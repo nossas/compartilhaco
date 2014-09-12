@@ -62,4 +62,16 @@ class Campaign < ActiveRecord::Base
   def archived?
     !self.archived_at.nil?
   end
+
+  def succeeded?
+    campaign_spreaders.count >= goal && ended?
+  end
+
+  def unsucceeded?
+    campaign_spreaders.count < goal && ended?
+  end
+
+  def ended?
+    ends_at < Time.now
+  end
 end

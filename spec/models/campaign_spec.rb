@@ -319,4 +319,79 @@ RSpec.describe Campaign, :type => :model do
       end
     end
   end
+
+  describe "#succeeded?" do
+    before { allow(subject).to receive(:goal).and_return(5) }
+
+    context "when the campaign is ended" do
+      before { allow(subject).to receive(:ended?).and_return(true) }
+
+      context "when the campaign spreaders is less than it's goal" do
+        it "should be false" do
+          expect(subject.succeeded?).to be_falsy
+        end
+      end
+
+      context "when the campaign spreaders is greater than it's goal" do
+        before { allow(subject).to receive(:campaign_spreaders).and_return(double("campaign_spreaders", count: subject.goal)) }
+        it "should be true" do
+          expect(subject.succeeded?).to be_truthy
+        end
+      end
+    end
+
+    context "when the campaign is nor ended" do
+      before { allow(subject).to receive(:ended?).and_return(false) }
+
+      it "should be false" do
+        expect(subject.succeeded?).to be_falsy
+      end
+    end
+  end
+
+  describe "#unsucceeded?" do
+    before { allow(subject).to receive(:goal).and_return(5) }
+
+    context "when the campaign is ended" do
+      before { allow(subject).to receive(:ended?).and_return(true) }
+
+      context "when the campaign spreaders is less than it's goal" do
+        it "should be false" do
+          expect(subject.unsucceeded?).to be_truthy
+        end
+      end
+
+      context "when the campaign spreaders is greater than it's goal" do
+        before { allow(subject).to receive(:campaign_spreaders).and_return(double("campaign_spreaders", count: subject.goal)) }
+        it "should be true" do
+          expect(subject.unsucceeded?).to be_falsy
+        end
+      end
+    end
+
+    context "when the campaign is nor ended" do
+      before { allow(subject).to receive(:ended?).and_return(false) }
+
+      it "should be false" do
+        expect(subject.unsucceeded?).to be_falsy
+      end
+    end
+  end
+
+  describe "#ended?" do
+    subject { Campaign.make! }
+
+    context "when the campaign end date is less than today" do
+      before { subject.update_column :ends_at, 1.day.ago }
+      it "should be true" do
+        expect(subject.ended?).to be_truthy
+      end
+    end
+
+    context "when the campaign end date is greater than today" do
+      it "should be false" do
+        expect(subject.ended?).to be_falsy
+      end
+    end
+  end
 end
