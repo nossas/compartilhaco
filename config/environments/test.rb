@@ -39,4 +39,6 @@ Rails.application.configure do
 
   OmniAuth.config.test_mode = true
   config.middleware.use RackSessionAccess::Middleware
+
+  Rails.application.routes.default_url_options[:host] = "http://localhost:3000"
 end
