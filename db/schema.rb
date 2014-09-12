@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140909155802) do
+ActiveRecord::Schema.define(version: 20140912224446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20140909155802) do
   create_table "campaigns", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image"
+    t.string   "image",                      null: false
     t.string   "share_link",                 null: false
     t.datetime "shared_at"
     t.datetime "ends_at",                    null: false
@@ -86,6 +86,15 @@ ActiveRecord::Schema.define(version: 20140909155802) do
     t.index ["cas_ticket"], :name => "index_sessions_on_cas_ticket"
     t.index ["session_id"], :name => "index_sessions_on_session_id"
     t.index ["updated_at"], :name => "index_sessions_on_updated_at"
+  end
+
+  create_table "spam_reports", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "campaign_id", null: false
+    t.integer  "user_id",     null: false
+    t.index ["campaign_id"], :name => "fk__spam_reports_campaign_id"
+    t.foreign_key ["campaign_id"], "campaigns", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_spam_reports_campaign_id"
   end
 
   create_table "twitter_profiles", force: true do |t|
