@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       patch :archive, to: "campaigns#archive"
       get :twitter_form, defaults: { form: "twitter" }, as: :twitter_form, to: "campaigns#show"
     end
+    resources :spam_reports, only: [:create]
   end
 
   resources :campaign_spreaders do
