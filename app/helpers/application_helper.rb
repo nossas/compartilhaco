@@ -43,5 +43,6 @@ module ApplicationHelper
   def campaign_highlight_class campaign
     return "succeeded" if campaign.succeeded?
     return "unsucceeded" if campaign.unsucceeded?
+    return "archived" if campaign.archived?
   end
 end

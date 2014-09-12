@@ -12,11 +12,13 @@ body.campaigns.show
     padding: 2em 0
     margin-bottom: 3em
     +box-shadow(rgba(0, 0, 0, .6) 0 200px 400px -100px inset)
+    &.archived
+      background: asset-url('bg-archived-campaign.jpg')
     &.succeeded
       background: asset-url('bg-succeeded-campaign.jpg')
     &.unsucceeded
       background: asset-url('bg-unsucceeded-campaign.jpg')
-    &.succeeded, &.unsucceeded
+    &.succeeded, &.unsucceeded, &.archived
       .campaign-forms
         text-align: center
         img

@@ -39,7 +39,7 @@
         .left.icon-clock2
           span Tempo para encerramento
         .right
-          span.ends-at-distance= distance_of_time_in_words_to_now @campaign.ends_at
+          span.ends-at-distance= @campaign.ends_at.future? ? distance_of_time_in_words_to_now(@campaign.ends_at) : "Encerrado"
         .clear
         .progress.round.alert
           span.meter style="width: #{number_to_percentage([@campaign.progress_of_time, 100].min, precision: 0)}"
@@ -52,7 +52,10 @@
         span.reach-label  pessoas serão alcançadas
 
     .campaign-forms
-      - if @campaign.succeeded?
+      - if @campaign.archived?
+        = image_tag("archived-campaign-icon.png")
+        h2 Esse Compartilhaço foi arquivado #{distance_of_time_in_words_to_now @campaign.ends_at} atrás.
+      - elsif @campaign.succeeded?
         = image_tag("succeeded-campaign-icon.png")
         h2 Uhul, esse Compartilhaço atingiu sua meta e foi disparado a #{distance_of_time_in_words_to_now @campaign.ends_at}!
       - elsif @campaign.unsucceeded?

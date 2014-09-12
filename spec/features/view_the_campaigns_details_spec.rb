@@ -64,4 +64,12 @@ feature "View the campaign's details", :type => :feature do
       end
     end
   end
+
+  context "when the campaign is archived" do
+    before { campaign.archive }
+    it "should show the archived campaign message" do
+      visit campaign_path(campaign)
+      expect(page).to have_css(".archived")
+    end
+  end
 end
