@@ -34,6 +34,10 @@ User.blueprint do
   last_name { Faker::Name.last_name }
 end
 
+User.blueprint(:admin) do
+  admin { true }
+end
+
 FacebookProfile.blueprint do
   uid { "uid-#{sn}" }
   token { "token-#{sn}" }
