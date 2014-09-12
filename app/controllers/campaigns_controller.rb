@@ -16,6 +16,23 @@ class CampaignsController < ApplicationController
     @campaign_spreader = CampaignSpreader.new(campaign: @campaign)
   end
 
+  def new
+    @campaign = Campaign.new
+  end
+
+  def create
+    @campaign = Campaign.new(permitted_params)
+
+    # TODO: implement authorization solution and only allow logged users to create campaigns
+    @campaign.user = current_user || User.first 
+
+    if @campaign.save
+      respond_with @campaign, notice: 'Campanha criada!'
+    else
+      render :new
+    end
+  end
+
   def archive
     @campaign = Campaign.find(params[:id])
     @campaign.archive
@@ -26,5 +43,9 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.find(params[:id])
     data = open(@campaign.image.path).read
     send_data data, type: MIME::Types.type_for(@campaign.image.url).first.content_type, disposition: 'inline'
+  end
+
+  def permitted_params
+    params.fetch(:campaign, {}).permit(:title, :description, :short_description, :image, :ends_at, :goal, :organization_id, :user_id, :category_id, :share_link, :tweet, :share_title, :share_description, :share_image, :new_campaign_spreader_mail)
   end
 end

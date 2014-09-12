@@ -50,6 +50,7 @@ end
 
 Organization.blueprint do
   email_signature_html { Faker::Lorem.sentence }
+  city { Faker::Lorem.word }
 end
 
 Category.blueprint do
