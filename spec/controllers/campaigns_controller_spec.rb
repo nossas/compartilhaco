@@ -42,10 +42,10 @@ RSpec.describe CampaignsController, :type => :controller do
   end
 
   describe "GET serve_image" do
-    let(:campaign){ Campaign.make! }
+    before { @campaign = Campaign.make! }
 
     it "should serve an image" do
-      get :serve_image, id: campaign.id, trash: 'blablabla'
+      get :serve_image, id: @campaign.id, trash: 'blablabla'
       expect(response.header["Content-Type"]).to eq "image/jpeg"
     end
   end

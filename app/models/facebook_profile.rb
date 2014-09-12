@@ -6,6 +6,8 @@ class FacebookProfile < Timeline
   validates :uid, uniqueness: true
   validates :user_id, uniqueness: true
 
+  include Rails.application.routes.url_helpers
+
   def service
     :facebook
   end
@@ -32,7 +34,8 @@ class FacebookProfile < Timeline
     begin
       result = graph.put_connections("me", "feed",
         message: campaign_spreader.message,
-        link: campaign_spreader.campaign.share_link
+        link: campaign_spreader.campaign.share_link,
+        picture: serve_image_campaign_url(campaign_spreader.campaign, SecureRandom.hex)
       )
       campaign_spreader.update_attribute :uid, result["id"]
     rescue Koala::Facebook::AuthenticationError => e

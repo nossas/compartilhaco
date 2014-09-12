@@ -41,8 +41,11 @@ class CampaignsController < ApplicationController
 
   def serve_image
     @campaign = Campaign.find(params[:id])
-    data = open(@campaign.image.url).read
-    send_data data, type: MIME::Types.type_for(@campaign.image.url).first.content_type, disposition: 'inline'
+    send_data(
+      @campaign.share_image,
+      type: MIME::Types.type_for(@campaign.share_image.path).first.content_type,
+      disposition: 'inline'
+    )
   end
 
   def permitted_params
