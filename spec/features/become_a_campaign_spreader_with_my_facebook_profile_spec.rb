@@ -95,7 +95,7 @@ feature "Become a campaign spreader with my Facebook profile", :type => :feature
         click_button "facebook-profile-campaign-spreader-submit-button"
       end
 
-      expect(current_path).to be_eql(campaign_path(campaign))
+      expect(current_path).to be_eql(twitter_form_campaign_path(campaign))
     end
 
     scenario "should show me the alert box" do

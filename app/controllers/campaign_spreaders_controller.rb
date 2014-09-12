@@ -26,7 +26,7 @@ class CampaignSpreadersController < ApplicationController
     CampaignSpreader.create @campaign_spreader_params.merge(timeline: facebook_profile)
 
     redirect_to(
-      campaign_path(@campaign_spreader_params["campaign_id"], anchor: "share"),
+      twitter_form_campaign_path(@campaign_spreader_params["campaign_id"], anchor: "share"),
       notice: "Pronto! Obrigado por se juntar a este compartilhaço"
     )
   end

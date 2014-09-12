@@ -53,44 +53,47 @@
 
     .campaign-forms
       .form-buttons
-        = link_to "#", class: "facebook-form-button", id: "facebook-form-button" do
+        = link_to campaign_path(@campaign), class: ["facebook-form-button", facebook_form_button_class], id: "facebook-form-button" do
           span Compartilhe no
           |  Facebook
-        = link_to "#", class: "twitter-form-button", id: "twitter-form-button" do
+        = link_to twitter_form_campaign_path(@campaign), class: ["twitter-form-button", twitter_form_button_class], id: "twitter-form-button" do
           span Compartilhe no
           |  Twitter
-      = form_for @campaign_spreader, url: create_for_facebook_profile_campaign_spreaders_path, data: { abide: true }, html: { class: "facebook-profile-campaign-spreader" } do |form|
-        = form.hidden_field(:campaign_id)
-        .message-field= form.text_area :message, rows: 3, placeholder: "Escreva algo, se quiser, sobre a importância de dar visibilidade à essa"
-        .preview
-          .row
-            .preview-image= image_tag @campaign.share_image.thumb
-            .preview-text
-              .share-title= @campaign.share_title
-              .share-description= @campaign.share_description
-              .share-link= link_to @campaign.share_link, @campaign.share_link, target: :blank
-        .row
-          - if current_user.nil?
-            = form.fields_for :timeline do |timeline_form|
-              = timeline_form.fields_for :user do |user_form|
-                .user-email-field
-                  = user_form.email_field(:email, required: true, placeholder: "Insira seu e-mail")
-                  small.error Email é obrigatório
-          .submit-field= form.submit "Emprestar Facebook", id: "facebook-profile-campaign-spreader-submit-button", class: [:button, :radius, :large]
 
-      = form_for @campaign_spreader, url: create_for_twitter_profile_campaign_spreaders_path, data: { abide: true }, html: { class: "twitter-profile-campaign-spreader" } do |form|
-        = form.hidden_field(:campaign_id)
-        .message-field
-          = form.text_area :message, required: true, maxlength: 140, rows: 3, value: @campaign.tweet
-          small.error Você precisa escrever uma mensagem de até 140 caracteres
-        .row
-          - if current_user.nil?
-            = form.fields_for :timeline do |timeline_form|
-              = timeline_form.fields_for :user do |user_form|
-                .user-email-field
-                  = user_form.email_field(:email, required: true, placeholder: "Insira seu email")
-                  small.error Email é obrigatório
-          .submit-field= form.submit "Emprestar Twitter", id: "twitter-profile-campaign-spreader-submit-button", class: [:button, :radius, :large]
+      - if facebook_form?
+        = form_for @campaign_spreader, url: create_for_facebook_profile_campaign_spreaders_path, data: { abide: true }, html: { class: "facebook-profile-campaign-spreader" } do |form|
+          = form.hidden_field(:campaign_id)
+          .message-field= form.text_area :message, rows: 3, placeholder: "Escreva algo, se quiser, sobre a importância de dar visibilidade à essa"
+          .preview
+            .row
+              .preview-image= image_tag @campaign.share_image.thumb
+              .preview-text
+                .share-title= @campaign.share_title
+                .share-description= @campaign.share_description
+                .share-link= link_to @campaign.share_link, @campaign.share_link, target: :blank
+          .row
+            - if current_user.nil?
+              = form.fields_for :timeline do |timeline_form|
+                = timeline_form.fields_for :user do |user_form|
+                  .user-email-field
+                    = user_form.email_field(:email, required: true, placeholder: "Insira seu e-mail")
+                    small.error Email é obrigatório
+            .submit-field= form.submit "Emprestar Facebook", id: "facebook-profile-campaign-spreader-submit-button", class: [:button, :radius, :large]
+
+      - elsif twitter_form?
+        = form_for @campaign_spreader, url: create_for_twitter_profile_campaign_spreaders_path, data: { abide: true }, html: { class: "twitter-profile-campaign-spreader" } do |form|
+          = form.hidden_field(:campaign_id)
+          .message-field
+            = form.text_area :message, required: true, maxlength: 140, rows: 3, value: @campaign.tweet
+            small.error Você precisa escrever uma mensagem de até 140 caracteres
+          .row
+            - if current_user.nil?
+              = form.fields_for :timeline do |timeline_form|
+                = timeline_form.fields_for :user do |user_form|
+                  .user-email-field
+                    = user_form.email_field(:email, required: true, placeholder: "Insira seu email")
+                    small.error Email é obrigatório
+            .submit-field= form.submit "Emprestar Twitter", id: "twitter-profile-campaign-spreader-submit-button", class: [:button, :radius, :large]
 
       small.warn Se a campanha for bem sucedida, essa mensagem será publicada automaticamente no seu perfil e de muitas outras pesssoas.
 

@@ -24,7 +24,7 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
     let(:me){ User.find_by_email(email) }
 
     scenario "should create an user with my email" do
-      visit campaign_path(campaign)
+      visit twitter_form_campaign_path(campaign)
       within("form.twitter-profile-campaign-spreader") do
         fill_in "campaign_spreader[timeline][user][email]", with: email
         click_button "twitter-profile-campaign-spreader-submit-button"
@@ -34,7 +34,7 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
     end
 
     scenario "should save my ip address" do
-      visit campaign_path(campaign)
+      visit twitter_form_campaign_path(campaign)
       within("form.twitter-profile-campaign-spreader") do
         fill_in "campaign_spreader[timeline][user][email]", with: email
         click_button "twitter-profile-campaign-spreader-submit-button"
@@ -44,7 +44,7 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
     end
 
     scenario "should create a Twitter profile for me" do
-      visit campaign_path(campaign)
+      visit twitter_form_campaign_path(campaign)
       within("form.twitter-profile-campaign-spreader") do
         fill_in "campaign_spreader[timeline][user][email]", with: email
         click_button "twitter-profile-campaign-spreader-submit-button"
@@ -54,7 +54,7 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
     end
 
     scenario "should save my Twitter profile uid" do
-      visit campaign_path(campaign)
+      visit twitter_form_campaign_path(campaign)
       within("form.twitter-profile-campaign-spreader") do
         fill_in "campaign_spreader[timeline][user][email]", with: email
         click_button "twitter-profile-campaign-spreader-submit-button"
@@ -64,7 +64,7 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
     end
 
     scenario "should make me a campaign spreader" do
-      visit campaign_path(campaign)
+      visit twitter_form_campaign_path(campaign)
       within("form.twitter-profile-campaign-spreader") do
         fill_in "campaign_spreader[timeline][user][email]", with: email
         click_button "twitter-profile-campaign-spreader-submit-button"
@@ -74,7 +74,7 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
     end
 
     scenario "should add a campaign spreader to the campaign" do
-      visit campaign_path(campaign)
+      visit twitter_form_campaign_path(campaign)
       within("form.twitter-profile-campaign-spreader") do
         fill_in "campaign_spreader[timeline][user][email]", with: email
         click_button "twitter-profile-campaign-spreader-submit-button"
@@ -84,7 +84,7 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
     end
 
     scenario "should redirect me to the campaign page" do
-      visit campaign_path(campaign)
+      visit twitter_form_campaign_path(campaign)
       within("form.twitter-profile-campaign-spreader") do
         fill_in "campaign_spreader[timeline][user][email]", with: email
         click_button "twitter-profile-campaign-spreader-submit-button"
@@ -94,7 +94,7 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
     end
 
     scenario "should show me the alert box" do
-      visit campaign_path(campaign)
+      visit twitter_form_campaign_path(campaign)
       within("form.twitter-profile-campaign-spreader") do
         fill_in "campaign_spreader[timeline][user][email]", with: email
         click_button "twitter-profile-campaign-spreader-submit-button"
@@ -104,7 +104,7 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
     end
 
     scenario "should clean up my session" do
-      visit campaign_path(campaign)
+      visit twitter_form_campaign_path(campaign)
       within("form.twitter-profile-campaign-spreader") do
         fill_in "campaign_spreader[timeline][user][email]", with: email
         click_button "twitter-profile-campaign-spreader-submit-button"
@@ -115,7 +115,7 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
 
     context "when I leave the email field blank" do
       scenario "should show me an error message", js: true do
-        visit campaign_path(campaign)
+        visit twitter_form_campaign_path(campaign)
         click_link "twitter-form-button"
         click_button "twitter-profile-campaign-spreader-submit-button"
 
@@ -129,7 +129,7 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
       scenario "should save the message" do
         message = "My custom message"
 
-        visit campaign_path(campaign)
+        visit twitter_form_campaign_path(campaign)
         within("form.twitter-profile-campaign-spreader") do
           fill_in "campaign_spreader[message]", with: message
           fill_in "campaign_spreader[timeline][user][email]", with: email
@@ -147,7 +147,7 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
     context "when I'm not logged in" do
       context "when I don't have a Twitter profile" do
         scenario "should create Twitter profile for me" do
-          visit campaign_path(campaign)
+          visit twitter_form_campaign_path(campaign)
           within("form.twitter-profile-campaign-spreader") do
             fill_in "campaign_spreader[timeline][user][email]", with: email
             click_button "twitter-profile-campaign-spreader-submit-button"
@@ -159,7 +159,7 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
       context "when I have a Twitter profile" do
         before { @twitter_profile = TwitterProfile.make! user_id: @user.id, uid: twitter_uid }
         scenario "should update my Twitter profile token" do
-          visit campaign_path(campaign)
+          visit twitter_form_campaign_path(campaign)
           within("form.twitter-profile-campaign-spreader") do
             fill_in "campaign_spreader[timeline][user][email]", with: email
             click_button "twitter-profile-campaign-spreader-submit-button"
@@ -168,7 +168,7 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
         end
 
         scenario "should update my Twitter profile secret" do
-          visit campaign_path(campaign)
+          visit twitter_form_campaign_path(campaign)
           within("form.twitter-profile-campaign-spreader") do
             fill_in "campaign_spreader[timeline][user][email]", with: email
             click_button "twitter-profile-campaign-spreader-submit-button"
@@ -183,14 +183,14 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
 
       context "when I don't have a Twitter profile" do
         scenario "should not show the user email field" do
-          visit campaign_path(campaign)
+          visit twitter_form_campaign_path(campaign)
           within("form.twitter-profile-campaign-spreader") do
             expect(page).to_not have_css("input[name='campaign_spreader[timeline][user][email]']")
           end
         end
 
         scenario "should create a Twitter profile for me" do
-          visit campaign_path(campaign)
+          visit twitter_form_campaign_path(campaign)
           click_button "twitter-profile-campaign-spreader-submit-button"
           expect(@user.twitter_profile).to_not be_nil
         end
@@ -204,7 +204,7 @@ feature "Become a campaign spreader with my Twitter profile", :type => :feature 
     end
 
     scenario "should show me an error message" do
-      visit campaign_path(campaign)
+      visit twitter_form_campaign_path(campaign)
       within("form.twitter-profile-campaign-spreader") do
         fill_in "campaign_spreader[timeline][user][email]", with: email
         click_button "twitter-profile-campaign-spreader-submit-button"

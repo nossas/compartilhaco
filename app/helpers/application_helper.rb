@@ -23,4 +23,20 @@ module ApplicationHelper
       }
     }
   end
+
+  def facebook_form_button_class
+    return "active" if facebook_form?
+  end
+
+  def twitter_form_button_class
+    return "active" if twitter_form?
+  end
+
+  def facebook_form?
+    params[:form] != "twitter"
+  end
+
+  def twitter_form?
+    params[:form] == "twitter"
+  end
 end
