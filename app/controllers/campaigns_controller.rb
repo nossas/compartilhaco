@@ -42,7 +42,7 @@ class CampaignsController < ApplicationController
   def serve_image
     @campaign = Campaign.find(params[:id])
     send_data(
-      @campaign.share_image,
+      @campaign.share_image.file.read,
       type: MIME::Types.type_for(@campaign.share_image.path).first.content_type,
       disposition: 'inline'
     )

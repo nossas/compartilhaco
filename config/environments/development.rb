@@ -37,4 +37,6 @@ Rails.application.configure do
 
   config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
   config.rack_cas.fake = true
+
+  Rails.application.routes.default_url_options[:host] = "http://localhost:3000"
 end
