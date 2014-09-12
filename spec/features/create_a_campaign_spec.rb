@@ -9,49 +9,59 @@ feature 'Create a campaign', :type => :feature do
   before do
     @organization = Organization.make!
     @category = Category.make!
-    page.set_rack_session('cas' => {'user' => user.email})
   end
 
-  context 'when the campaign is valid' do
-    scenario 'should create a campaign with valid data' do
+  context "when I'm not logged in" do
+    scenario 'should redirect me to login page' do
       visit new_campaign_path
-      fill_in_campaign_form
-
-      expect(campaign).to_not be_nil
-    end
-
-    scenario 'should redirect to the campaign page' do
-      visit new_campaign_path
-      fill_in_campaign_form
-
-      expect(current_path).to be_eql(campaign_path(campaign))
+      expect(current_path).to be_eql(login_path)
     end
   end
 
-  context 'when the campaign is invalid' do
-    scenario 'should show me error messages', js: true do
-      visit new_campaign_path
-      click_button 'new-campaign-submit-button'
+  context "when I'm logged in" do
+    before { page.set_rack_session('cas' => {'user' => user.email}) }
 
-      expect(page).to have_css('input#campaign_title[data-invalid]')
-      expect(page).to have_css('textarea#campaign_short_description[data-invalid]')
-      expect(page).to have_css('textarea#campaign_description[data-invalid]')
-      expect(page).to have_css('input#campaign_image[data-invalid]')
-      expect(page).to have_css('input#campaign_share_image[data-invalid]')
-      expect(page).to have_css('input#campaign_share_link[data-invalid]')
-      expect(page).to have_css('input#campaign_share_title[data-invalid]')
-      expect(page).to have_css('textarea#campaign_share_description[data-invalid]')
-      expect(page).to have_css('textarea#campaign_tweet[data-invalid]')
-      expect(page).to have_css('input#campaign_ends_at[data-invalid]')
-      expect(page).to have_css('input#campaign_goal[data-invalid]')
-      expect(page).to have_css('textarea#campaign_new_campaign_spreader_mail[data-invalid]')
+    context 'when the campaign is valid' do
+      scenario 'should create a campaign with valid data' do
+        visit new_campaign_path
+        fill_in_campaign_form
+
+        expect(campaign).to_not be_nil
+      end
+
+      scenario 'should redirect to the campaign page' do
+        visit new_campaign_path
+        fill_in_campaign_form
+
+        expect(current_path).to be_eql(campaign_path(campaign))
+      end
     end
 
-    scenario 'should render the new campaign page', js: true  do
-      visit new_campaign_path
-      click_button 'new-campaign-submit-button'
+    context 'when the campaign is invalid' do
+      scenario 'should show me error messages', js: true do
+        visit new_campaign_path
+        click_button 'new-campaign-submit-button'
 
-      expect(current_path).to be_eql(new_campaign_path)
+        expect(page).to have_css('input#campaign_title[data-invalid]')
+        expect(page).to have_css('textarea#campaign_short_description[data-invalid]')
+        expect(page).to have_css('textarea#campaign_description[data-invalid]')
+        expect(page).to have_css('input#campaign_image[data-invalid]')
+        expect(page).to have_css('input#campaign_share_image[data-invalid]')
+        expect(page).to have_css('input#campaign_share_link[data-invalid]')
+        expect(page).to have_css('input#campaign_share_title[data-invalid]')
+        expect(page).to have_css('textarea#campaign_share_description[data-invalid]')
+        expect(page).to have_css('textarea#campaign_tweet[data-invalid]')
+        expect(page).to have_css('input#campaign_ends_at[data-invalid]')
+        expect(page).to have_css('input#campaign_goal[data-invalid]')
+        expect(page).to have_css('textarea#campaign_new_campaign_spreader_mail[data-invalid]')
+      end
+
+      scenario 'should render the new campaign page', js: true  do
+        visit new_campaign_path
+        click_button 'new-campaign-submit-button'
+
+        expect(current_path).to be_eql(new_campaign_path)
+      end
     end
   end
 
