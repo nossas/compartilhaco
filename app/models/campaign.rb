@@ -1,5 +1,6 @@
 class Campaign < ActiveRecord::Base
   has_many :campaign_spreaders
+  has_many :spam_reports
   has_many :facebook_profiles, through: :campaign_spreaders, source: :timeline, source_type: "FacebookProfile"
   has_many :twitter_profiles, through: :campaign_spreaders, source: :timeline, source_type: "TwitterProfile"
   belongs_to :organization
