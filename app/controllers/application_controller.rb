@@ -4,11 +4,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user
 
+  before_filter { |controller| session[:restore_url] = request.url unless request.xhr? }
   before_filter { cas_client_sign_in if params[:dev_sign_in] }
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to ENV["CAS_SERVER_URL"] + "?service=#{session[:restore_url]}"
+  end
 
   def current_user
     if session['cas']
-      User.find_by_email(session['cas']['user'])
+      User.find_by(email: session['cas']['user'])
     end
   end
 

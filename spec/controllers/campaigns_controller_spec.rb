@@ -33,8 +33,12 @@ RSpec.describe CampaignsController, :type => :controller do
   end
 
   describe "PATCH archive" do
-    let(:campaign){ Campaign.make! }
-    before { patch :archive, id: campaign.id }
+    let(:campaign) { Campaign.make! }
+
+    before do
+      allow(controller).to receive(:current_user).and_return(User.make! :admin)
+      patch :archive, id: campaign.id
+    end
 
     it "should redirect to @campaign" do
       expect(response).to redirect_to campaign

@@ -1,4 +1,5 @@
 class CampaignsController < ApplicationController
+  load_and_authorize_resource except: [:serve_image]
   respond_to :html, :json
 
   def index
@@ -21,10 +22,8 @@ class CampaignsController < ApplicationController
   end
 
   def create
-    @campaign = Campaign.new(permitted_params)
-
-    # TODO: implement authorization solution and only allow logged users to create campaigns
-    @campaign.user = current_user || User.first
+    @campaign = Campaign.new(campaign_params)
+    @campaign.user = current_user
 
     if @campaign.save
       respond_with @campaign, notice: 'Campanha criada!'
@@ -48,7 +47,7 @@ class CampaignsController < ApplicationController
     )
   end
 
-  def permitted_params
+  def campaign_params
     params.fetch(:campaign, {}).permit(:title, :description, :short_description, :image, :ends_at, :goal, :organization_id, :user_id, :category_id, :share_link, :tweet, :share_title, :share_description, :share_image, :new_campaign_spreader_mail)
   end
 end

@@ -28,4 +28,6 @@ Rails.application.routes.draw do
   get '/auth/facebook/callback', to: 'campaign_spreaders#create_for_facebook_profile_callback'
   get '/auth/twitter/callback', to: 'campaign_spreaders#create_for_twitter_profile_callback'
   get '/auth/failure', to: 'campaign_spreaders#failure'
+
+  get ENV['CAS_SERVER_URL'] => 'campaigns#index', as: :login if Rails.env.test?
 end
