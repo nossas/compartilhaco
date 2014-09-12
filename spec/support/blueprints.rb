@@ -60,3 +60,7 @@ end
 Category.blueprint do
   name { "Category #{sn}" }
 end
+
+SpamReport.blueprint do
+  # Attributes here
+end
