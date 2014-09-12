@@ -24,7 +24,7 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.new(permitted_params)
 
     # TODO: implement authorization solution and only allow logged users to create campaigns
-    @campaign.user = current_user || User.first 
+    @campaign.user = current_user || User.first
 
     if @campaign.save
       respond_with @campaign, notice: 'Campanha criada!'
@@ -41,7 +41,7 @@ class CampaignsController < ApplicationController
 
   def serve_image
     @campaign = Campaign.find(params[:id])
-    data = open(@campaign.image.path).read
+    data = open(@campaign.image.url).read
     send_data data, type: MIME::Types.type_for(@campaign.image.url).first.content_type, disposition: 'inline'
   end
 
