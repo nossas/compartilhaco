@@ -5,6 +5,9 @@ class SpamReportsController < ApplicationController
       user_id: current_user.id
     )
 
-    redirect_to campaign_path(id: params[:campaign_id])
+    redirect_to(
+      campaign_path(id: params[:campaign_id]),
+      notice: "Sua denúncia já está sendo analisada pela nossa equipe, obrigado!"
+    )
   end
 end

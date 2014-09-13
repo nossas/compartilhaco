@@ -51,7 +51,8 @@
           = number_with_delimiter @campaign.reach
         span.reach-label  pessoas serão alcançadas
 
-      .spam-report= link_to "Denuncie este compartilhaço", campaign_spam_reports_path(@campaign), method: :post, id: "spam-report-button"
+      - if can?(:create, SpamReport)
+        .spam-report= link_to "Denuncie este compartilhaço", campaign_spam_reports_path(@campaign), method: :post, id: "spam-report-button"
 
     .campaign-forms
       - if @campaign.archived?

@@ -8,6 +8,7 @@ class Ability
       can :manage, :all
     elsif user
       can :create, Campaign
+      can :create, SpamReport
     end
   end
 end
