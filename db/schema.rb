@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 20140912224446) do
     t.datetime "updated_at"
     t.integer  "campaign_id", null: false
     t.integer  "user_id",     null: false
+    t.index ["campaign_id", "user_id"], :name => "index_spam_reports_on_campaign_id_and_user_id", :unique => true
     t.index ["campaign_id"], :name => "fk__spam_reports_campaign_id"
     t.foreign_key ["campaign_id"], "campaigns", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_spam_reports_campaign_id"
   end

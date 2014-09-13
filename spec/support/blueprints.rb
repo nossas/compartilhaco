@@ -62,5 +62,6 @@ Category.blueprint do
 end
 
 SpamReport.blueprint do
-  # Attributes here
+  user { User.make! }
+  campaign { Campaign.make! }
 end
