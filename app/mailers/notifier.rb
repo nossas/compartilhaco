@@ -8,4 +8,10 @@ class Notifier < ActionMailer::Base
     @organization = @campaign.organization
     mail(to: @user.email, subject: @campaign.title, from: @campaign.user.email)
   end
+
+  def new_spam_report spam_report
+    @user = spam_report.user
+    @campaign = spam_report.campaign
+    mail(to: ENV["TECH_TEAM_EMAIL"], subject: "[Compartilhaço] Nova denúncia", from: @user.email)
+  end
 end

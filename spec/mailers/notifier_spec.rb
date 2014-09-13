@@ -22,4 +22,21 @@ RSpec.describe Notifier, :type => :mailer do
       expect(email.body).to match(organization.email_signature_html)
     end
   end
+
+  describe ".new_spam_report" do
+    let(:spam_report){ SpamReport.make! }
+    let(:email){ Notifier.new_spam_report(spam_report) }
+
+    it "should be sent to the tech team" do
+      expect(email.to).to include(ENV["TECH_TEAM_EMAIL"])
+    end
+
+    it "should come from the reporter" do
+      expect(email.from).to include(spam_report.user.email)
+    end
+
+    it "should contain a link for the reported campaign" do
+      expect(email.body).to match(campaign_url(spam_report.campaign))
+    end
+  end
 end
