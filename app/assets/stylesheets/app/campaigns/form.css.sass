@@ -6,7 +6,61 @@ body.campaigns.new
       font-size: 2em
     h4.subheader
       font-size: 1em
-  form
-    fieldset
-      legend
-        background: transparent
+
+  fieldset
+    border: 0
+    legend
+      font-weight: normal
+      background: transparent
+
+  .error
+    input
+      margin-bottom: rem-calc(15)
+
+  .title-field, .new-campaign-spreader-mail-field, .submit-field
+    +grid-column(12)
+
+  .organization-id-field, .category-id-field, .image-field, .short-description-field
+    +grid-column(4)
+
+  .description-field, .share-title-field
+    +grid-column(8)
+
+  .share-image-field
+    +grid-column(4)
+
+  .ends-at-field
+    +grid-column(2)
+
+  .goal-field
+    +grid-column(4)
+
+  .share-description-field, .tweet-field, .share-link-field
+    +grid-column(6)
+
+  .description-field
+    textarea
+      margin: 0
+
+  .tweet-textarea
+    position: relative
+    span
+      position: absolute
+      right: 5px
+      bottom: 5px
+
+  .submit-field
+    text-align: right
+
+  textarea
+    resize: none
+
+  @media #{$medium-down}
+    .organization-id-field, .category-id-field, .image-field, .short-description-field, .description-field, .share-link-field, .share-title-field, .share-image-field
+      +grid-column(12)
+    .ends-at-field, .goal-field
+      +grid-column(6)
+
+  @media #{$small-only}
+    .share-description-field, .tweet-field
+      +grid-column(12)

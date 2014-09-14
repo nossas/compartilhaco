@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-infinite-scroll
+//= require datetimepicker
 //= require meurio_ui
 //= require foundation
 //= require turbolinks
@@ -20,6 +21,8 @@
 
 $(function(){
   $(document).foundation();
+
+  $('[data-datetimepicker]').datetimepicker();
 
   // facebook initializer
   (function(d, s, id) {

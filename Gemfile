@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-source 'https://rails-assets.org'
 ruby '2.1.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -61,5 +60,9 @@ gem 'meurio_ui'
 gem 'compass-rails'
 gem 'rack-cas'
 gem 'kaminari'
-gem 'rails-assets-jquery-infinite-scroll'
 gem 'cancancan'
+
+# Rails assets
+source 'https://rails-assets.org'
+gem 'rails-assets-jquery-infinite-scroll'
+gem 'rails-assets-datetimepicker'
