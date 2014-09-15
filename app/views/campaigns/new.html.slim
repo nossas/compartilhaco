@@ -20,17 +20,17 @@
         .row
           .hashtag-field
             = f.label :hashtag, "Tema"
-            = f.collection_select :hashtag, Mobilization.order(:title).all, :hashtag, :title
+            = f.collection_select :hashtag, Mobilization.order(:title).all, :hashtag, :title, include_blank: "Escolha um tema"
 
       .row
         .organization-id-field
           = f.label :organization_id, "Cidade", class: :required
-          = f.collection_select :organization_id, Organization.order(:city).all, :id, :city, required: true
+          = f.collection_select :organization_id, Organization.order(:city).all, :id, :city, {include_blank: "Escolha uma cidade"}, required: true
         .category-id-field
           = f.label :category_id, class: :required do
             | Categoria
             span.has-tip data={tooltip: true} aria-haspopup=true title="Ajude as pessoas a encontrarem sua campanha"  ?
-          = f.collection_select :category_id, Category.order(:name).all, :id, :name, required: true
+          = f.collection_select :category_id, Category.order(:name).all, :id, :name, {include_blank: "Escolha uma categoria"}, required: true
         .image-field
           = f.label :image, 'Imagem', class: :required
           = f.file_field :image, required: true
