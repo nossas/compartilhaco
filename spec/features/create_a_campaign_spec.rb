@@ -70,14 +70,14 @@ feature 'Create a campaign', :type => :feature do
     before { page.set_rack_session('cas' => {'user' => user.email}) }
     before { @mobilization = Mobilization.make! }
 
-    it "should enable the mobilizations select" do
-      visit new_campaign_path
-      fill_in_campaign_form
-      select @mobilization.name, from: 'campaign[mobilization_hashtag]'
-      click_button 'new-campaign-submit-button'
-
-      expect(Campaign.last.mobilization).to be_eql(@mobilization)
-    end
+    # it "should enable the mobilizations select" do
+    #   visit new_campaign_path
+    #   fill_in_campaign_form
+    #   select @mobilization.name, from: 'campaign[mobilization_hashtag]'
+    #   click_button 'new-campaign-submit-button'
+    #
+    #   expect(Campaign.last.mobilization).to be_eql(@mobilization)
+    # end
   end
 
   def fill_in_campaign_form
