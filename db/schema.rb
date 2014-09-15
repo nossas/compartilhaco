@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20140914121715) do
   create_table "campaigns", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image",                      null: false
+    t.string   "image"
     t.string   "share_link",                 null: false
     t.datetime "shared_at"
     t.datetime "ends_at",                    null: false
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 20140914121715) do
     t.index ["user_id"], :name => "index_facebook_profiles_on_user_id", :unique => true
   end
 
-  create_view "facebook_profile_spreaders", " SELECT cs.id,\n    fp.user_id,\n    cs.created_at,\n    cs.campaign_id\n   FROM (campaign_spreaders cs\n     JOIN facebook_profiles fp ON (((cs.timeline_id = fp.id) AND ((cs.timeline_type)::text = 'FacebookProfile'::text))))", :force => true
+  create_view "facebook_profile_spreaders", " SELECT cs.id,\n    fp.user_id,\n    cs.created_at,\n    cs.campaign_id\n   FROM (campaign_spreaders cs\n   JOIN facebook_profiles fp ON (((cs.timeline_id = fp.id) AND ((cs.timeline_type)::text = 'FacebookProfile'::text))))", :force => true
   create_table "organizations", force: true do |t|
     t.text   "email_signature_html"
     t.string "city"
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 20140914121715) do
     t.index ["user_id"], :name => "index_twitter_profiles_on_user_id", :unique => true
   end
 
-  create_view "twitter_profile_spreaders", " SELECT cs.id,\n    tp.user_id,\n    cs.created_at,\n    cs.campaign_id\n   FROM (campaign_spreaders cs\n     JOIN twitter_profiles tp ON (((cs.timeline_id = tp.id) AND ((cs.timeline_type)::text = 'TwitterProfile'::text))))", :force => true
+  create_view "twitter_profile_spreaders", " SELECT cs.id,\n    tp.user_id,\n    cs.created_at,\n    cs.campaign_id\n   FROM (campaign_spreaders cs\n   JOIN twitter_profiles tp ON (((cs.timeline_id = tp.id) AND ((cs.timeline_type)::text = 'TwitterProfile'::text))))", :force => true
   create_table "users", force: true do |t|
     t.string  "email"
     t.string  "first_name"

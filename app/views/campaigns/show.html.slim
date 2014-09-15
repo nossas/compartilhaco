@@ -60,7 +60,7 @@
         h2 Esse Compartilhaço foi arquivado #{distance_of_time_in_words_to_now @campaign.archived_at} atrás.
       - elsif @campaign.succeeded?
         = image_tag("succeeded-campaign-icon.png")
-        h2 Uhul, esse Compartilhaço atingiu sua meta e foi disparado a #{distance_of_time_in_words_to_now @campaign.ends_at}!
+        h2 Uhul, esse Compartilhaço atingiu sua meta e foi disparado há #{distance_of_time_in_words_to_now @campaign.ends_at}!
       - elsif @campaign.unsucceeded?
         = image_tag("unsucceeded-campaign-icon.png")
         h2 Que pena, esse compartilhaço não atingiu sua meta de disparo!
