@@ -65,3 +65,8 @@ SpamReport.blueprint do
   user { User.make! }
   campaign { Campaign.make! }
 end
+
+Mobilization.blueprint do
+  title { "Mob #{sn}" }
+  hashtag { "Hash#{sn}" }
+end

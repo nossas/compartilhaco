@@ -21,6 +21,11 @@ feature 'Create a campaign', :type => :feature do
   context "when I'm logged in" do
     before { page.set_rack_session('cas' => {'user' => user.email}) }
 
+    scenario "should not be enable to select a mobilization" do
+      visit new_campaign_path
+      expect(page).to_not have_css('select#campaign_hashtag')
+    end
+
     context 'when the campaign is valid' do
       scenario 'should create a campaign with valid data' do
         visit new_campaign_path
@@ -70,14 +75,13 @@ feature 'Create a campaign', :type => :feature do
     before { page.set_rack_session('cas' => {'user' => user.email}) }
     before { @mobilization = Mobilization.make! }
 
-    # it "should enable the mobilizations select" do
-    #   visit new_campaign_path
-    #   fill_in_campaign_form
-    #   select @mobilization.name, from: 'campaign[mobilization_hashtag]'
-    #   click_button 'new-campaign-submit-button'
-    #
-    #   expect(Campaign.last.mobilization).to be_eql(@mobilization)
-    # end
+    scenario "should be enable to select a mobilization" do
+      visit new_campaign_path
+      select @mobilization.title, from: 'campaign[hashtag]'
+      fill_in_campaign_form
+
+      expect(Campaign.last.mobilization).to be_eql(@mobilization)
+    end
   end
 
   def fill_in_campaign_form

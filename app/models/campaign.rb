@@ -6,6 +6,7 @@ class Campaign < ActiveRecord::Base
   belongs_to :organization
   belongs_to :user
   belongs_to :category
+  belongs_to :mobilization, primary_key: :hashtag, foreign_key: :hashtag
   mount_uploader :image, ImageUploader
   mount_uploader :share_image, ImageUploader
 

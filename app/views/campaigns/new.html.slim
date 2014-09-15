@@ -16,6 +16,12 @@
             span.has-tip data={tooltip: true} aria-haspopup=true title="Um título curto e direto é sempre melhor!"  ?
           = f.text_field(:title, required: true)
 
+      - if can?(:set_hashtag, Campaign)
+        .row
+          .hashtag-field
+            = f.label :hashtag, "Tema"
+            = f.collection_select :hashtag, Mobilization.all, :hashtag, :title
+
       .row
         .organization-id-field
           = f.label :organization_id, "Cidade", class: :required

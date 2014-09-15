@@ -6,6 +6,7 @@ class Ability
 
     if user && user.admin?
       can :manage, :all
+      can :set_hashtag, Campaign
     elsif user
       can :create, Campaign
       can :create, SpamReport
