@@ -22,7 +22,11 @@
 $(function(){
   $(document).foundation();
 
-  $('[data-datetimepicker]').datetimepicker();
+  $('[data-datetimepicker]').datetimepicker({
+    lang: 'pt',
+    minDate:'0',
+    maxDate:'+1970/02/20'
+  });
 
   // facebook initializer
   (function(d, s, id) {
