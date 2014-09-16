@@ -171,7 +171,9 @@ RSpec.describe Campaign, :type => :model do
       allow(Time).to receive(:now).and_return(time)
 
       expect{
-        subject.share
+        VCR.use_cassette('facebook profile share', match_requests_on: [:host, :path]) do
+          subject.share
+        end
       }.to change{subject.shared_at}.from(nil).to(time)
     end
   end

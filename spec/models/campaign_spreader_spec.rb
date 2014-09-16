@@ -37,18 +37,19 @@ RSpec.describe CampaignSpreader, :type => :model do
     it "should call Accounts API" do
       ENV["ACCOUNTS_HOST"] = "http://accounts.meurio-staging.org.br"
       ENV["ACCOUNTS_API_TOKEN"] = "123"
-      subject.create_segment_subscription
+      expect(HTTParty).to receive(:post).with(
+        "#{ENV["ACCOUNTS_HOST"]}/users/#{subject.timeline.user_id}/segment_subscriptions.json",
+        body: {
+          token: ENV["ACCOUNTS_API_TOKEN"],
+          segment_subscription: {
+            organization_id: subject.campaign.organization_id,
+            segment_id: subject.campaign.mailchimp_segment_uid
+          }
+        }.to_json,
+        headers: { 'Content-Type' => 'application/json' }
+      )
 
-      expect(WebMock).to have_requested(
-        :post,
-        "#{ENV["ACCOUNTS_HOST"]}/users/#{subject.timeline.user_id}/segment_subscriptions.json"
-      ).with({
-        token: ENV["ACCOUNTS_API_TOKEN"],
-        segment_subscription: {
-          organization_id: subject.campaign.organization_id,
-          segment_id: subject.campaign.mailchimp_segment_uid
-        }
-      })
+      subject.create_segment_subscription
     end
   end
 end
