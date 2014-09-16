@@ -52,4 +52,14 @@ class Notifier < ActionMailer::Base
       subject: "Que pena, seu Compartilhaço não bateu sua meta de disparo!"
     )
   end
+
+  def succeed_campaign_to_spreaders campaign
+    @campaign = campaign
+    @user = campaign.user
+    @organization = campaign.organization
+    mail(
+      bcc: campaign.campaign_spreaders.map{|cs| cs.user.email},
+      subject: "Ueba, o Compartilhaço que você apoiou foi disparado!"
+    )
+  end
 end

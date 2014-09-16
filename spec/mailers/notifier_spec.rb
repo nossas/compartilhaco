@@ -67,4 +67,14 @@ RSpec.describe Notifier, :type => :mailer do
       expect(email.to).to include(campaign.user.email)
     end
   end
+
+  describe ".succeed_campaign_to_spreaders" do
+    let(:campaign){ Campaign.make! }
+    let(:email){ Notifier.succeed_campaign_to_spreaders(campaign) }
+    before{ CampaignSpreader.make! :facebook_profile, campaign: campaign }
+
+    it "should be sent to all the campaign's spreaders" do
+      expect(email.bcc).to be_eql(campaign.campaign_spreaders.map{|cs| cs.user.email})
+    end
+  end
 end
