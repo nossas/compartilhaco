@@ -70,7 +70,7 @@
       .row
         .new-campaign-spreader-mail-field
           = f.label :new_campaign_spreader_mail, 'Email para os apoiadores', class: :required
-          = f.text_area :new_campaign_spreader_mail, required: true, rows: 3
+          = f.text_area :new_campaign_spreader_mail, required: true, rows: 8, value: "Obrigado por apostar na força da ação coletiva em rede e emprestar seu perfil para o meu Compartilhaço.\n\nCom muitas vozes nossas mensagens podem chegar ainda mais longe. Mas juntá-las não é tão simples assim.\n\nVocê pode continuar ajudando! Divulgue esse Compartilhaço nas suas redes para que essa causa consiga mais apoiadores e impacte milhares de pessoas.\n\nGrande abraço e até breve!\n#{current_user.name}"
       .row
         .submit-field
           = f.submit 'Salvar Compartilhaço', id: 'new-campaign-submit-button', class: [:button, :radius, :large]

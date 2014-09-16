@@ -6,7 +6,7 @@ class Notifier < ActionMailer::Base
     @user = campaign_spreader.timeline.user
     @campaign = campaign_spreader.campaign
     @organization = @campaign.organization
-    mail(to: @user.email, subject: @campaign.title, from: @campaign.user.email)
+    mail(to: @user.email, subject: "Parabéns, você acaba de dar voz a um Compartilhaço!", from: @campaign.user.email)
   end
 
   def new_spam_report spam_report
