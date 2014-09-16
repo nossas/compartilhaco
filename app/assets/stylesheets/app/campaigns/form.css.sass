@@ -17,16 +17,10 @@ body.campaigns.new, body.campaigns.create
     input, textarea, select
       margin-bottom: rem-calc(15)
 
-  .title-field, .new-campaign-spreader-mail-field, .submit-field
+  .new-campaign-spreader-mail-field, .submit-field
     +grid-column(12)
 
   .organization-id-field, .category-id-field, .image-field, .short-description-field
-    +grid-column(4)
-
-  .share-title-field
-    +grid-column(8)
-
-  .share-image-field
     +grid-column(4)
 
   .ends-at-field
@@ -35,7 +29,7 @@ body.campaigns.new, body.campaigns.create
   .goal-field
     +grid-column(4)
 
-  .share-description-field, .tweet-field, .share-link-field, .hashtag-field, .description-field
+  .tweet-field, .share-link-field, .hashtag-field, .description-field, .title-field
     +grid-column(6)
 
   .tweet-textarea
@@ -52,7 +46,7 @@ body.campaigns.new, body.campaigns.create
     resize: none
 
   @media #{$medium-down}
-    .organization-id-field, .category-id-field, .image-field, .short-description-field, .description-field, .share-link-field, .share-title-field, .share-image-field, .hashtag-field, .tweet-field
+    .organization-id-field, .category-id-field, .image-field, .short-description-field, .description-field, .hashtag-field, .tweet-field
       +grid-column(12)
     .ends-at-field, .goal-field
       +grid-column(6)
