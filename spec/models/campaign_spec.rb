@@ -389,4 +389,27 @@ RSpec.describe Campaign, :type => :model do
       end
     end
   end
+
+  describe "Mailchimp integration" do
+    subject { Campaign.make! }
+
+    describe "#create_mailchimp_segment" do
+      it "should call Gibbon API" do
+        expect(Gibbon::API).to receive_message_chain(:lists, :segment_add)
+        subject.create_mailchimp_segment
+      end
+
+      it "should update mailchimp_segment_uid" do
+        expect(subject).to receive(:update_attribute).with(:mailchimp_segment_uid, 1)
+        subject.create_mailchimp_segment
+      end
+    end
+
+    describe "#update_mailchimp_segment" do
+      it "should call Gibbon API" do
+        expect(Gibbon::API).to receive_message_chain(:lists, :segment_update)
+        subject.update_mailchimp_segment
+      end
+    end
+  end
 end
