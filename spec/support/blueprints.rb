@@ -10,7 +10,6 @@ Campaign.blueprint do
   description { Faker::Lorem.paragraph(3) }
   user { User.make! }
   category { Category.make! }
-  short_description { Faker::Lorem.sentence }
   tweet { Faker::Lorem.sentence }
   new_campaign_spreader_mail { Faker::Lorem.paragraph(3) }
 end

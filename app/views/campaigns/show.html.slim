@@ -1,12 +1,12 @@
 - set_meta_tags title: @campaign.title
-- set_meta_tags description: @campaign.short_description
+- set_meta_tags description: @campaign.tweet
 - set_meta_tags og: { title: @campaign.title }
-- set_meta_tags og: { description: @campaign.short_description }
+- set_meta_tags og: { description: @campaign.tweet }
 - set_meta_tags og: { url: campaign_url(@campaign) }
 - set_meta_tags og: { image: @campaign.image.url }
 - set_meta_tags twitter: { card: "summary" }
 - set_meta_tags twitter: { title: @campaign.title }
-- set_meta_tags twitter: { description: @campaign.short_description }
+- set_meta_tags twitter: { description: @campaign.tweet }
 - set_meta_tags twitter: { image: @campaign.image.thumb.url }
 - set_meta_tags twitter: { url: campaign_url(@campaign) }
 - set_meta_tags twitter: { site: "@meu_rio" }
@@ -16,7 +16,7 @@
     .campaign-data
       .category= @campaign.category.name
       h2= @campaign.title
-      .short-description= @campaign.short_description
+      .short-description= @campaign.tweet
 
       .total-spreaders
         .left.icon-users

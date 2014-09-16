@@ -15,7 +15,7 @@ feature "Share campaign on Twitter", :type => :feature do
 
   scenario "should have twitter:description meta tag" do
     visit campaign_path(campaign)
-    expect(page).to have_css("meta[name='twitter:description'][content='#{campaign.short_description}']", visible: false)
+    expect(page).to have_css("meta[name='twitter:description'][content='#{campaign.tweet}']", visible: false)
   end
 
   scenario "should have twitter:image meta tag" do

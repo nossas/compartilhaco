@@ -10,7 +10,7 @@ feature "Share campaign on Facebook", :type => :feature do
 
   scenario "should have description meta tag" do
     visit campaign_path(campaign)
-    expect(page).to have_css("meta[name='description'][content='#{campaign.short_description}']", visible: false)
+    expect(page).to have_css("meta[name='description'][content='#{campaign.tweet}']", visible: false)
   end
 
   scenario "should have og:title meta tag" do
@@ -20,7 +20,7 @@ feature "Share campaign on Facebook", :type => :feature do
 
   scenario "should have og:description meta tag" do
     visit campaign_path(campaign)
-    expect(page).to have_css("meta[property='og:description'][content='#{campaign.short_description}']", visible: false)
+    expect(page).to have_css("meta[property='og:description'][content='#{campaign.tweet}']", visible: false)
   end
 
   scenario "should have og:url meta tag" do

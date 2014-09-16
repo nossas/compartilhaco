@@ -37,7 +37,7 @@ feature "View the campaign's details", :type => :feature do
 
   scenario "should see the campaign's short description" do
     visit campaign_path(campaign)
-    expect(page).to have_css(".short-description", campaign.short_description)
+    expect(page).to have_css(".short-description", campaign.tweet)
   end
 
   scenario "should see the campaign's last spreaders" do

@@ -14,7 +14,7 @@ body.campaigns.new, body.campaigns.create
       background: transparent
 
   .error
-    input
+    input, textarea, select
       margin-bottom: rem-calc(15)
 
   .title-field, .new-campaign-spreader-mail-field, .submit-field
@@ -23,7 +23,7 @@ body.campaigns.new, body.campaigns.create
   .organization-id-field, .category-id-field, .image-field, .short-description-field
     +grid-column(4)
 
-  .description-field, .share-title-field
+  .share-title-field
     +grid-column(8)
 
   .share-image-field
@@ -35,7 +35,7 @@ body.campaigns.new, body.campaigns.create
   .goal-field
     +grid-column(4)
 
-  .share-description-field, .tweet-field, .share-link-field, .hashtag-field
+  .share-description-field, .tweet-field, .share-link-field, .hashtag-field, .description-field
     +grid-column(6)
 
   .description-field

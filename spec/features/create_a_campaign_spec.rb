@@ -48,7 +48,6 @@ feature 'Create a campaign', :type => :feature do
         click_button 'new-campaign-submit-button'
 
         expect(page).to have_css('input#campaign_title[data-invalid]')
-        expect(page).to have_css('textarea#campaign_short_description[data-invalid]')
         expect(page).to have_css('textarea#campaign_description[data-invalid]')
         expect(page).to have_css('input#campaign_image[data-invalid]')
         expect(page).to have_css('input#campaign_share_link[data-invalid]')
@@ -86,7 +85,6 @@ feature 'Create a campaign', :type => :feature do
       fill_in 'campaign[title]', with: title
       select @organization.city, from: 'campaign[organization_id]'
       select @category.name, from: 'campaign[category_id]'
-      fill_in 'campaign[short_description]', with: Faker::Lorem.sentence
       fill_in 'campaign[description]', with: Faker::Lorem.paragraph
       attach_file 'campaign[image]', "#{Rails.root}/spec/support/images/whale.jpg"
       fill_in 'campaign[share_link]', with: Faker::Internet.url
