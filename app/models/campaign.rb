@@ -14,6 +14,8 @@ class Campaign < ActiveRecord::Base
   validate :ends_at_cannot_be_in_more_than_50_days
 
   after_create { CampaignWorker.perform_async(self.id) }
+  after_create { self.delay.create_mailchimp_segment }
+  after_update { self.delay.update_mailchimp_segment }
 
   scope :unshared,   -> { where("shared_at IS NULL") }
   scope :unarchived, -> { where("archived_at IS NULL") }
@@ -24,8 +26,6 @@ class Campaign < ActiveRecord::Base
     FROM campaign_spreaders
     WHERE campaign_spreaders.campaign_id = campaigns.id) >= campaigns.goal")}
 
-  after_create { self.delay.create_mailchimp_segment }
-  after_update { self.delay.update_mailchimp_segment }
 
   def share
     campaign_spreaders.each {|cs| cs.share}
