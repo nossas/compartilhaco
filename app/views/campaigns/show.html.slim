@@ -82,7 +82,7 @@
                 .preview-image= image_tag @campaign.image.thumb
                 .preview-text
                   .share-title= @campaign.title
-                  .share-description= @campaign.share_description
+                  .share-description= @campaign.tweet
                   .share-link= link_to @campaign.share_link, @campaign.share_link, target: :blank
             .row
               - if current_user.nil?

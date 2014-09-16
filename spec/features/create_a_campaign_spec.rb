@@ -52,7 +52,6 @@ feature 'Create a campaign', :type => :feature do
         expect(page).to have_css('textarea#campaign_description[data-invalid]')
         expect(page).to have_css('input#campaign_image[data-invalid]')
         expect(page).to have_css('input#campaign_share_link[data-invalid]')
-        expect(page).to have_css('textarea#campaign_share_description[data-invalid]')
         expect(page).to have_css('textarea#campaign_tweet[data-invalid]')
         expect(page).to have_css('input#campaign_ends_at[data-invalid]')
         expect(page).to have_css('input#campaign_goal[data-invalid]')
@@ -91,7 +90,6 @@ feature 'Create a campaign', :type => :feature do
       fill_in 'campaign[description]', with: Faker::Lorem.paragraph
       attach_file 'campaign[image]', "#{Rails.root}/spec/support/images/whale.jpg"
       fill_in 'campaign[share_link]', with: Faker::Internet.url
-      fill_in 'campaign[share_description]', with: Faker::Lorem.sentence
       fill_in 'campaign[tweet]', with: Faker::Lorem.sentence
       fill_in 'campaign[ends_at]', with: 1.month.from_now
       fill_in 'campaign[goal]', with: Faker::Number.number(3)

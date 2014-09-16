@@ -70,9 +70,6 @@
               span.postfix perfis emprestados
 
       .row
-        .share-description-field
-          = f.label :share_description, 'Mensagem no Facebook', class: :required
-          = f.text_area :share_description, required: true, rows: 3
         .tweet-field
           = f.label :tweet, 'Mensagem no Twitter', class: :required
           .tweet-textarea= f.text_area :tweet, required: true, maxlength: 140, rows: 3
