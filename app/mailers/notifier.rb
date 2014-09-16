@@ -62,4 +62,14 @@ class Notifier < ActionMailer::Base
       subject: "Ueba, o Compartilhaço que você apoiou foi disparado!"
     )
   end
+
+  def succeed_campaign_to_creator campaign
+    @campaign = campaign
+    @user = campaign.user
+    @organization = campaign.organization
+    mail(
+      to: @user.email,
+      subject: "Ueba, o Compartilhaço que você criou foi disparado!"
+    )
+  end
 end

@@ -89,4 +89,17 @@ RSpec.describe Notifier, :type => :mailer do
       expect(email.body).to match(campaign_url(campaign))
     end
   end
+
+  describe ".succeed_campaign_to_creator" do
+    let(:campaign){ Campaign.make! }
+    let(:email){ Notifier.succeed_campaign_to_creator(campaign) }
+
+    it "should be sent to the campaign's creator" do
+      expect(email.to).to include(campaign.user.email)
+    end
+
+    it "should contain the campaign's link" do
+      expect(email.body).to match(campaign_url(campaign))
+    end
+  end
 end
