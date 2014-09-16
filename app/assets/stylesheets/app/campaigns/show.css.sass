@@ -20,6 +20,14 @@ body.campaigns.show
       color: white
     .campaign-data
       +grid-column(6)
+      .category
+        color: rgba(white, .5)
+      .short-description
+        font-size: rem-calc(22)
+        font-weight: bold
+        font-style: italic
+        &:before, &:after
+          content: "\""
       .short-description, .total-spreaders, .ends-at
         margin-bottom: 2em
       .ends-at, .total-spreaders
