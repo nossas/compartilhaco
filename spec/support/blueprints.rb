@@ -12,7 +12,6 @@ Campaign.blueprint do
   category { Category.make! }
   short_description { Faker::Lorem.sentence }
   share_image { File.new("#{Rails.root}/spec/support/images/whale.jpg") }
-  share_title { Faker::Lorem.sentence }
   share_description { Faker::Lorem.paragraph(3) }
   tweet { Faker::Lorem.sentence }
   new_campaign_spreader_mail { Faker::Lorem.paragraph(3) }
