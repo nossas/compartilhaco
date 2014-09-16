@@ -17,14 +17,25 @@ class Notifier < ActionMailer::Base
 
   def new_campaign campaign
     @campaign = campaign
-    @organization = campaign.organization
     @user = campaign.user
+    @organization = campaign.organization
     mail(to: @user.email, subject: "Que legal, seu Compartilhaço foi criado com sucesso!")
   end
 
   def unsucceed_campaign_to_spreaders campaign
     @campaign = campaign
     @user = campaign.user
+    @organization = campaign.organization
     mail(bcc: campaign.campaign_spreaders.map{|cs| cs.user.email}, subject: "Que pena, o Compartilhaço que você apoiou não bateu sua meta de disparo!")
+  end
+
+  def unsucceed_campaign_to_creator campaign
+    @campaign = campaign
+    @user = campaign.user
+    @organization = campaign.organization
+    mail(
+      to: @user.email,
+      subject: "Que pena, seu Compartilhaço não bateu sua meta de disparo!"
+    )
   end
 end

@@ -58,4 +58,13 @@ RSpec.describe Notifier, :type => :mailer do
       expect(email.bcc).to be_eql(campaign.campaign_spreaders.map{|cs| cs.user.email})
     end
   end
+
+  describe ".unsucceed_campaign_to_creator" do
+    let(:campaign){ Campaign.make! }
+    let(:email){ Notifier.unsucceed_campaign_to_creator(campaign) }
+
+    it "should be sent to the campaign's creator" do
+      expect(email.to).to include(campaign.user.email)
+    end
+  end
 end
