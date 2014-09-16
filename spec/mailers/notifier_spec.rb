@@ -39,4 +39,17 @@ RSpec.describe Notifier, :type => :mailer do
       expect(email.body).to match(campaign_url(spam_report.campaign))
     end
   end
+
+  describe ".new_campaign" do
+    let(:campaign){ Campaign.make! }
+    let(:email){ Notifier.new_campaign(campaign) }
+
+    it "should be sent to the campaign's creator" do
+      expect(email.to).to include(campaign.user.email)
+    end
+
+    it "should contain the campaign's link" do
+      expect(email.body).to match(campaign_url(campaign))
+    end
+  end
 end
