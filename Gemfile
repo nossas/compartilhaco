@@ -61,6 +61,7 @@ gem 'compass-rails'
 gem 'rack-cas'
 gem 'kaminari'
 gem 'cancancan'
+gem 'gibbon'
 
 # Rails assets
 source 'https://rails-assets.org'
