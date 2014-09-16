@@ -13,6 +13,8 @@ class Campaign < ActiveRecord::Base
   validate :ends_at_cannot_be_in_the_past
   validate :ends_at_cannot_be_in_more_than_50_days
 
+  after_create { CampaignWorker.perform_async(self.id) }
+
   scope :unshared,   -> { where("shared_at IS NULL") }
   scope :unarchived, -> { where("archived_at IS NULL") }
   scope :upcoming,   -> { where("? < ends_at", Time.now) }
