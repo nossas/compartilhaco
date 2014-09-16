@@ -45,6 +45,7 @@ feature 'Create a campaign', :type => :feature do
     context 'when the campaign is invalid' do
       scenario 'should show me error messages', js: true do
         visit new_campaign_path
+        fill_in "campaign_new_campaign_spreader_mail", with: ""
         click_button 'new-campaign-submit-button'
 
         expect(page).to have_css('input#campaign_title[data-invalid]')
