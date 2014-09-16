@@ -57,6 +57,10 @@ RSpec.describe Notifier, :type => :mailer do
     it "should be sent to all the campaign's spreaders" do
       expect(email.bcc).to be_eql(campaign.campaign_spreaders.map{|cs| cs.user.email})
     end
+
+    it "should contain the campaign's link" do
+      expect(email.body).to match(campaign_url(campaign))
+    end
   end
 
   describe ".unsucceed_campaign_to_creator" do
@@ -65,6 +69,10 @@ RSpec.describe Notifier, :type => :mailer do
 
     it "should be sent to the campaign's creator" do
       expect(email.to).to include(campaign.user.email)
+    end
+
+    it "should contain the campaign's link" do
+      expect(email.body).to match(campaign_url(campaign))
     end
   end
 
@@ -75,6 +83,10 @@ RSpec.describe Notifier, :type => :mailer do
 
     it "should be sent to all the campaign's spreaders" do
       expect(email.bcc).to be_eql(campaign.campaign_spreaders.map{|cs| cs.user.email})
+    end
+
+    it "should contain the campaign's link" do
+      expect(email.body).to match(campaign_url(campaign))
     end
   end
 end
