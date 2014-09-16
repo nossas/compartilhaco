@@ -38,10 +38,6 @@ body.campaigns.new, body.campaigns.create
   .share-description-field, .tweet-field, .share-link-field, .hashtag-field, .description-field
     +grid-column(6)
 
-  .description-field
-    textarea
-      margin: 0
-
   .tweet-textarea
     position: relative
     span
@@ -56,11 +52,7 @@ body.campaigns.new, body.campaigns.create
     resize: none
 
   @media #{$medium-down}
-    .organization-id-field, .category-id-field, .image-field, .short-description-field, .description-field, .share-link-field, .share-title-field, .share-image-field, .hashtag-field
+    .organization-id-field, .category-id-field, .image-field, .short-description-field, .description-field, .share-link-field, .share-title-field, .share-image-field, .hashtag-field, .tweet-field
       +grid-column(12)
     .ends-at-field, .goal-field
       +grid-column(6)
-
-  @media #{$small-only}
-    .share-description-field, .tweet-field
-      +grid-column(12)
