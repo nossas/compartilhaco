@@ -15,7 +15,6 @@ RSpec.describe Campaign, :type => :model do
   it { should validate_presence_of :description }
   it { should validate_presence_of :user_id }
   it { should validate_presence_of :short_description }
-  it { should validate_presence_of :share_image }
   it { should validate_presence_of :share_description }
   it { should validate_presence_of :tweet }
   it { should validate_presence_of :new_campaign_spreader_mail }

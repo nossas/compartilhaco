@@ -79,7 +79,7 @@
             .message-field= form.text_area :message, rows: 3, placeholder: "Escreva algo, se quiser, sobre a importância de dar visibilidade à essa"
             .preview
               .row
-                .preview-image= image_tag @campaign.share_image.thumb
+                .preview-image= image_tag @campaign.image.thumb
                 .preview-text
                   .share-title= @campaign.title
                   .share-description= @campaign.share_description
