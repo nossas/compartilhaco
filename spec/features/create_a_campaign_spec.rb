@@ -83,6 +83,9 @@ feature 'Create a campaign', :type => :feature do
 
   def fill_in_campaign_form
     within('form.new_campaign') do
+      fill_in 'campaign[facebook_title]', with: title
+      fill_in 'campaign[facebook_message]', with: Faker::Lorem.paragraph
+      attach_file 'campaign[facebook_image]', "#{Rails.root}/spec/support/images/whale.jpg"
       fill_in 'campaign[title]', with: title
       select @organization.city, from: 'campaign[organization_id]'
       select @category.name, from: 'campaign[category_id]'

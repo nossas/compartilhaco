@@ -1,6 +1,9 @@
 require 'machinist/active_record'
 
 Campaign.blueprint do
+  facebook_title { "Campaign #{sn}" }
+  facebook_message { Faker::Lorem.paragraph }
+  facebook_image { File.new("#{Rails.root}/spec/support/images/whale.jpg") }
   share_link { "http://www.minhascidades.org.br/" }
   ends_at { 1.month.from_now }
   goal { 100 }

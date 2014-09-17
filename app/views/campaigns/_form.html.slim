@@ -1,8 +1,51 @@
 = form_for @campaign, data: { abide: true } do |f|
+
   fieldset
-    legend
-      strong Prepare sua campanha:
-      |  informações sobre sua causa ou mobilização
+    legend Decida o que você quer que as pessoas compartilhem no Facebook:
+
+    .row
+      .facebook-title-field
+        = f.label(:facebook_title, 'Título do post de Facebook', class: :required)
+        = f.text_field(:facebook_title, required: true)
+      .facebook-message-field
+        = f.label(:facebook_message, 'Mensagem do post de Facebook', class: :required)
+        = f.text_area(:facebook_message, rows: 2, required: true)
+    .row
+      .share-link-field
+        = f.label :share_link, 'Link a ser compartilhado', class: :required
+        .row.collapse
+          .small-2.columns
+            span.prefix http://
+          .small-10.columns= f.text_field :share_link, required: true
+      .facebook-image-field
+        = f.label(:facebook_image, 'Imagem do post de Facebook', class: :required)
+        = f.file_field(:facebook_image, required: true)
+
+  fieldset
+    legend Decida o que você quer que as pessoas compartilhem no Twitter:
+    .row
+      .tweet-field
+        = f.label :tweet, 'Mensagem a ser tuitada', class: :required
+        .tweet-textarea= f.text_area :tweet, required: true, maxlength: 140, rows: 3
+
+  fieldset
+    legend Decida quando será disparado:
+
+    .row
+      .ends-at-field
+        = f.label :ends_at, 'Data de encerramento', class: :required
+        = f.text_field :ends_at, required: true, data:{datetimepicker: true}
+      .goal-field
+        = f.label(:goal, class: :required) do
+          | Meta de apoio
+          span.has-tip data={tooltip: true} aria-haspopup=true title='Sugerimos um número entre 100 e 500 apoiadores para o sucesso do seu Compartilhaço'  ?
+        .row.collapse
+          .small-5.columns= f.number_field :goal, required: true
+          .small-7.columns
+            span.postfix perfis emprestados
+
+  fieldset
+    legend Convença as pessoas:
 
     .row
       .title-field
@@ -34,38 +77,14 @@
           | Resumo
           span.has-tip data={tooltip: true} aria-haspopup=true title='Descreva em alguns parágrafos o problema, causa ou mobilização que você quer dar voz ("a paz mundial" é coisa de miss - seja específico!).'  ?
         = f.text_area :description, required: true, rows: 3
-      .tweet-field
-        = f.label :tweet, 'Mensagem a ser compartilhada', class: :required
-        .tweet-textarea= f.text_area :tweet, required: true, maxlength: 140, rows: 3
-
-    .row
-      .share-link-field
-        = f.label :share_link, 'Link a ser compartilhado', class: :required
-        .row.collapse
-          .small-2.columns
-            span.prefix http://
-          .small-10.columns= f.text_field :share_link, required: true
-      .ends-at-field
-        = f.label :ends_at, 'Data de encerramento', class: :required
-        = f.text_field :ends_at, required: true, data:{datetimepicker: true}
-      .goal-field
-        = f.label(:goal, class: :required) do
-          | Meta de apoio
-          span.has-tip data={tooltip: true} aria-haspopup=true title='Sugerimos um número entre 100 e 500 apoiadores para o sucesso do seu Compartilhaço'  ?
-        .row.collapse
-          .small-4.columns= f.number_field :goal, required: true
-          .small-8.columns
-            span.postfix perfis emprestados
 
   fieldset
-    legend
-      strong Agradeça o gogó amigo:
-      |  informações para as pessoas que emprestaram seus perfis para o seu Compartilhaço
+    legend Agradeça o gogó amigo:
 
     .row
       .new-campaign-spreader-mail-field
         = f.label :new_campaign_spreader_mail, 'Email para os apoiadores', class: :required
-        = f.text_area :new_campaign_spreader_mail, required: true, rows: 8, value: "Obrigado por apostar na força da ação coletiva em rede e emprestar seu perfil para o meu Compartilhaço.\n\nCom muitas vozes nossas mensagens podem chegar ainda mais longe. Mas juntá-las não é tão simples assim.\n\nVocê pode continuar ajudando! Divulgue esse Compartilhaço nas suas redes para que essa causa consiga mais apoiadores e impacte milhares de pessoas.\n\nGrande abraço e até breve!\n#{current_user.name}"
+        = f.text_area :new_campaign_spreader_mail, required: true, rows: 9, value: "Obrigado por apostar na força da ação coletiva em rede e emprestar seu perfil para o meu Compartilhaço.\n\nCom muitas vozes nossas mensagens podem chegar ainda mais longe. Mas juntá-las não é tão simples assim.\n\nVocê pode continuar ajudando! Divulgue esse Compartilhaço nas suas redes para que essa causa consiga mais apoiadores e impacte milhares de pessoas.\n\nGrande abraço e até breve!\n#{current_user.name}"
     .row
       .submit-field
         = f.submit 'Salvar Compartilhaço', id: 'new-campaign-submit-button', class: [:button, :radius, :large]
