@@ -9,6 +9,7 @@ class Ability
       can :set_hashtag, Campaign
     elsif user
       can :create, Campaign
+      can :edit, Campaign, user_id: user.id
       can :create, SpamReport
     end
   end
