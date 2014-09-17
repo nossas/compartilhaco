@@ -62,6 +62,7 @@ gem 'rack-cas'
 gem 'kaminari'
 gem 'cancancan'
 gem 'sidekiq-status'
+gem 'gibbon'
 
 # Rails assets
 source 'https://rails-assets.org'

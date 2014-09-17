@@ -15,6 +15,8 @@ class Campaign < ActiveRecord::Base
 
   after_create { CampaignWorker.perform_async(self.id) }
   after_create { CampaignShareWorker.perform_at(self.ends_at, self.id) }
+  after_create { self.delay.create_mailchimp_segment }
+  after_update { self.delay.update_mailchimp_segment }
 
   scope :unshared,   -> { where("shared_at IS NULL") }
   scope :unarchived, -> { where("archived_at IS NULL") }
@@ -24,6 +26,7 @@ class Campaign < ActiveRecord::Base
     SELECT count(*)
     FROM campaign_spreaders
     WHERE campaign_spreaders.campaign_id = campaigns.id) >= campaigns.goal")}
+
 
   def share
     campaign_spreaders.each {|cs| cs.share}
@@ -76,5 +79,32 @@ class Campaign < ActiveRecord::Base
 
   def ended?
     ends_at < Time.now
+  end
+
+  def create_mailchimp_segment
+    begin
+      segment_name = "[Compartilhaço] #{self.title[0..40]}"
+      segments = Gibbon::API.lists.segments(id: self.organization.mailchimp_list_id)
+      segment = segments["static"].select{|s| s["name"] == segment_name}.first || Gibbon::API.lists.segment_add(
+        id: self.organization.mailchimp_list_id,
+        opts: { type: "static", name: segment_name }
+      )
+      self.update_attribute :mailchimp_segment_uid, segment["id"]
+    rescue Exception => e
+      Rails.logger.error e
+    end
+  end
+
+  def update_mailchimp_segment
+    begin
+      segment_name = "[Compartilhaço] #{self.title[0..40]}"
+      Gibbon::API.lists.segment_update(
+        id: self.organization.mailchimp_list_id,
+        seg_id: self.mailchimp_segment_uid,
+        opts: { name: segment_name }
+      )
+    rescue Exception => e
+      Rails.logger.error e
+    end
   end
 end
