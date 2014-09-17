@@ -1,76 +1,7 @@
 .row
   .header
-    h2 Crie ou edite seu compartilhaço
+    h2 Crie seu compartilhaço
     h4.subheader Se você quer aumentar o alcance de uma mobilização ou causa social você veio ao lugar certo. Aqui você encontra o apoio de muitas vozes pra que sua mensagem chegue mais longe. Crie agora o seu Compartilhaço e seja o protagonista da mudança que você quer pro mundo!
     h4.subheader Este aplicativo da Rede Minhas Cidades é livre e aceita todos os tipos de mobilização e causas.
-  = form_for @campaign, data: { abide: true } do |f|
-    fieldset
-      legend
-        strong Prepare sua campanha:
-        |  informações sobre sua causa ou mobilização
 
-      .row
-        .title-field
-          = f.label :title, class: :required do
-            | Título
-            span.has-tip data={tooltip: true} aria-haspopup=true title="Um título curto e direto é sempre melhor!"  ?
-          = f.text_field(:title, required: true)
-        - if can?(:set_hashtag, Campaign)
-          .hashtag-field
-            = f.label :hashtag, "Tema"
-            = f.collection_select :hashtag, Mobilization.order(:title).all, :hashtag, :title, include_blank: "Escolha um tema"
-
-      .row
-        .organization-id-field
-          = f.label :organization_id, "Cidade", class: :required
-          = f.collection_select :organization_id, Organization.order(:city).all, :id, :city, {include_blank: "Escolha uma cidade"}, required: true
-        .category-id-field
-          = f.label :category_id, class: :required do
-            | Categoria
-            span.has-tip data={tooltip: true} aria-haspopup=true title="Ajude as pessoas a encontrarem sua campanha"  ?
-          = f.collection_select :category_id, Category.order(:name).all, :id, :name, {include_blank: "Escolha uma categoria"}, required: true
-        .image-field
-          = f.label :image, 'Imagem', class: :required
-          = f.file_field :image, required: true
-
-      .row
-        .description-field
-          = f.label :description, class: :required do
-            | Resumo
-            span.has-tip data={tooltip: true} aria-haspopup=true title='Descreva em alguns parágrafos o problema, causa ou mobilização que você quer dar voz ("a paz mundial" é coisa de miss - seja específico!).'  ?
-          = f.text_area :description, required: true, rows: 3
-        .tweet-field
-          = f.label :tweet, 'Mensagem a ser compartilhada', class: :required
-          .tweet-textarea= f.text_area :tweet, required: true, maxlength: 140, rows: 3
-
-      .row
-        .share-link-field
-          = f.label :share_link, 'Link a ser compartilhado', class: :required
-          .row.collapse
-            .small-2.columns
-              span.prefix http://
-            .small-10.columns= f.text_field :share_link, required: true
-        .ends-at-field
-          = f.label :ends_at, 'Data de encerramento', class: :required
-          = f.text_field :ends_at, required: true, data:{datetimepicker: true}
-        .goal-field
-          = f.label(:goal, class: :required) do
-            | Meta de apoio
-            span.has-tip data={tooltip: true} aria-haspopup=true title='Sugerimos um número entre 100 e 500 apoiadores para o sucesso do seu Compartilhaço'  ?
-          .row.collapse
-            .small-4.columns= f.number_field :goal, required: true
-            .small-8.columns
-              span.postfix perfis emprestados
-
-    fieldset
-      legend
-        strong Agradeça o gogó amigo:
-        |  informações para as pessoas que emprestaram seus perfis para o seu Compartilhaço
-
-      .row
-        .new-campaign-spreader-mail-field
-          = f.label :new_campaign_spreader_mail, 'Email para os apoiadores', class: :required
-          = f.text_area :new_campaign_spreader_mail, required: true, rows: 8, value: "Obrigado por apostar na força da ação coletiva em rede e emprestar seu perfil para o meu Compartilhaço.\n\nCom muitas vozes nossas mensagens podem chegar ainda mais longe. Mas juntá-las não é tão simples assim.\n\nVocê pode continuar ajudando! Divulgue esse Compartilhaço nas suas redes para que essa causa consiga mais apoiadores e impacte milhares de pessoas.\n\nGrande abraço e até breve!\n#{current_user.name}"
-      .row
-        .submit-field
-          = f.submit 'Salvar Compartilhaço', id: 'new-campaign-submit-button', class: [:button, :radius, :large]
+  = render partial: "form"
