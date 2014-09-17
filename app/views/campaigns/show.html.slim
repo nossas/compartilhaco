@@ -77,7 +77,7 @@
           = form_for @campaign_spreader, url: create_for_facebook_profile_campaign_spreaders_path, data: { abide: true }, html: { class: "facebook-profile-campaign-spreader" } do |form|
             = form.hidden_field(:campaign_id)
             .message-field= form.text_area :message, rows: 3, placeholder: "Escreva algo, se quiser, sobre a importância de dar visibilidade à essa"
-            .preview
+            .facebook-preview-box
               .row
                 .preview-image= image_tag @campaign.image.thumb
                 .preview-text

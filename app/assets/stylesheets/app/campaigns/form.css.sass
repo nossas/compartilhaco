@@ -1,10 +1,4 @@
 body.campaigns.new, body.campaigns.create
-  .form
-    +grid-column(8)
-
-  .preview
-    +grid-column(4)
-
   .header
     padding: 2em 0
     +grid-column(12)
@@ -13,26 +7,29 @@ body.campaigns.new, body.campaigns.create
     h4.subheader
       font-size: 1em
 
-  fieldset
-    legend
-      background: transparent
-      font-size: rem-calc(18)
-
   .error
     input, textarea, select
       margin-bottom: rem-calc(15)
 
-  .new-campaign-spreader-mail-field, .submit-field, .tweet-field, .description-field
-    +grid-column(12)
+  .form-title
+    h4
+      margin-bottom: rem-calc(20)
 
-  .organization-id-field, .category-id-field, .image-field, .goal-field, .facebook-image-field, .ends-at-field
-    +grid-column(4)
+  .facebook-preview-box
+    background: white
 
-  .share-link-field
-    +grid-column(8)
+  .box
+    padding: rem-calc(10)
+    background: rgba(255, 255, 255, .5)
 
-  .hashtag-field, .title-field, .facebook-title-field, .facebook-message-field
+  .facebook-form, .facebook-preview, .twitter-form, .share-form, .campaign-form
+    margin-bottom: rem-calc(40)
+
+  .facebook-form, .facebook-preview, .twitter-form, .campaign-form, .share-form, .goal-field, .ends-at-field, .email-form
     +grid-column(6)
+
+  .facebook-title-field, .facebook-message-field, .facebook-image-field, .share-link-field, .form-title, .hashtag-field, .title-field, .organization-id-field, .category-id-field, .image-field, .new-campaign-spreader-mail-field, .submit-field, .description-field, .tweet-field
+    +grid-column(12)
 
   .tweet-textarea
     position: relative
@@ -48,13 +45,5 @@ body.campaigns.new, body.campaigns.create
     resize: none
 
   @media #{$medium-down}
-    .organization-id-field, .category-id-field, .image-field, .short-description-field, .description-field, .hashtag-field, .tweet-field, .facebook-title-field, .facebook-message-field, .facebook-image-field, .share-link-field, .title-field
+    .facebook-form, .facebook-preview, .facebook-form, .facebook-preview, .twitter-form, .campaign-form, .share-form, .goal-field, .ends-at-field, .email-form
       +grid-column(12)
-    .ends-at-field, .goal-field
-      +grid-column(6)
-
-  @media #{$small-only}
-    .form
-      +grid-column(12)
-    .preview
-      display: none
