@@ -25,7 +25,7 @@
           .preview-text
             .share-title Título do post
             .share-description Mensagem do post
-            .share-link= link_to "www.linkdopost.com", "#"
+            .share-link= link_to "www.linkdopost.com", "#", target: :blank
 
   .row
     .form-title
@@ -40,13 +40,15 @@
 
   .row
     .form-title
-      h4 Decida quando será disparado:
+      h4 Decida quando o seu Compartilhaço será disparado:
 
     .share-form
       .box
         .row
           .ends-at-field
-            = f.label :ends_at, 'Data de encerramento', class: :required
+            = f.label :ends_at, class: :required do
+              | Data de encerramento
+              span.has-tip data={tooltip: true} aria-haspopup=true title='Se você atingir a meta até esta data o Compartilhaço será disparado'  ?
             = f.text_field :ends_at, required: true, data:{datetimepicker: true}
           .goal-field
             = f.label(:goal, class: :required) do
@@ -59,14 +61,14 @@
 
   .row
     .form-title
-      h4 Convença as pessoas:
+      h4 Convença as pessoas a participar:
 
     .campaign-form
       .box
         .row
           .title-field
             = f.label :title, class: :required do
-              | Título
+              | Título da sua página
               span.has-tip data={tooltip: true} aria-haspopup=true title="Um título curto e direto é sempre melhor!"  ?
             = f.text_field(:title, required: true)
           - if can?(:set_hashtag, Campaign)
@@ -86,7 +88,7 @@
             = f.file_field(:image, required: true)
           .description-field
             = f.label :description, class: :required do
-              | Resumo
+              | História por trás do seu Compartilhaço
               span.has-tip data={tooltip: true} aria-haspopup=true title='Descreva em alguns parágrafos o problema, causa ou mobilização que você quer dar voz ("a paz mundial" é coisa de miss - seja específico!).'  ?
             = f.text_area :description, required: true, rows: 3
 
