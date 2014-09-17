@@ -14,6 +14,7 @@ class Campaign < ActiveRecord::Base
   validate :ends_at_cannot_be_in_more_than_50_days
 
   after_create { CampaignWorker.perform_async(self.id) }
+  after_create { CampaignShareWorker.perform_at(self.ends_at, self.id) }
 
   scope :unshared,   -> { where("shared_at IS NULL") }
   scope :unarchived, -> { where("archived_at IS NULL") }
