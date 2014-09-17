@@ -14,21 +14,18 @@
             = f.text_area(:facebook_message, rows: 2, required: true)
           .share-link-field
             = f.label :share_link, 'Link a ser compartilhado', class: :required
-            .row.collapse
-              .small-2.columns
-                span.prefix http://
-              .small-10.columns= f.text_field :share_link, required: true
+            = f.url_field :share_link, required: true, value: "http://"
           .facebook-image-field
             = f.label(:facebook_image, 'Imagem do post de Facebook', class: :required)
             = f.file_field(:facebook_image, required: true)
     .facebook-preview
       .facebook-preview-box
         .row
-          .preview-image= image_tag "http://upload.wikimedia.org/wikipedia/commons/9/9e/Humpback_stellwagen_edit.jpg"
+          .preview-image= image_tag ""
           .preview-text
-            .share-title Titulo do post
+            .share-title Título do post
             .share-description Mensagem do post
-            .share-link= link_to "http://www.linkdopost.com"
+            .share-link= link_to "www.linkdopost.com", "#"
 
   .row
     .form-title
@@ -102,6 +99,6 @@
         .row
           .new-campaign-spreader-mail-field
             = f.label :new_campaign_spreader_mail, 'Email para os apoiadores', class: :required
-            = f.text_area(:new_campaign_spreader_mail, required: true, rows: 9, value: "Obrigado por apostar na força da ação coletiva em rede e emprestar seu perfil para o meu Compartilhaço.\n\nCom muitas vozes nossas mensagens podem chegar ainda mais longe. Mas juntá-las não é tão simples assim.\n\nVocê pode continuar ajudando! Divulgue esse Compartilhaço nas suas redes para que essa causa consiga mais apoiadores e impacte milhares de pessoas.\n\nGrande abraço e até breve!\n#{current_user.name}")
+            = f.text_area(:new_campaign_spreader_mail, required: true, rows: 11, value: "Obrigado por apostar na força da ação coletiva em rede e emprestar seu perfil para o meu Compartilhaço.\n\nCom muitas vozes nossas mensagens podem chegar ainda mais longe. Mas juntá-las não é tão simples assim.\n\nVocê pode continuar ajudando! Divulgue esse Compartilhaço nas suas redes para que essa causa consiga mais apoiadores e impacte milhares de pessoas.\n\nGrande abraço e até breve!\n#{current_user.name}")
           .submit-field
             = f.submit 'Salvar Compartilhaço', id: 'new-campaign-submit-button', class: [:button, :radius, :large]

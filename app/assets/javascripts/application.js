@@ -70,4 +70,16 @@ $(function(){
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-26278513-24', 'auto');
   ga('send', 'pageview');
+
+  // Campaign#new preview bindings
+  $("#campaign_facebook_title").keyup(function(e){ $(".facebook-preview .share-title").html($(e.target).val()); })
+  $("#campaign_facebook_message").keyup(function(e){ $(".facebook-preview .share-description").html($(e.target).val()); })
+  $("#campaign_share_link").keyup(function(e){ $(".facebook-preview .share-link a").html($(e.target).val().split("http://")[1]); })
+
+  $("#campaign_facebook_image").change(function(e){
+    var file = e.target.files[0];
+    var reader = new FileReader();
+    reader.onload = function() { $(".facebook-preview .preview-image img").attr("src", reader.result) };
+    reader.readAsDataURL(file);
+  });
 });
