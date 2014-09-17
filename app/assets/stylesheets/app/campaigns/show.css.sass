@@ -54,7 +54,16 @@ body.campaigns.show
     .campaign-forms
       +grid-column(6)
       .campaign-menu
-        text-align: right
+        margin-bottom: rem-calc(10)
+        a
+          color: white
+          &:hover
+            text-decoration: underline
+        span.divider
+          font-weight: bold
+          margin: 0 rem-calc(15)
+          &:before
+            content: "|"
       small.warn
         display: block
         text-align: center

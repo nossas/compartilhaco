@@ -46,14 +46,12 @@
         span.reach-label  pessoas serão alcançadas
 
     .campaign-forms
-      - if can?(:create, SpamReport) || can?(:archive, @campaign)
-        .campaign-menu
-          button.icon-list.radius.large data-dropdown="campaign-menu" aria-controls="campaign-menu" aria-expanded="false" data-options="align:left"
-          ul id="campaign-menu" class="f-dropdown" data={ "dropdown-content" => true } aria-hidden="true" tabindex="-1"
-            - if can?(:create, SpamReport)
-              li= link_to "Denunciar", campaign_spam_reports_path(@campaign), method: :post, id: "spam-report-button"
-            - if can?(:archive, @campaign)
-              li= link_to "Arquivar", archive_campaign_path(@campaign), method: :patch, disabled: @campaign.archived?, id: :archive_campaign_button
+      .campaign-menu
+        - if can?(:create, SpamReport)
+          = link_to "Denunciar", campaign_spam_reports_path(@campaign), method: :post, id: "spam-report-button"
+          span.divider
+        - if can?(:archive, @campaign)
+          = link_to "Arquivar", archive_campaign_path(@campaign), method: :patch, disabled: @campaign.archived?, id: :archive_campaign_button
 
       - if @campaign.archived?
         = image_tag("archived-campaign-icon.png")
