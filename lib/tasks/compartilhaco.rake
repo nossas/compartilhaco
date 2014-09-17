@@ -8,4 +8,17 @@ namespace :compartilhaco do
   task :share_campaigns => :environment do
     Campaign.unarchived.unshared.ended.succeeded.each { |c| c.share }
   end
+
+  task :send_end_emails => :environment do
+    Campaign.unarchived.ended.succeeded.where(end_emails_sent: false).each do |c|
+      Notifier.succeed_campaign_to_spreaders(c)
+      Notifier.succeed_campaign_to_creator(c)
+      c.update_attribute :end_emails_sent, true
+    end
+    Campaign.unarchived.ended.unsucceeded.where(end_emails_sent: false).each do |c|
+      Notifier.unsucceed_campaign_to_spreaders(c)
+      Notifier.unsucceed_campaign_to_creator(c)
+      c.update_attribute :end_emails_sent, true
+    end
+  end
 end
