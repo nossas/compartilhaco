@@ -30,6 +30,7 @@ html
 
     - content_for :application_menu do
       = link_to "Como funciona?", "#"
+      = link_to "Criar Compartilhaço", new_campaign_path, class: [:button, :radius, :large]
     = meurio_header_for :compartilhaco
 
     = yield
