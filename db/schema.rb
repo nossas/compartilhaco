@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140916165157) do
+ActiveRecord::Schema.define(version: 20140917103137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,9 @@ ActiveRecord::Schema.define(version: 20140916165157) do
     t.text     "new_campaign_spreader_mail", null: false
     t.datetime "archived_at"
     t.string   "hashtag"
+    t.string   "facebook_title"
+    t.text     "facebook_message"
+    t.string   "facebook_image"
     t.index ["category_id"], :name => "fk__campaigns_category_id"
     t.foreign_key ["category_id"], "categories", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_campaigns_category_id"
   end
