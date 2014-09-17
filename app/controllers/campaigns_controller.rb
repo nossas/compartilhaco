@@ -32,6 +32,20 @@ class CampaignsController < ApplicationController
     end
   end
 
+  def edit
+    @campaign = Campaign.find(params[:id])
+  end
+
+  def update
+    @campaign = Campaign.find(params[:id])
+
+    if @campaign.update(campaign_params)
+      respond_with @campaign, notice: 'Campanha atualizada!'
+    else
+      render :edit
+    end
+  end
+
   def archive
     @campaign = Campaign.find(params[:id])
     @campaign.archive
