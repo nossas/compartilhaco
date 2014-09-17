@@ -14,7 +14,6 @@ class Campaign < ActiveRecord::Base
   validate :ends_at_cannot_be_in_more_than_50_days
 
   after_create { CampaignWorker.perform_async(self.id) }
-  after_create { CampaignShareWorker.perform_at(self.ends_at, self.id) }
   after_create { self.delay.create_mailchimp_segment }
   after_update { self.delay.update_mailchimp_segment }
 
