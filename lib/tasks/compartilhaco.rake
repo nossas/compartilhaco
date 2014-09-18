@@ -11,13 +11,13 @@ namespace :compartilhaco do
 
   task :send_end_emails => :environment do
     Campaign.unarchived.ended.succeeded.where(end_emails_sent: false).each do |c|
-      Notifier.succeed_campaign_to_spreaders(c)
-      Notifier.succeed_campaign_to_creator(c)
+      Notifier.succeed_campaign_to_spreaders(c).deliver
+      Notifier.succeed_campaign_to_creator(c).deliver
       c.update_attribute :end_emails_sent, true
     end
     Campaign.unarchived.ended.unsucceeded.where(end_emails_sent: false).each do |c|
-      Notifier.unsucceed_campaign_to_spreaders(c)
-      Notifier.unsucceed_campaign_to_creator(c)
+      Notifier.unsucceed_campaign_to_spreaders(c).deliver
+      Notifier.unsucceed_campaign_to_creator(c).deliver
       c.update_attribute :end_emails_sent, true
     end
   end
