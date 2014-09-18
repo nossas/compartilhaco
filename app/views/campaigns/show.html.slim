@@ -75,10 +75,10 @@
             .message-field= form.text_area :message, rows: 3, placeholder: "Escreva algo, se quiser, sobre a importância de dar visibilidade à esse Compartilhaço"
             .facebook-preview-box
               .row
-                .preview-image= image_tag @campaign.image.thumb
+                .preview-image= image_tag @campaign.facebook_image.thumb
                 .preview-text
-                  .share-title= @campaign.title
-                  .share-description= @campaign.tweet
+                  .share-title= @campaign.facebook_title
+                  .share-description= @campaign.facebook_message
                   .share-link= link_to @campaign.share_link, @campaign.share_link, target: :blank
             .row
               - if current_user.nil?
