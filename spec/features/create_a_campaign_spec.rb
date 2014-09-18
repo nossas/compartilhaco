@@ -21,7 +21,7 @@ feature 'Create a campaign', :type => :feature do
   context "when I'm logged in" do
     before { page.set_rack_session('cas' => {'user' => user.email}) }
 
-    scenario "should not be enable to select a mobilization" do
+    scenario 'should not be enable to select a mobilization' do
       visit new_campaign_path
       expect(page).to_not have_css('select#campaign_hashtag')
     end
@@ -46,7 +46,7 @@ feature 'Create a campaign', :type => :feature do
       scenario 'should show me error messages', js: true do
         visit new_campaign_path
         fill_in "campaign_new_campaign_spreader_mail", with: ""
-        click_button 'new-campaign-submit-button'
+        click_button 'campaign-submit-button'
 
         expect(page).to have_css('input#campaign_title[data-invalid]')
         expect(page).to have_css('textarea#campaign_description[data-invalid]')
@@ -60,7 +60,7 @@ feature 'Create a campaign', :type => :feature do
 
       scenario 'should render the new campaign page', js: true  do
         visit new_campaign_path
-        click_button 'new-campaign-submit-button'
+        click_button 'campaign-submit-button'
 
         expect(current_path).to be_eql(new_campaign_path)
       end
@@ -96,7 +96,7 @@ feature 'Create a campaign', :type => :feature do
       fill_in 'campaign[ends_at]', with: 1.month.from_now
       fill_in 'campaign[goal]', with: Faker::Number.number(3)
       fill_in 'campaign[new_campaign_spreader_mail]', with: Faker::Lorem.paragraph
-      click_button 'new-campaign-submit-button'
+      click_button 'campaign-submit-button'
     end
   end
 end
