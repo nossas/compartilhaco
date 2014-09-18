@@ -47,6 +47,9 @@
 
     .campaign-forms
       .campaign-menu
+        - if can?(:edit, Campaign)
+          = link_to "Editar", edit_campaign_path(@campaign), id: :edit_campaign_button
+          span.divider
         - if can?(:create, SpamReport)
           = link_to "Denunciar", campaign_spam_reports_path(@campaign), method: :post, id: "spam-report-button"
           span.divider
