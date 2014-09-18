@@ -82,4 +82,11 @@ $(function(){
     reader.onload = function() { $(".facebook-preview .preview-image img").attr("src", reader.result) };
     reader.readAsDataURL(file);
   });
+
+  $("#campaign_image").change(function(e){
+    var file = e.target.files[0];
+    var reader = new FileReader();
+    reader.onload = function() { $(".campaign-form .preview-image img").attr("src", reader.result) };
+    reader.readAsDataURL(file);
+  });
 });
