@@ -1,0 +1,48 @@
+body.pages.about
+  h2
+    color: $copy-blue
+    font-size: 1.8em
+    line-height: 1.2em
+  .item
+    margin-top: 3em
+    margin-bottom: 5em
+    ul
+      list-style: disc
+    .image
+      +grid-column(6)
+      text-align: center
+      &.aright
+        text-align: right
+    .copy
+      +grid-column(6)
+      &.second
+        margin-top: 3em
+      &.last
+        +grid-column(6, $offset: 6)
+    .info-box
+      padding: 1em 2em !important
+      background: $green
+      color: white
+      p
+        margin-bottom: 0
+
+  #why, #about-us
+    padding-top: 3em
+    h2, p
+      color: white
+    .copy
+      margin: 0
+
+  #why
+    background: #007BB6
+    .image
+      +grid-column(4)
+    .copy
+      +grid-column(8)
+
+  #about-us
+    background: $blue
+    text-align: center
+    padding-bottom: 5em
+    .copy
+      +grid-column(8, $center: true)
