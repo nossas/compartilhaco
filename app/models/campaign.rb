@@ -26,6 +26,10 @@ class Campaign < ActiveRecord::Base
     SELECT count(*)
     FROM campaign_spreaders
     WHERE campaign_spreaders.campaign_id = campaigns.id) >= campaigns.goal")}
+  scope :unsucceeded,  -> { ended.where("(
+    SELECT count(*)
+    FROM campaign_spreaders
+    WHERE campaign_spreaders.campaign_id = campaigns.id) < campaigns.goal")}
 
 
   def share

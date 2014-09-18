@@ -45,6 +45,33 @@ RSpec.describe Campaign, :type => :model do
     end
   end
 
+  describe ".unsucceeded" do
+    before do
+      @campaign = Campaign.make!(goal: 1)
+      allow(Time).to receive(:now).and_return(@campaign.ends_at)
+    end
+
+    context "when there is an unsucceeded ended campaign" do
+      it "should have one campaign" do
+        expect(Campaign.unsucceeded).to have(1).campaign
+      end
+    end
+
+    context "when there is a succeeded ended campaign" do
+      before { CampaignSpreader.make! :facebook_profile, campaign: @campaign }
+      it "should be empty" do
+        expect(Campaign.unsucceeded).to be_empty
+      end
+    end
+
+    context "when there is an unsucceeded upcoming campaign" do
+      before { allow(Time).to receive(:now).and_return(@campaign.ends_at - 1.day) }
+      it "should have one campaign" do
+        expect(Campaign.unsucceeded).to be_empty
+      end
+    end
+  end
+
   describe ".upcoming" do
     context "when there is at least one upcoming campaign" do
       before do
