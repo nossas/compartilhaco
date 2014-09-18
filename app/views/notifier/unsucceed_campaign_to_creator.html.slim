@@ -1,6 +1,6 @@
 p #{@user.name},
 
-p Você apostou na força da ação coletiva em rede e criou o Compartilhaço: #{link_to @campaign, campaign_url(@campaign)}
+p Você apostou na força da ação coletiva em rede e criou o Compartilhaço: #{link_to @campaign.title, campaign_url(@campaign)}
 
 p Infelizmente não foi dessa vez. Sua campanha precisava reunir #{@campaign.goal} perfis emprestados até o dia #{@campaign.ends_at.day} às #{@campaign.ends_at.hour}hs para ser disparada.
 
