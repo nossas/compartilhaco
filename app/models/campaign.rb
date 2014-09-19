@@ -10,7 +10,8 @@ class Campaign < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   mount_uploader :facebook_image, ImageUploader
 
-  validates :ends_at, :share_link, :goal, :organization_id, :user_id, :category_id, :image, :title, :description, :tweet, :new_campaign_spreader_mail, :facebook_title, :facebook_message, :facebook_image, presence: true
+  validates :ends_at, :share_link, :goal, :organization_id, :user_id, :category_id, :title, :description, :tweet, :new_campaign_spreader_mail, :facebook_title, :facebook_message, presence: true
+  validates :image, :facebook_image, presence: true, on: :create
   validate :ends_at_cannot_be_in_the_past
   validate :ends_at_cannot_be_in_more_than_50_days
 

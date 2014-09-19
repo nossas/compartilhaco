@@ -17,15 +17,15 @@
             = f.url_field :share_link, required: true, value: (@campaign.share_link.present? ? @campaign.share_link : "http://"), disabled: disabled
           .facebook-image-field
             = f.label(:facebook_image, 'Imagem do post de Facebook', class: :required)
-            = f.file_field(:facebook_image, required: true, disabled: disabled)
+            = f.file_field(:facebook_image, required: !@campaign.facebook_image.thumb.present?, disabled: disabled)
     .facebook-preview
       .facebook-preview-box
         .row
           .preview-image= image_tag (@campaign.facebook_image.thumb.present? ? @campaign.facebook_image.thumb : '')
           .preview-text
-            .share-title Título do post
-            .share-description Mensagem do post
-            .share-link= link_to "www.linkdopost.com", "#", target: :blank
+            .share-title= @campaign.facebook_title || 'Título do post'
+            .share-description= @campaign.facebook_message || 'Mensagem do post'
+            .share-link= link_to (@campaign.share_link || 'www.linkdopost.com'), "#"
 
   .row
     .form-title
