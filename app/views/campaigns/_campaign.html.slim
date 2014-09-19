@@ -4,9 +4,10 @@
       span Faltam #{distance_of_time_in_words_to_now campaign.ends_at}
   = link_to image_tag(campaign.image.thumb), campaign
   .box
-    = link_to campaign do
-      h4= campaign.title
-    .organization= campaign.organization.city
+    .title-wraper
+      = link_to campaign do
+        h4 title=campaign.title = truncate(campaign.title, length: 50)
+      .organization= campaign.organization.city
     .user Por #{link_to campaign.user.name, user_path(campaign.user)}
     .category Em #{campaign.category.name}
     .progress.round.secondary

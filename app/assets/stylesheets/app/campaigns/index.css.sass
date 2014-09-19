@@ -86,10 +86,14 @@ body.campaigns.index
         padding: rem-calc(20)
         font-size: rem-calc(14)
         +box-shadow(0 5px  5px -2px darken($light-gray, 20%))
+        .title-wraper
+          height: 5.5em
         h4
-          margin: 0
-          line-height: normal
+          margin: 0 0 0.1em 0
+          line-height: 1em
           font-weight: bold
+          max-height: 2em
+          overflow: hidden
         .organization, .category
           margin-bottom: rem-calc(15)
         .goal
