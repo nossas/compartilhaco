@@ -16,7 +16,6 @@
 //= require datetimepicker
 //= require meurio_ui
 //= require foundation
-//= require turbolinks
 //= require_tree .
 
 $(function(){
