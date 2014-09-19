@@ -72,7 +72,7 @@
         - if facebook_form?
           = form_for @campaign_spreader, url: create_for_facebook_profile_campaign_spreaders_path, data: { abide: true }, html: { class: "facebook-profile-campaign-spreader" } do |form|
             = form.hidden_field(:campaign_id)
-            .message-field= form.text_area :message, rows: 3, placeholder: "Escreva algo, se quiser, sobre a importância de dar visibilidade à esse Compartilhaço"
+            .message-field= form.text_area :message, rows: 3, placeholder: "Escreva algo, se quiser, sobre a importância de dar visibilidade à esse Compartilhaço!"
             .facebook-preview-box
               .row
                 .preview-image= image_tag @campaign.facebook_image.thumb
@@ -104,7 +104,7 @@
                       small.error Email é obrigatório
               .submit-field class=('center' if current_user.present?) = form.submit "Emprestar Twitter", id: "twitter-profile-campaign-spreader-submit-button", class: [:button, :radius, :large]
 
-        small.warn Se o Compartilhaço atingir a sua meta até a data de encerramento, essa mensagem será publicada automaticamente no seu perfil e de muitas outras pesssoas.
+        small.warn Se o Compartilhaço atingir a sua meta até a data de encerramento, essa mensagem será publicada automaticamente no seu perfil e de muitas outras pessoas. #{ link_to 'Saiba mais.', about_path }
 
 .row
   .campaign-left-col
@@ -126,8 +126,8 @@
 
 .reveal-modal.share.medium data={reveal: true}
   = image_tag "share-campaign.png"
-  h3 Espalhe esse compartilhaço!
-  p Precisamos de muitas vozes para que essa mensagem chegue mais longe. Mostre pra toda sua rede que a ajuda de cada um deles pode fazer essa causa impactar milhares de pessoas!
+  h3 Sucesso!!! Agora espalhe por aí!
+  p Obrigado por emprestar sua voz a esse Compartilhaço. Agora precisamos ampliar esse coro. Mostre pra toda sua rede que a ajuda de cada um deles pode fazer essa causa impactar milhares de pessoas!
   .share-buttons
     = link_to "Compartilhe no Facebook", "#", class: ['share-on-facebook-button', :button, :radius], data: { href: "https://www.facebook.com/sharer/sharer.php?u=#{URI::encode(campaign_url(@campaign))}" }
     = link_to "Compartilhe no Twitter", "#", class: ['share-on-twitter-button', :button, :radius], data: { href: "https://twitter.com/share?url=#{campaign_url(@campaign)}&text=#{@campaign.title}" }
