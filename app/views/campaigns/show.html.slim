@@ -87,7 +87,7 @@
                     .user-email-field
                       = user_form.email_field(:email, required: true, placeholder: "Insira seu e-mail")
                       small.error Email é obrigatório
-              .submit-field= form.submit "Emprestar Facebook", id: "facebook-profile-campaign-spreader-submit-button", class: [:button, :radius, :large]
+              .submit-field class=('center' if current_user.present?) = form.submit "Emprestar Facebook", id: "facebook-profile-campaign-spreader-submit-button", class: [:button, :radius, :large]
 
         - elsif twitter_form?
           = form_for @campaign_spreader, url: create_for_twitter_profile_campaign_spreaders_path, data: { abide: true }, html: { class: "twitter-profile-campaign-spreader" } do |form|
@@ -102,7 +102,7 @@
                     .user-email-field
                       = user_form.email_field(:email, required: true, placeholder: "Insira seu email")
                       small.error Email é obrigatório
-              .submit-field= form.submit "Emprestar Twitter", id: "twitter-profile-campaign-spreader-submit-button", class: [:button, :radius, :large]
+              .submit-field class=('center' if current_user.present?) = form.submit "Emprestar Twitter", id: "twitter-profile-campaign-spreader-submit-button", class: [:button, :radius, :large]
 
         small.warn Se o Compartilhaço atingir a sua meta até a data de encerramento, essa mensagem será publicada automaticamente no seu perfil e de muitas outras pesssoas.
 
