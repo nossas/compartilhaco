@@ -1,7 +1,8 @@
 .row
   .header
     h2 Edite seu compartilhaço
-    h4.subheader Este aplicativo da Rede Minhas Cidades é livre e aceita todos os tipos de mobilização e causas.
+    h4.subheader Este aplicativo da Rede Minhas Cidades é livre e aceita todos os tipos de mobilização e causas. #{ link_to 'Clique aqui', '#policy', "data-reveal-id" => "policy", "data-reveal" => true } para saber o que não pode e o que é muito recomendado.
     h4.alert Você não pode editar um compartilhaço que já possui compartilhadores
 
 = render 'form', disabled: @campaign.campaign_spreaders.any?
+= render 'shared/policy'
