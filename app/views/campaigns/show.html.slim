@@ -50,11 +50,11 @@
         - if can?(:edit, Campaign)
           = link_to "Editar", edit_campaign_path(@campaign), id: :edit_campaign_button
           span.divider
-        - if can?(:create, SpamReport)
-          = link_to "Denunciar", campaign_spam_reports_path(@campaign), method: :post, id: "spam-report-button"
-          span.divider
         - if can?(:archive, @campaign)
-          = link_to "Arquivar", archive_campaign_path(@campaign), method: :patch, disabled: @campaign.archived?, id: :archive_campaign_button
+          = link_to "Arquivar", archive_campaign_path(@campaign), method: :patch, id: :archive_campaign_button, disabled: @campaign.archived?, data: { confirm: "Deseja arquivar este compartilhaço?" }
+          span.divider
+        - if can?(:create, SpamReport)
+          = link_to "Denunciar", campaign_spam_reports_path(@campaign), method: :post, id: "spam-report-button", data: { confirm: "Deseja denunciar este compartilhaço?" }
 
       - if @campaign.archived?
         = image_tag("archived-campaign-icon.png")
