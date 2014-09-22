@@ -35,13 +35,16 @@ body.pages.about
 
   #why
     background: #007BB6
+    a
+      color: white
+      text-decoration: underline
     .image
       +grid-column(4)
     .copy
       +grid-column(8)
 
   #about-us
-    background: asset-url('about/icon-08.jpg')
+    background: $blue
     background-size: cover
     text-align: center
     padding-bottom: 5em
@@ -50,6 +53,8 @@ body.pages.about
 
   @media #{$medium-down}
     .item
+      &.last
+        margin-bottom: 0
       .image, .copy
         +grid-column(12)
       .image
@@ -63,7 +68,7 @@ body.pages.about
         &.last
           +grid-column(12, $offset: 0)
 
-    #why
+    #why, #about-us
       .image, .copy
         +grid-column(12)
         text-align: center
