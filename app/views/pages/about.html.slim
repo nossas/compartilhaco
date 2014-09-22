@@ -31,36 +31,10 @@
     p Qualquer pessoa que se identifica com a causa ou a mobilização de um Compartilhaço pode emprestar seu perfil para publicação única e exclusivamente da campanha apoiada. Ao fazê-lo, essa pessoa passa a integrar a Rede Minhas Cidades, onde milhares de pessoas colaboram para transformar nossas cidades.
 
 .row.item
-  .image= image_tag 'about/icon-05-before.png'
+  .image= image_tag 'about/icon-05.png'
   .copy
     h2 Que tipo de campanha pode ser criada?
-    p Esse aplicativo da Rede Minhas Cidades é livre e aceita todos os tipos de mobilização e causas de interesse público. Porém, é sempre bom lembrar, tem coisa que a nossa rede adora, e outras, que preferimos passar longe.
-
-.row.item
-  .image.aright= image_tag 'about/icon-05.png'
-  .copy
-    h2 Não crie um Compartilhaço se ele:
-    ul
-      li incita ódio ou preconceito social, racial ou de gênero.
-      li faz propaganda política partidária.
-      li sugere ações que contradizem a visão de cidade da Rede Minhas Cidades, a qual defende a democracia, o controle social, o uso político do espaço público e o desenvolvimento de uma cultura política participativa.
-      li promove uma causa de caráter privado, e não público.
-      li não possui caráter propositivo.
-
-.row.item.last
-  .image.aright= image_tag 'about/icon-06.png'
-  .copy
-    h2 Crie um Compartilhaço se ele:
-
-    ul
-      li tiver um objeto alinhado à visão de cidade da Rede Minhas Cidades.
-      li apresentar um caráter de urgência, cujo impacto e o alcance de seus objetivos só serão alcançados caso haja uma dedicação extra da equipe da Rede Minhas Cidades.
-      li tiver um grande potencial de atingir sucesso.
-      li tocar em uma temática que está sendo amplamente discutida pela sociedade.
-      li mostrar que você, criador do Compartilhaço, tem disponibilidade de tempo para se dedicar, junto com a equipe, ao desenvolvimento de sua campanha.
-
-  .copy.last.info-box
-    p Seu Compartilhaço fará brilhar os olhos da equipe da Rede Minhas Cidades - que poderá decidir apoiá-lo gerando ainda mais visibilidade - se ele seguir essas regras.
+    p Esse aplicativo da Rede Minhas Cidades é livre e aceita todos os tipos de mobilização e causas de interesse público. Porém, é sempre bom lembrar, tem coisa que a nossa rede adora, e outras, que preferimos passar longe. #{ link_to 'Clique aqui', '#policy', "data-reveal-id" => "policy", "data-reveal" => true } para saber o que não pode e o que é muito recomendado.
 
 section#why
   .row
@@ -76,3 +50,5 @@ section#about-us
       p A Minhas Cidades é uma rede de redes: fomentamos a criação de organizações em cidades para fomentar o compartilhamento de conhecimento, talento, recursos e tecnologia na criação e divugação de mobilizações.
       p A equipe da Rede Minhas Cidades, um grupo multidisciplinar de profissionais, cria e mantém a infraestrutura e dá suporte às mobilizações iniciadas por cidadãos, e o faz de forma independente por meio dos seguintes aplicativos além do Compartilhaço: o Panela de Pressão, o Imagine, o Multitude, o De Olho, o De Guarda e muita coisa nova vindo aí.
       p Conheça e faça parte dessa rede #{ link_to 'clicando aqui', 'http://www.minhascidades.org.br/', target: :blank }.
+
+= render 'shared/policy'
