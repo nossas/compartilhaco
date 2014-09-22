@@ -47,3 +47,23 @@ body.pages.about
     padding-bottom: 5em
     .copy
       +grid-column(8, $center: true)
+
+  @media #{$medium-down}
+    .item
+      .image, .copy
+        +grid-column(12)
+      .image
+        margin-bottom: rem-calc(30)
+        &.aright
+          text-align: center
+      .copy
+        text-align: center
+        ul
+          text-align: left
+        &.last
+          +grid-column(12, $offset: 0)
+
+    #why
+      .image, .copy
+        +grid-column(12)
+        text-align: center
