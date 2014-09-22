@@ -47,3 +47,10 @@ body.pages.about
     padding-bottom: 5em
     .copy
       +grid-column(8, $center: true)
+
+@media #{$medium-down}
+  body.pages.about
+    .item.last
+      margin-bottom: 0
+    #about-us .copy
+      +grid-column(12)
