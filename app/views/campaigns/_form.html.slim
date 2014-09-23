@@ -8,10 +8,9 @@
         .row
           .facebook-title-field
             = f.label(:facebook_title, 'Título do post de Facebook', class: :required)
-            = f.text_field(:facebook_title, required: true, disabled: disabled)
-          .facebook-message-field
+            .facebook-title-text-field= f.text_field(:facebook_title, required: true, disabled: disabled, maxlength: 25)
             = f.label(:facebook_message, 'Mensagem do post de Facebook', class: :required)
-            = f.text_area(:facebook_message, rows: 2, required: true, disabled: disabled)
+            .facebook-message-text-area= f.text_area(:facebook_message, rows: 2, required: true, disabled: disabled, maxlength: 90)
           .share-link-field
             = f.label :share_link, 'Link a ser compartilhado', class: :required
             = f.url_field :share_link, required: true, value: (@campaign.share_link.present? ? @campaign.share_link : "http://"), disabled: disabled
