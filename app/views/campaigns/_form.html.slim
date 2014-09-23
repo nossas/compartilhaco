@@ -2,22 +2,25 @@
 
   .row
     .form-title
-      h4 Decida o que você quer que as pessoas compartilhem no Facebook:
+      h4 Prepare seu grito: decida o que você quer que as pessoas compartilhem no Facebook.
     .facebook-form
       .box
         .row
           .facebook-title-field
-            = f.label(:facebook_title, 'Título do post de Facebook', class: :required)
+            = f.label(:facebook_title, "Título do post", class: :required)
             .facebook-title-text-field= f.text_field(:facebook_title, required: true, disabled: disabled, maxlength: 25)
-            = f.label(:facebook_message, 'Mensagem do post de Facebook', class: :required)
+            = f.label(:facebook_message, 'Mensagem do post', class: :required)
             .facebook-message-text-area= f.text_area(:facebook_message, rows: 2, required: true, disabled: disabled, maxlength: 90)
           .share-link-field
             = f.label :share_link, 'Link a ser compartilhado', class: :required
             = f.url_field :share_link, required: true, value: (@campaign.share_link.present? ? @campaign.share_link : "http://"), disabled: disabled
           .facebook-image-field
-            = f.label(:facebook_image, 'Imagem do post de Facebook', class: :required)
+            = f.label(:facebook_image, 'Imagem do post', class: :required)
             = f.file_field(:facebook_image, required: !@campaign.facebook_image.thumb.present?, disabled: disabled)
     .facebook-preview
+      p
+        strong Preview:
+        |  como seu post será publicado nos perfis conectados a sua campanha.
       .facebook-preview-box
         .row
           .preview-image= image_tag (@campaign.facebook_image.thumb.present? ? @campaign.facebook_image.thumb : '')
@@ -28,18 +31,20 @@
 
   .row
     .form-title
-      h4 Decida o que você quer que as pessoas compartilhem no Twitter:
+      h4 Prepare seu grito: decida o que você quer que as pessoas compartilhem no Twitter.
 
     .twitter-form
       .box
         .row
           .tweet-field
-            = f.label :tweet, 'Mensagem a ser tuitada', class: :required
+            = f.label :tweet, class: :required do
+              | Mensagem a ser tuítada
+              span.has-tip data={tooltip: true} aria-haspopup=true title='Máximo de 140 caracteres e deve incluir o link que você quer dar visibilidade.'  ?
             .tweet-textarea= f.text_area :tweet, required: true, maxlength: 140, rows: 3, disabled: disabled
 
   .row
     .form-title
-      h4 Decida quando o seu Compartilhaço será disparado:
+      h4 Programe o disparo do seu Compartilhaço:
 
     .share-form
       .box
@@ -47,12 +52,12 @@
           .ends-at-field
             = f.label :ends_at, class: :required do
               | Data de encerramento
-              span.has-tip data={tooltip: true} aria-haspopup=true title='Se você atingir a meta até esta data o Compartilhaço será disparado'  ?
+              span.has-tip data={tooltip: true} aria-haspopup=true title='Se você atingir a meta até essa data seu Compartlihaço será disparado.'  ?
             = f.text_field :ends_at, required: true, data:{datetimepicker: true}, disabled: disabled
           .goal-field
             = f.label(:goal, class: :required) do
               | Meta de apoio
-              span.has-tip data={tooltip: true} aria-haspopup=true title='Sugerimos um número entre 100 e 500 apoiadores para o sucesso do seu Compartilhaço'  ?
+              span.has-tip data={tooltip: true} aria-haspopup=true title='Quantidade mínima de perfis emprestados para que seu Compartilhaço seja disparado. Sugerimos um número entre 100 e 500 apoiadores para que sua campanha tenha relevância.'  ?
             .row.collapse
               .small-5.columns= f.number_field :goal, required: true, disabled: disabled
               .small-7.columns
@@ -60,14 +65,14 @@
 
   .row
     .form-title
-      h4 Convença as pessoas a participar:
+      h4 Convença as pessoas a participar: informações sobre sua causa ou mobilização.
 
     .campaign-form
       .box
         .row
           .title-field
             = f.label :title, class: :required do
-              | Título da sua página
+              | Título da sua página no Compartilhaço
               span.has-tip data={tooltip: true} aria-haspopup=true title="Um título curto e direto é sempre melhor!"  ?
             = f.text_field(:title, required: true)
           - if can?(:set_hashtag, Campaign)
@@ -80,7 +85,7 @@
           .category-id-field
             = f.label :category_id, class: :required do
               | Categoria
-              span.has-tip data={tooltip: true} aria-haspopup=true title="Ajude as pessoas a encontrarem sua campanha"  ?
+              span.has-tip data={tooltip: true} aria-haspopup=true title="Ajude as pessoas a encontrarem sua campanha."  ?
             = f.collection_select(:category_id, Category.order(:name).all, :id, :name, {include_blank: "Escolha uma categoria"}, required: true)
           .image-field
             = f.label :image, 'Imagem', class: :required
@@ -89,7 +94,7 @@
           .description-field
             = f.label :description, class: :required do
               | História por trás do seu Compartilhaço
-              span.has-tip data={tooltip: true} aria-haspopup=true title='Descreva em alguns parágrafos o problema, causa ou mobilização que você quer dar voz ("a paz mundial" é coisa de miss - seja específico!).'  ?
+              span.has-tip data={tooltip: true} aria-haspopup=true title='Descreva em alguns parágrafos o problema, causa ou mobilização que você quer dar voz. Argumente com dados concretos e mostre a mudança que sua campanha pode causar no mundo.'  ?
             = f.text_area :description, required: true, rows: 3
 
   .row
@@ -100,7 +105,9 @@
       .box
         .row
           .new-campaign-spreader-mail-field
-            = f.label :new_campaign_spreader_mail, 'Email para os apoiadores', class: :required
+            = f.label :new_campaign_spreader_mail, class: :required do
+              | Email para Apoiadores
+              span.has-tip data={tooltip: true} aria-haspopup=true title='Agradecer é de muito bom tom. Deixar o link da sua campanha e pedir para as pessoa compartilharem em suas redes é estratégico! Fica aqui uma colinha! ;)'  ?
             = f.text_area(:new_campaign_spreader_mail, required: true, rows: 11, value: (@campaign.new_campaign_spreader_mail.present? ? @campaign.new_campaign_spreader_mail : "Obrigado por apostar na força da ação coletiva em rede e emprestar seu perfil para o meu Compartilhaço.\n\nCom muitas vozes nossas mensagens podem chegar ainda mais longe. Mas juntá-las não é tão simples assim.\n\nVocê pode continuar ajudando! Divulgue esse Compartilhaço nas suas redes para que essa causa consiga mais apoiadores e impacte milhares de pessoas.\n\nGrande abraço e até breve!\n#{current_user.name}"))
           .submit-field
             = f.submit 'Salvar Compartilhaço', id: 'campaign-submit-button', class: [:button, :radius, :large]
