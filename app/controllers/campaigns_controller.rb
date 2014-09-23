@@ -62,6 +62,6 @@ class CampaignsController < ApplicationController
   end
 
   def campaign_params
-    params.fetch(:campaign, {}).permit(:title, :description, :image, :ends_at, :goal, :organization_id, :user_id, :category_id, :share_link, :tweet, :new_campaign_spreader_mail, :hashtag, :facebook_title, :facebook_message, :facebook_image)
+    params.fetch(:campaign, {}).permit(:title, :description, :image, :ends_at, :goal, :organization_id, :user_id, :category_id, :share_link, :tweet, :new_campaign_spreader_mail, :hashtag, :facebook_title, :facebook_message, :facebook_image, :short_description)
   end
 end

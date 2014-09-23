@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140917204853) do
+ActiveRecord::Schema.define(version: 20140923213604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20140917204853) do
   create_table "campaigns", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image"
+    t.string   "image",                                      null: false
     t.string   "share_link",                                 null: false
     t.datetime "shared_at"
     t.datetime "ends_at",                                    null: false
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20140917204853) do
     t.text     "facebook_message"
     t.string   "facebook_image"
     t.boolean  "end_emails_sent",            default: false
+    t.text     "short_description"
     t.index ["category_id"], :name => "fk__campaigns_category_id"
     t.foreign_key ["category_id"], "categories", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_campaigns_category_id"
   end
@@ -73,7 +74,7 @@ ActiveRecord::Schema.define(version: 20140917204853) do
     t.index ["user_id"], :name => "index_facebook_profiles_on_user_id", :unique => true
   end
 
-  create_view "facebook_profile_spreaders", " SELECT cs.id,\n    fp.user_id,\n    cs.created_at,\n    cs.campaign_id\n   FROM (campaign_spreaders cs\n   JOIN facebook_profiles fp ON (((cs.timeline_id = fp.id) AND ((cs.timeline_type)::text = 'FacebookProfile'::text))))", :force => true
+  create_view "facebook_profile_spreaders", " SELECT cs.id,\n    fp.user_id,\n    cs.created_at,\n    cs.campaign_id\n   FROM (campaign_spreaders cs\n     JOIN facebook_profiles fp ON (((cs.timeline_id = fp.id) AND ((cs.timeline_type)::text = 'FacebookProfile'::text))))", :force => true
   create_table "mobilizations", force: true do |t|
     t.string "title"
     t.string "hashtag"
@@ -118,7 +119,7 @@ ActiveRecord::Schema.define(version: 20140917204853) do
     t.index ["user_id"], :name => "index_twitter_profiles_on_user_id", :unique => true
   end
 
-  create_view "twitter_profile_spreaders", " SELECT cs.id,\n    tp.user_id,\n    cs.created_at,\n    cs.campaign_id\n   FROM (campaign_spreaders cs\n   JOIN twitter_profiles tp ON (((cs.timeline_id = tp.id) AND ((cs.timeline_type)::text = 'TwitterProfile'::text))))", :force => true
+  create_view "twitter_profile_spreaders", " SELECT cs.id,\n    tp.user_id,\n    cs.created_at,\n    cs.campaign_id\n   FROM (campaign_spreaders cs\n     JOIN twitter_profiles tp ON (((cs.timeline_id = tp.id) AND ((cs.timeline_type)::text = 'TwitterProfile'::text))))", :force => true
   create_table "users", force: true do |t|
     t.string  "email"
     t.string  "first_name"

@@ -91,6 +91,11 @@
             = f.label :image, 'Imagem', class: :required
             = f.file_field(:image, required: !@campaign.image.thumb.present?)
             .preview-image= image_tag (@campaign.image.thumb.present? ? @campaign.image.thumb : '')
+          .short-description-field
+            = f.label :short_description, class: :required do
+              | Resumo sobre o seu Compartilhaço
+              span.has-tip data={tooltip: true} aria-haspopup=true title='Convença as pessoas a entenderem a importância de emprestarem seus perfis para a sua campanha em no máximo 160 caracteres.'  ?
+            .short-description-text-area= f.text_area :short_description, required: true, rows: 2, maxlength: 160
           .description-field
             = f.label :description, class: :required do
               | História por trás do seu Compartilhaço

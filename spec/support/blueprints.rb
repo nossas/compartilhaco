@@ -15,6 +15,7 @@ Campaign.blueprint do
   category { Category.make! }
   tweet { Faker::Lorem.sentence }
   new_campaign_spreader_mail { Faker::Lorem.paragraph(3) }
+  short_description { Faker::Lorem.sentence }
 end
 
 CampaignSpreader.blueprint(:facebook_profile) do
