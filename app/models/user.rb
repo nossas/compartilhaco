@@ -29,12 +29,4 @@ class User < ActiveRecord::Base
       super
     end
   end
-
-  def avatar_url
-    if self.avatar
-      "https://#{ENV['ACCOUNTS_BUCKET']}.s3.amazonaws.com/uploads/user/avatar/#{self.id}/square_#{self.avatar}"
-    else
-      "http://i.imgur.com/7XqAySb.png"
-    end
-  end
 end
