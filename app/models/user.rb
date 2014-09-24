@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  acts_as_minhascidades_user
+
   has_one :facebook_profile
   has_one :twitter_profile
   has_many :spam_reports
@@ -26,10 +28,6 @@ class User < ActiveRecord::Base
     else
       super
     end
-  end
-
-  def name
-    "#{first_name} #{last_name}"
   end
 
   def avatar_url
