@@ -119,7 +119,7 @@
       .user
         = image_tag @campaign.user.avatar_url
         .user-name= @campaign.user.name
-        .user-link= link_to("Ver perfil", user_path(@campaign.user))
+        .user-link= link_to("Ver perfil", "http://www.#{ENV['MEURIO_DOMAIN']}/users/#{@campaign.user_id}")
     .last-spreaders
       h3 Quem empresta sua voz #{content_tag :span, "(#{@campaign.campaign_spreaders.try(:count)})"}:
       = render @last_spreaders
