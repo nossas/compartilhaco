@@ -7,11 +7,10 @@ class CampaignSpreadersController < ApplicationController
     @auth_params = request.env['omniauth.auth']
     @campaign_spreader_params = session.delete(:campaign_spreader)
 
-    user_email = @campaign_spreader_params["timeline"]["user"]["email"]
-    @user = current_user || User.where(email: user_email).first_or_create(
+    @user = current_user || User.where(email: @campaign_spreader_params["timeline"]["user"]["email"]).first_or_create(
       first_name: @auth_params[:info][:first_name] || @auth_params[:info][:name].split(" ")[0],
       last_name: @auth_params[:info][:last_name] || @auth_params[:info][:name].split(" ")[-1],
-      email: user_email,
+      email: @campaign_spreader_params["timeline"]["user"]["email"],
       ip: request.remote_ip
     )
   end
