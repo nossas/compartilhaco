@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
         response = HTTParty.post(url, body: body.to_json, headers: { 'Content-Type' => 'application/json' })
         User.find_by_id(response['id'])
       rescue Exception => e
+        Appsignal.add_exception e
         logger.error e.message
       end
     else
