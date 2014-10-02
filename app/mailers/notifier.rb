@@ -9,7 +9,7 @@ class Notifier < ActionMailer::Base
     mail(
       to: @user.email,
       subject: "Parabéns, você acaba de dar voz a um Compartilhaço!",
-      from: @campaign.user.email
+      from: "#{@campaign.user.name} <#{@campaign.user.email}>"
     )
   end
 
@@ -19,7 +19,7 @@ class Notifier < ActionMailer::Base
     mail(
       to: ENV["TECH_TEAM_EMAIL"],
       subject: "[Compartilhaço] Nova denúncia",
-      from: @user.email
+      from: "#{@user.name} <#{@user.email}>"
     )
   end
 
