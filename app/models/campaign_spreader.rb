@@ -11,7 +11,7 @@ class CampaignSpreader < ActiveRecord::Base
   after_create { CampaignSpreaderWorker.perform_async(self.id) }
 
   def share
-    timeline.share(self)
+    timeline.share(self) if uid.blank?
   end
 
   def facebook?

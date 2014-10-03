@@ -25,9 +25,19 @@ RSpec.describe CampaignSpreader, :type => :model do
   describe "#share" do
     subject { CampaignSpreader.make!(:facebook_profile) }
 
-    it "should call facebook_profile#share method" do
-      expect(subject.timeline).to receive(:share)
-      subject.share
+    context "when it was not shared yet" do
+      it "should call facebook_profile#share method" do
+        expect(subject.timeline).to receive(:share)
+        subject.share
+      end
+    end
+
+    context "when it was already shared" do
+      before { subject.update_attribute :uid, "123" }
+      it "should not call facebook_profile#share method" do
+        expect(subject.timeline).to_not receive(:share)
+        subject.share
+      end
     end
   end
 
