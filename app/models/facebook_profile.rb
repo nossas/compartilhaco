@@ -35,7 +35,9 @@ class FacebookProfile < Timeline
       result = graph.put_connections("me", "feed",
         message: campaign_spreader.message,
         link: campaign_spreader.campaign.share_link,
-        picture: serve_image_campaign_url(campaign_spreader.campaign, SecureRandom.hex)
+        picture: serve_image_campaign_url(campaign_spreader.campaign, SecureRandom.hex),
+        name: campaign_spreader.campaign.facebook_title,
+        description: campaign_spreader.campaign.facebook_message
       )
       campaign_spreader.update_attribute :uid, result["id"]
     rescue Koala::Facebook::AuthenticationError => e

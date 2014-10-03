@@ -55,8 +55,8 @@ class CampaignsController < ApplicationController
   def serve_image
     @campaign = Campaign.find(params[:id])
     send_data(
-      @campaign.image.file.read,
-      type: MIME::Types.type_for(@campaign.image.path).first.content_type,
+      @campaign.facebook_image.file.read,
+      type: MIME::Types.type_for(@campaign.facebook_image.path).first.content_type,
       disposition: 'inline'
     )
   end
