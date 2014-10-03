@@ -1,5 +1,5 @@
 class Notifier < ActionMailer::Base
-  default from: "contato@minhascidades.org.br"
+  default from: "contato@nossascidades.org"
   layout "mail"
 
   def new_spreader campaign_spreader
