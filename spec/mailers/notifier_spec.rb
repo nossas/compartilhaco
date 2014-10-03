@@ -50,12 +50,13 @@ RSpec.describe Notifier, :type => :mailer do
   end
 
   describe ".unsucceed_campaign_to_spreaders" do
-    let(:campaign){ Campaign.make! }
-    let(:email){ Notifier.unsucceed_campaign_to_spreaders(campaign) }
-    before{ CampaignSpreader.make! :facebook_profile, campaign: campaign }
+    before{ @campaign_spreader = CampaignSpreader.make!(:facebook_profile) }
+    let(:campaign){ @campaign_spreader.campaign }
+    let(:user){ @campaign_spreader.user }
+    let(:email){ Notifier.unsucceed_campaign_to_spreaders(campaign, user) }
 
     it "should be sent to all the campaign's spreaders" do
-      expect(email.bcc).to be_eql(campaign.campaign_spreaders.map{|cs| cs.user.email})
+      expect(email.to).to include(user.email)
     end
 
     it "should contain the campaign's link" do
@@ -77,12 +78,13 @@ RSpec.describe Notifier, :type => :mailer do
   end
 
   describe ".succeed_campaign_to_spreaders" do
-    let(:campaign){ Campaign.make! }
-    let(:email){ Notifier.succeed_campaign_to_spreaders(campaign) }
-    before{ CampaignSpreader.make! :facebook_profile, campaign: campaign }
+    before{ @campaign_spreader = CampaignSpreader.make!(:facebook_profile) }
+    let(:campaign){ @campaign_spreader.campaign }
+    let(:user){ @campaign_spreader.user }
+    let(:email){ Notifier.succeed_campaign_to_spreaders(campaign, user) }
 
-    it "should be sent to all the campaign's spreaders" do
-      expect(email.bcc).to be_eql(campaign.campaign_spreaders.map{|cs| cs.user.email})
+    it "should be sent to the user" do
+      expect(email.to).to include(user.email)
     end
 
     it "should contain the campaign's link" do

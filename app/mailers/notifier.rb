@@ -33,12 +33,12 @@ class Notifier < ActionMailer::Base
     )
   end
 
-  def unsucceed_campaign_to_spreaders campaign
+  def unsucceed_campaign_to_spreaders campaign, user
     @campaign = campaign
-    @user = campaign.user
     @organization = campaign.organization
+    @user = user
     mail(
-      bcc: campaign.campaign_spreaders.map{|cs| cs.user.email},
+      to: @user.email,
       subject: "Que pena, o Compartilhaço que você apoiou não bateu sua meta de disparo!"
     )
   end
@@ -53,12 +53,12 @@ class Notifier < ActionMailer::Base
     )
   end
 
-  def succeed_campaign_to_spreaders campaign
+  def succeed_campaign_to_spreaders campaign, user
     @campaign = campaign
-    @user = campaign.user
     @organization = campaign.organization
+    @user = user
     mail(
-      bcc: campaign.campaign_spreaders.map{|cs| cs.user.email},
+      to: @user.email,
       subject: "Ueba, o Compartilhaço que você apoiou foi disparado!"
     )
   end
