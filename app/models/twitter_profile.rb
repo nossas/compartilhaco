@@ -18,7 +18,7 @@ class TwitterProfile < Timeline
 
   def share campaign_spreader
     begin
-      result = api.update("#{campaign_spreader.message} #{campaign_spreader.campaign.share_link}")
+      result = api.update(campaign_spreader.message)
       campaign_spreader.update_attribute :uid, result["id"]
     rescue Exception => e
       puts e.message
