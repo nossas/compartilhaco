@@ -40,7 +40,7 @@ class FacebookProfile < Timeline
         description: campaign_spreader.campaign.facebook_message
       )
       campaign_spreader.update_attribute :uid, result["id"]
-    rescue Koala::Facebook::AuthenticationError => e
+    rescue Exception => e
       Appsignal.add_exception e
       logger.warn e.message
     end
