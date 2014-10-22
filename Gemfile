@@ -63,7 +63,7 @@ gem 'kaminari'
 gem 'cancancan'
 gem 'sidekiq-status'
 gem 'gibbon'
-gem 'acts_as_minhascidades'
+gem 'acts_as_our_cities'
 
 # Rails assets
 source 'https://rails-assets.org'
