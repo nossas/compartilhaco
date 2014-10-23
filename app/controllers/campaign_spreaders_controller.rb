@@ -32,7 +32,7 @@ class CampaignSpreadersController < ApplicationController
   def create_for_twitter_profile_callback
     twitter_profile = TwitterProfile.find_or_initialize_by(uid: @auth_params[:uid])
     twitter_profile.update_attributes(
-      user: @user,
+      user_id: @user.id,
       uid: @auth_params[:uid],
       token: @auth_params[:credentials][:token],
       secret: @auth_params[:credentials][:secret]
