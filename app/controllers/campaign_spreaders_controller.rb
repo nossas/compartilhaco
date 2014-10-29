@@ -11,7 +11,8 @@ class CampaignSpreadersController < ApplicationController
       first_name: @auth_params[:info][:first_name] || @auth_params[:info][:name].split(" ")[0],
       last_name: @auth_params[:info][:last_name] || @auth_params[:info][:name].split(" ")[-1],
       email: @campaign_spreader_params["timeline"]["user"]["email"],
-      ip: request.remote_ip
+      ip: request.remote_ip,
+      password: SecureRandom.hex
     )
   end
 
