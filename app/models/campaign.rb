@@ -21,8 +21,8 @@ class Campaign < ActiveRecord::Base
 
   scope :unshared,   -> { where("shared_at IS NULL") }
   scope :unarchived, -> { where("archived_at IS NULL") }
-  scope :upcoming,   -> { where("? < ends_at", Time.now) }
-  scope :ended,      -> { where("? >= ends_at", Time.now) }
+  scope :upcoming,   -> { where("? < ends_at", Time.zone.now) }
+  scope :ended,      -> { where("? >= ends_at", Time.zone.now) }
   scope :succeeded,  -> { where("(
     SELECT count(*)
     FROM campaign_spreaders
@@ -35,16 +35,16 @@ class Campaign < ActiveRecord::Base
 
   def share
     campaign_spreaders.each {|cs| cs.share}
-    update_attribute :shared_at, Time.now
+    update_attribute :shared_at, Time.zone.now
   end
 
   def archive
-    update_attribute :archived_at, Time.now
+    update_attribute :archived_at, Time.zone.now
   end
 
   def ends_at_cannot_be_in_the_past
     errors.add(:ends_at, I18n.t("errors.messages.cannot_be_in_the_past")) if
-      ends_at.nil? || ends_at < Time.now
+      ends_at.nil? || ends_at < Time.zone.now
   end
 
   def ends_at_cannot_be_in_more_than_50_days
@@ -61,7 +61,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def progress_of_time
-    (Time.now - created_at)/(ends_at - created_at) * 100
+    (Time.zone.now - created_at)/(ends_at - created_at) * 100
   end
 
   def reach
@@ -83,7 +83,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def ended?
-    ends_at < Time.now
+    ends_at < Time.zone.now
   end
 
   def create_mailchimp_segment

@@ -50,7 +50,7 @@ class FacebookProfile < Timeline
     begin
       Koala::Facebook::API.new(token).get_object('me')
     rescue Koala::Facebook::AuthenticationError => e
-      update_attribute :expires_at, Time.now
+      update_attribute :expires_at, Time.zone.now
       logger.warn e.message
     end
   end
