@@ -53,7 +53,7 @@
             = f.label :ends_at, class: :required do
               | Data de encerramento
               span.has-tip data={tooltip: true} aria-haspopup=true title='Se você atingir a meta até essa data seu Compartlihaço será disparado.'  ?
-            = f.text_field :ends_at, required: true, data:{datetimepicker: true}, disabled: disabled
+            = f.text_field :ends_at, required: true, data:{datetimepicker: true}, value: @campaign.ends_at.present? ? l(@campaign.ends_at, format: :short) : nil, disabled: disabled
           .goal-field
             = f.label(:goal, class: :required) do
               | Meta de apoio
