@@ -9,6 +9,13 @@ namespace :compartilhaco do
     Campaign.unarchived.unshared.ended.succeeded.each { |c| c.share }
   end
 
+  task :send_expiring_alerts => :environment do
+    Campaign.unarchived.expiring.where(delivered_expiring_alert: false).each do |c|
+      Notifier.expiring_campaign_to_creator(c).deliver
+      c.update_attribute :delivered_expiring_alert, true
+    end
+  end
+
   task :send_end_emails => :environment do
     Campaign.unarchived.ended.succeeded.where(end_emails_sent: false).each do |c|
       c.update_attribute :end_emails_sent, true
