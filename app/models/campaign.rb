@@ -21,6 +21,7 @@ class Campaign < ActiveRecord::Base
 
   scope :unshared,   -> { where("shared_at IS NULL") }
   scope :unarchived, -> { where("archived_at IS NULL") }
+  scope :expiring,   -> { where("ends_at <= ? AND ends_at >= ?", Time.zone.now + 3.days, Time.zone.now) }
   scope :upcoming,   -> { where("? < ends_at", Time.zone.now) }
   scope :ended,      -> { where("? >= ends_at", Time.zone.now) }
   scope :succeeded,  -> { where("(

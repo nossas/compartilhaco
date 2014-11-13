@@ -72,6 +72,30 @@ RSpec.describe Campaign, :type => :model do
     end
   end
 
+  describe ".expiring" do
+    context "when there is at least one expiring campaign" do
+      before do
+        Campaign.make! ends_at: 3.days.from_now
+      end
+
+      it "should have one campaign" do
+        expect(Campaign.expiring).to have(1).campaign
+      end
+    end
+
+    context "when there is no expiring campaign" do
+      before do
+        Campaign.make! ends_at: 1.hour.from_now
+        Campaign.make! ends_at: 7.days.from_now
+        allow(Time).to receive(:now).and_return(2.days.from_now)
+      end
+
+      it "should be empty" do
+        expect(Campaign.expiring).to be_empty
+      end
+    end
+  end
+
   describe ".upcoming" do
     context "when there is at least one upcoming campaign" do
       before do
