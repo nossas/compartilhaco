@@ -1,0 +1,11 @@
+p #{@user.name},
+
+p Você já apostou na força da ação coletiva em rede ao criar o Compartilhaço: #{link_to @campaign.title, campaign_url(@campaign)}
+
+p Agora restam só 72 horas para o encerramento de sua campanha, que ainda não bateu sua meta de #{@campaign.goal} perfis emprestados até o dia #{@campaign.ends_at.day} às #{@campaign.ends_at.hour}hs para que seja disparada.
+
+p A partir desse instante, atenção redobrada! O sucesso do seu Compartilhaço depende exclusivamente de você! Cutuque seus amigos mais próximos por chat, busque por grupos ou perfis de pessoas que poderiam se interessar pela sua causa, e chame sua mãe, seu cachorro, sua tia e mostre o quanto a ajuda de cada um deles será fundamental pra que a sua causa impacte milhares de pessoas. Compartilhe agora: #{link_to @campaign.title, campaign_url(@campaign)}
+
+p Você tá quase lá! Run, Forrest, run! \o/
+
+p Equipe Rede Nossas Cidades
