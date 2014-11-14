@@ -72,4 +72,14 @@ class Notifier < ActionMailer::Base
       subject: "Ueba, o Compartilhaço que você criou foi disparado!"
     )
   end
+
+  def expiring_campaign_to_creator campaign
+    @campaign = campaign
+    @user = campaign.user
+    @organization = campaign.organization
+    mail(
+      to: @user.email,
+      subject: "Força, faltam 3 dias e seu Compartilhaço ainda precisa de mais perfis emprestados!"
+    )
+  end
 end
