@@ -96,6 +96,7 @@ class Campaign < ActiveRecord::Base
       )
       self.update_attribute :mailchimp_segment_uid, segment["id"]
     rescue Exception => e
+      puts e
       Rails.logger.error e
     end
   end
@@ -113,6 +114,6 @@ class Campaign < ActiveRecord::Base
   end
 
   def mailchimp_segment_name
-    "CMP - #{self.id.to_s.rjust(4, "0")} - #{self.organization.city} - #{self.title}"[0..99]
+    "CMP - #{self.id.to_s.rjust(4, "0")} - #{self.title}".byteslice(0..99)
   end
 end
