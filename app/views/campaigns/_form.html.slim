@@ -101,6 +101,23 @@
               | História por trás do seu Compartilhaço
               span.has-tip data={tooltip: true} aria-haspopup=true title='Descreva em alguns parágrafos o problema, causa ou mobilização que você quer dar voz. Argumente com dados concretos e mostre a mudança que sua campanha pode causar no mundo.'  ?
             = f.text_area :description, required: true, rows: 3
+  .row
+    .form-title
+      h4 Ao compartilhar a página deste Compartilhaço:
+
+    .meta-form
+      .box
+        .row
+          .meta-title-field
+            = f.label :meta_title, 'Título do compartilhamento'
+            = f.text_field :meta_title
+          .meta-message-field
+            = f.label :meta_message, 'Mensagem do compartilhamento'
+            = f.text_area :meta_message
+          .meta-image-field
+            = f.label :meta_image, 'Imagem do compartilhamento'
+            = f.file_field :meta_image
+            .preview-image= image_tag (@campaign.meta_image.thumb.present? ? @campaign.meta_image.thumb : '')
 
   .row
     .form-title

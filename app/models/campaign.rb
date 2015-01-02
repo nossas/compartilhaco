@@ -8,6 +8,7 @@ class Campaign < ActiveRecord::Base
   belongs_to :category
   belongs_to :mobilization, primary_key: :hashtag, foreign_key: :hashtag
   mount_uploader :image, ImageUploader
+  mount_uploader :meta_image, ImageUploader
   mount_uploader :facebook_image, ImageUploader
 
   validates :ends_at, :share_link, :goal, :organization_id, :user_id, :category_id, :title, :description, :tweet, :new_campaign_spreader_mail, :facebook_title, :facebook_message, :short_description, presence: true
