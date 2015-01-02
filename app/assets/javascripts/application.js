@@ -88,4 +88,11 @@ $(function(){
     reader.onload = function() { $(".campaign-form .preview-image img").attr("src", reader.result) };
     reader.readAsDataURL(file);
   });
+
+  $("#campaign_meta_image").change(function(e){
+    var file = e.target.files[0];
+    var reader = new FileReader();
+    reader.onload = function() { $(".meta-form .preview-image img").attr("src", reader.result) };
+    reader.readAsDataURL(file);
+  });
 });
