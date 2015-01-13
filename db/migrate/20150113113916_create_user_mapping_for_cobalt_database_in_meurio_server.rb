@@ -5,8 +5,8 @@ class CreateUserMappingForCobaltDatabaseInMeurioServer < ActiveRecord::Migration
       CREATE USER MAPPING for #{ENV["DB_USERNAME"]}
       SERVER meurio
       OPTIONS (
-        user      '#{ENV["MEURIO_ACCOUNTS_DBUSER"]}',
-        password  '#{ENV["MEURIO_ACCOUNTS_DBPASS"]}'
+        user      '#{ENV["MEURIO_DBUSER"]}',
+        password  '#{ENV["MEURIO_DBPASS"]}'
       );
       SQL
     end
