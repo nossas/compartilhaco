@@ -1,16 +1,3 @@
-.meurio_header
-  .meurio_apps
-    +grid-column(4)
-  .alert
-    display: none
-  .application_menu
-    +grid-column(8)
-    a.button
-      color: white
-      margin-bottom: 0
-      &:hover
-        text-decoration: none
-
 .row
   +grid-row
 
@@ -51,6 +38,9 @@ h1, h2, h4, div, p
 
 label.required:before
   content: "*"
+
+.clear
+  clear: both
 
 @media #{$medium-down}
   .meurio_header

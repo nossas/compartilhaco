@@ -6,7 +6,7 @@ gem 'rails', '4.1.5'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use jquery as the JavaScript library
@@ -56,7 +56,7 @@ gem 'httparty'
 gem 'faker'
 gem 'carrierwave-aws'
 gem 'meta-tags'
-gem 'meurio_ui'
+gem 'meurio_ui', github: 'meurio/meurio_ui', branch: 'new-header'
 gem 'compass-rails'
 gem 'rack-cas'
 gem 'kaminari'

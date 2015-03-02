@@ -30,8 +30,12 @@ html
               a.close href="#" &times;
 
     - content_for :application_menu do
-      = link_to "Como funciona?", about_path
-      = link_to "Criar Compartilhaço", new_campaign_path, class: [:button, :radius, :large]
+      li= link_to "Como funciona?", about_path
+      li.active
+        = link_to new_campaign_path do
+          span.icon-plus &nbsp;
+          | Criar compartilhaço
+
     = meurio_header_for :compartilhaco
 
     = yield
