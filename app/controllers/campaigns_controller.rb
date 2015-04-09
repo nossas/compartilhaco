@@ -5,7 +5,7 @@ class CampaignsController < ApplicationController
   def index
     @campaigns = Campaign
       .unarchived
-      .upcoming
+      .upcoming_or_shared
       .order(:ends_at)
       .page(params[:page])
       .per(9)
