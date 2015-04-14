@@ -20,11 +20,11 @@ class Campaign < ActiveRecord::Base
   after_create { self.delay.create_mailchimp_segment }
   after_update { self.delay.update_mailchimp_segment }
 
+  scope :shared,             -> { where("shared_at IS NOT NULL") }
   scope :unshared,           -> { where("shared_at IS NULL") }
   scope :unarchived,         -> { where("archived_at IS NULL") }
   scope :expiring,           -> { where("ends_at <= ? AND ends_at >= ?", Time.zone.now + 3.days, Time.zone.now) }
   scope :upcoming,           -> { where("? < ends_at", Time.zone.now) }
-  scope :upcoming_or_shared, -> { where("shared_at IS NOT NULL OR ? < ends_at", Time.zone.now) }
   scope :ended,              -> { where("? >= ends_at", Time.zone.now) }
   scope :succeeded,          -> { where("(
     SELECT count(*)
