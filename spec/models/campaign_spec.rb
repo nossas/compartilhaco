@@ -158,42 +158,20 @@ RSpec.describe Campaign, :type => :model do
     end
   end
 
-  describe ".upcoming_or_shared" do
-    context "when there is only one shared campaign" do
+  describe ".shared" do
+    context "when there is at least one shared campaign" do
       before { Campaign.make! shared_at: Time.now }
 
       it "should have one campaign" do
-        expect(Campaign.upcoming_or_shared).to have(1).campaign
+        expect(Campaign.shared).to have(1).campaign
       end
     end
 
-    context "when there is only one upcoming campaign" do
-      before { Campaign.make! ends_at: 10.days.from_now }
-
-      it "should have one campaign" do
-        expect(Campaign.upcoming_or_shared).to have(1).campaign
-      end
-    end
-
-    context "when there are upcoming and shared campaigns" do
-      before do
-        Campaign.make! ends_at: 10.days.from_now
-        Campaign.make! shared_at: Time.now
-      end
-
-      it "should have two campaigns" do
-        expect(Campaign.upcoming_or_shared).to have(2).campaign
-      end
-    end
-
-    context "when there is no shared or upcoming campaign" do
-      before do
-        Campaign.make! ends_at: 1.day.from_now
-        allow(Time).to receive(:now).and_return(2.days.from_now)
-      end
+    context "when there is no shared campaign" do
+      before { Campaign.make! }
 
       it "should be empty" do
-        expect(Campaign.upcoming_or_shared).to be_empty
+        expect(Campaign.shared).to be_empty
       end
     end
   end
