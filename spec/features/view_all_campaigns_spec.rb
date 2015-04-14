@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "View all campains", :type => :feature do
+feature "View all campaigns", :type => :feature do
   context "when there is no campaign" do
     it "should show an empty list" do
       visit root_path
