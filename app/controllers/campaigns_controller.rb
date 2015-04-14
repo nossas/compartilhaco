@@ -5,10 +5,16 @@ class CampaignsController < ApplicationController
   def index
     @campaigns = Campaign
       .unarchived
-      .upcoming_or_shared
+      .upcoming
       .order(:ends_at)
       .page(params[:page])
       .per(9)
+    
+    @shared_campaigns = Campaign
+      .unarchived
+      .shared
+      .order("random()")
+      .limit(3)
   end
 
   def show
