@@ -14,7 +14,7 @@ class CampaignsController < ApplicationController
       .unarchived
       .shared
       .order("random()")
-      .limit(3)
+      .limit(6)
   end
 
   def show
