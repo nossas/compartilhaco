@@ -14,7 +14,7 @@ class CampaignSpreadersController < ApplicationController
       email: @campaign_spreader_params["timeline"]["user"]["email"],
       ip: request.remote_ip,
       password: SecureRandom.hex,
-      organization_id: @campaign.organization_id
+      organization_id: @campaign.organization_id.to_s
     )
   end
 
