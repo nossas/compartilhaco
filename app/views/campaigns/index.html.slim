@@ -32,11 +32,20 @@ ul.about-orbit data={orbit: true, options: "slide_number:false; resume_on_mouseo
       p
         small= link_to "Saiba mais", about_path
 
+- if @shared_campaigns.any?
+  .row
+    .campaigns-list-title
+      h3 Compartilhaços vitoriosos
+
+  #shared-campaigns-list.campaigns-list
+    .row      
+      = render @shared_campaigns
+
 .row
   .campaigns-list-title
     h3 Ajude um compartilhaço em sua reta final!
 
-.campaigns-list
+#campaigns-list.campaigns-list
   .row
     - if @campaigns.empty?
       .empty Nenhum compartilhaço encontrado

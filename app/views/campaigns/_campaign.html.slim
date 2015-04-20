@@ -1,7 +1,10 @@
 .campaign id="campaign-#{campaign.id}"
-  .ends-at
+  .ends-at class="#{campaign.shared_at.present? ? 'shared' : ''}"
     .icon-clock2
-      span Faltam #{distance_of_time_in_words_to_now campaign.ends_at}
+      - if campaign.shared_at.present?
+        span Disparado há #{distance_of_time_in_words_to_now campaign.ends_at}
+      - else
+        span Faltam #{distance_of_time_in_words_to_now campaign.ends_at}
   = link_to image_tag(campaign.image.thumb), campaign
   .box
     .title-wraper

@@ -56,10 +56,10 @@ $(function(){
     return false;
   });
 
-  $(".campaigns-list .row").infinitescroll({
+  $("#campaigns-list .row").infinitescroll({
     navSelector: "nav.pagination",
     nextSelector: "nav.pagination a[rel=next]",
-    itemSelector: ".campaigns-list .row .campaign",
+    itemSelector: "#campaigns-list .row .campaign",
     loading: {finishedMsg: null, msgText: "Carregando..."}
   });
 

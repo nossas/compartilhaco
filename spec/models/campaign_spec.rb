@@ -158,6 +158,24 @@ RSpec.describe Campaign, :type => :model do
     end
   end
 
+  describe ".shared" do
+    context "when there is at least one shared campaign" do
+      before { Campaign.make! shared_at: Time.now }
+
+      it "should have one campaign" do
+        expect(Campaign.shared).to have(1).campaign
+      end
+    end
+
+    context "when there is no shared campaign" do
+      before { Campaign.make! }
+
+      it "should be empty" do
+        expect(Campaign.shared).to be_empty
+      end
+    end
+  end
+
   describe ".unarchived" do
     context "when there is at least one unarchived campaign" do
       before { Campaign.make! }

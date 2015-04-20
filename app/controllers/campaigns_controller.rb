@@ -9,6 +9,12 @@ class CampaignsController < ApplicationController
       .order(:ends_at)
       .page(params[:page])
       .per(9)
+    
+    @shared_campaigns = Campaign
+      .unarchived
+      .shared
+      .order("random()")
+      .limit(6)
   end
 
   def show
