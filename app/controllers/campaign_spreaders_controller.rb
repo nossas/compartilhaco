@@ -6,13 +6,15 @@ class CampaignSpreadersController < ApplicationController
   before_filter only: [:create_for_facebook_profile_callback, :create_for_twitter_profile_callback] do
     @auth_params = request.env['omniauth.auth']
     @campaign_spreader_params = session.delete(:campaign_spreader)
+    @campaign = Campaign.find(@campaign_spreader_params["campaign_id"])
 
     @user = current_user || User.find_by_email(@campaign_spreader_params["timeline"]["user"]["email"]) || User.create(
       first_name: @auth_params[:info][:first_name] || @auth_params[:info][:name].split(" ")[0],
       last_name: @auth_params[:info][:last_name] || @auth_params[:info][:name].split(" ")[-1],
       email: @campaign_spreader_params["timeline"]["user"]["email"],
       ip: request.remote_ip,
-      password: SecureRandom.hex
+      password: SecureRandom.hex,
+      organization_id: @campaign.organization_id
     )
   end
 
