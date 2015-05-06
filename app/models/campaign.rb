@@ -91,9 +91,9 @@ class Campaign < ActiveRecord::Base
 
   def create_mailchimp_segment
     begin
-      segments = Gibbon::API.lists.segments(id: self.organization.mailchimp_list_id)
+      segments = Gibbon::API.lists.segments(id: ENV["MAILCHIMP_LIST_ID"])
       segment = segments["static"].select{|s| s["name"] == mailchimp_segment_name}.first || Gibbon::API.lists.segment_add(
-        id: self.organization.mailchimp_list_id,
+        id: ENV["MAILCHIMP_LIST_ID"],
         opts: { type: "static", name: mailchimp_segment_name }
       )
       self.update_attribute :mailchimp_segment_uid, segment["id"]
@@ -106,7 +106,7 @@ class Campaign < ActiveRecord::Base
   def update_mailchimp_segment
     begin
       Gibbon::API.lists.segment_update(
-        id: self.organization.mailchimp_list_id,
+        id: ENV["MAILCHIMP_LIST_ID"],
         seg_id: self.mailchimp_segment_uid,
         opts: { name: mailchimp_segment_name }
       )
