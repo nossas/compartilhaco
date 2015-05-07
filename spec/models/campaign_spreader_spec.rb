@@ -51,10 +51,7 @@ RSpec.describe CampaignSpreader, :type => :model do
         "#{ENV["ACCOUNTS_HOST"]}/users/#{subject.timeline.user_id}/segment_subscriptions.json",
         body: {
           token: ENV["ACCOUNTS_API_TOKEN"],
-          segment_subscription: {
-            organization_id: subject.campaign.organization_id,
-            segment_id: subject.campaign.mailchimp_segment_uid
-          }
+          segment_subscription: { segment_id: subject.campaign.mailchimp_segment_uid }
         }.to_json,
         headers: { 'Content-Type' => 'application/json' }
       )

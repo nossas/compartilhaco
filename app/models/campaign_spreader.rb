@@ -24,10 +24,7 @@ class CampaignSpreader < ActiveRecord::Base
 
     body = {
       token: ENV["ACCOUNTS_API_TOKEN"],
-      segment_subscription: {
-        organization_id: campaign.organization_id,
-        segment_id: campaign.mailchimp_segment_uid
-      }
+      segment_subscription: { segment_id: campaign.mailchimp_segment_uid }
     }
 
     HTTParty.post(url, body: body.to_json, headers: { 'Content-Type' => 'application/json' })
