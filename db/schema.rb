@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 20150508152848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pg_trgm"
 
   create_table "categories", force: true do |t|
     t.datetime "created_at"
@@ -135,8 +134,6 @@ ActiveRecord::Schema.define(version: 20150508152848) do
     t.boolean "admin"
     t.string  "password"
     t.integer "organization_id"
-    t.index ["organization_id"], :name => "fk__users_organization_id"
-    t.foreign_key ["organization_id"], "organizations", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_users_organization_id"
   end
 
 end
