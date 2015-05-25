@@ -28,7 +28,7 @@ ul.about-orbit data={orbit: true, options: "slide_number:false; resume_on_mouseo
   .row
     .wrapper
       h3 Quer dar voz a esse coro?
-      p= link_to "Crie um Compartilhaço", new_campaign_path, class: [:button, :radius, :large]
+      p= link_to "Crie um Compartilhaço", new_campaign_path, class: [:button, :radius, :large, :secondary]
       p
         small= link_to "Saiba mais", about_path
 
@@ -38,7 +38,7 @@ ul.about-orbit data={orbit: true, options: "slide_number:false; resume_on_mouseo
       h3 Compartilhaços vitoriosos
 
   #shared-campaigns-list.campaigns-list
-    .row      
+    .row
       = render @shared_campaigns
 
 .row
