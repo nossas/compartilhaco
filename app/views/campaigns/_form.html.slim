@@ -88,7 +88,7 @@
               span.has-tip data={tooltip: true} aria-haspopup=true title="Ajude as pessoas a encontrarem sua campanha."  ?
             = f.collection_select(:category_id, Category.order(:name).all, :id, :name, {include_blank: "Escolha uma categoria"}, required: true)
           .image-field
-            = f.label :image, 'Imagem', class: :required
+            = f.label :image, 'Imagem (900x400)', class: :required
             = f.file_field(:image, required: !@campaign.image.thumb.present?)
             .preview-image= image_tag (@campaign.image.thumb.present? ? @campaign.image.thumb : '')
           .short-description-field
