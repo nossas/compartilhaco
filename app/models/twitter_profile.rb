@@ -22,6 +22,8 @@ class TwitterProfile < Timeline
       campaign_spreader.update_attribute :uid, result.id
     rescue Exception => e
       puts e.message
+      Appsignal.add_exception e
+      logger.warn e.message
     end
   end
 

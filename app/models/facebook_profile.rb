@@ -52,6 +52,7 @@ class FacebookProfile < Timeline
     rescue Koala::Facebook::AuthenticationError => e
       update_attribute :expires_at, Time.zone.now
       logger.warn e.message
+      Appsignal.add_exception e
     end
   end
 

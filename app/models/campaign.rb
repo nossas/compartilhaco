@@ -100,6 +100,7 @@ class Campaign < ActiveRecord::Base
     rescue Exception => e
       puts e
       Rails.logger.error e
+      Appsignal.add_exception e
     end
   end
 
@@ -112,6 +113,7 @@ class Campaign < ActiveRecord::Base
       )
     rescue Exception => e
       Rails.logger.error e
+      Appsignal.add_exception e
     end
   end
 
