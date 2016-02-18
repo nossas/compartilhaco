@@ -19,6 +19,10 @@
 //= require_tree .
 
 $(function(){
+  var options = {};
+  var instM = $('[data-remodal-id=modal]').remodal(options);
+  instM.open();
+
   $(document).foundation();
 
   $('[data-datetimepicker]').datetimepicker({
