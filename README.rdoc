@@ -1,32 +1,18 @@
-{<img src="https://travis-ci.org/meurio/compartilhaco.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/meurio/compartilhaco]
+{<img src="https://travis-ci.org/ourcities/compartilhaco.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/meurio/compartilhaco]
 {<img src="https://coveralls.io/repos/meurio/compartilhaco/badge.png" alt="Coverage Status" />}[https://coveralls.io/r/meurio/compartilhaco]
 {<img src="https://codeclimate.com/github/meurio/compartilhaco/badges/gpa.svg" />}[https://codeclimate.com/github/meurio/compartilhaco]
 
-== README
+Querido voluntário,
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Nas próximas semanas, o Multitude será desativado e queríamos explicar para você o motivo dessa decisão. Primeiro, fique tranquilo: vamos continuar oferecendo oportunidades de ação de para nossos membros. No entanto, o Multitude como você conhece vai acabar, e o motivo é bem simples: desenvolvemos um jeito mais rápido e prático de conectar os cidadãos com as causas de seu interesse. Agora, você só precisa preencher seu perfil na rede, que nossa equipe vai selecionar e enviar as melhores oportunidades de ação diretamente pra você, por email! Simples, não é?
 
-Things you may want to cover:
+Caso tenha alguma dúvida ou sugestão, mande um email para {contato@nossascidades.org}[mailto:contato@nossascidades.org] ou visite nosso site: {Nossas Cidades}[http://www.nossascidades.org].
 
-* Ruby version
+== Setup
+=== DISCLAIMER: This project is no longer maintained.
 
-* System dependencies
+1. Install Ruby on Rails
+2. Edit config/database.yml
+3. Run bundle exec rake db:create db:migrate db:test:prepare
+4. Run rails s and access http://localhost:3000
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
