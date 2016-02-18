@@ -2,11 +2,17 @@
 {<img src="https://coveralls.io/repos/meurio/compartilhaco/badge.png" alt="Coverage Status" />}[https://coveralls.io/r/meurio/compartilhaco]
 {<img src="https://codeclimate.com/github/meurio/compartilhaco/badges/gpa.svg" />}[https://codeclimate.com/github/meurio/compartilhaco]
 
-Querido voluntário,
+Querido membro,
 
-Nas próximas semanas, o Multitude será desativado e queríamos explicar para você o motivo dessa decisão. Primeiro, fique tranquilo: vamos continuar oferecendo oportunidades de ação de para nossos membros. No entanto, o Multitude como você conhece vai acabar, e o motivo é bem simples: desenvolvemos um jeito mais rápido e prático de conectar os cidadãos com as causas de seu interesse. Agora, você só precisa preencher seu perfil na rede, que nossa equipe vai selecionar e enviar as melhores oportunidades de ação diretamente pra você, por email! Simples, não é?
+Nas próximas semanas, o Compartilhaço será desativado. Nós poderíamos escrever um longo texto para introduzir essa notícia, mas não gostamos de enrolação ;). Nos últimos meses, após uma série de mudanças nos algoritmos das redes sociais, percebemos que esta ferramenta não estava mais garantindo o impacto e a visibilidade prometidas às postagens. Diante desse cenário entendemos que não fazia mais sentido manter o Compartilhaço no ar.
 
-Caso tenha alguma dúvida ou sugestão, mande um email para {contato@nossascidades.org}[mailto:contato@nossascidades.org] ou visite nosso site: {Nossas Cidades}[http://www.nossascidades.org].
+Para nós é muito difícil dar adeus a uma ferramenta tão bacana quanto esta, que ajudou mais de 150 mobilizações a ampliarem seu impacto em quase 2 anos. No entanto, ficamos tranquilos em fazer isso acompanhado de duas boas notícias:
+
+Neste momento, nossa equipe já está desenvolvendo novas tecnologias de mobilização social de ponta, que prometem causar muito rebuliço. Estamos muito empolgados com isso, e temos certeza que você também vai adorar as novidades :)
+Existe uma ferramenta semelhante ao compartilhaço, o {Thunderclap}[], que tem uma versão em português. Ou seja, você vai continuar podendo sincronizar suas postagens!
+
+Por enquanto é isso, mas como sempre, estamos à disposição para conversar quando quiser. É só mandar um email para {contato@nossascidades.org}[mailto:contato@nossascidades.org] ou visite nosso site: {Nossas Cidades}[http://www.nossascidades.org].
+
 
 == Setup
 === DISCLAIMER: This project is no longer maintained.
