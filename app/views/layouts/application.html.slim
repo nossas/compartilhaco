@@ -14,6 +14,26 @@ html
     = favicon_link_tag 'favicon.png'
 
   body class=[controller.controller_name, controller.action_name]
+    div.remodal data-remodal-id="modal"
+      button.remodal-close data-remodal-action="close"
+      p Querido membro,
+
+      p Nas próximas semanas, o Compartilhaço será desativado. Nós poderíamos escrever um longo texto para introduzir essa notícia, mas não gostamos de enrolação ;). Nos últimos meses, após uma série de mudanças nos algoritmos das redes sociais, percebemos que esta ferramenta não estava mais garantindo o impacto e a visibilidade prometidas às postagens. Diante desse cenário entendemos que não fazia mais sentido manter o Compartilhaço no ar.
+
+      p Para nós é muito difícil dar adeus a uma ferramenta tão bacana quanto esta, que ajudou mais de 150 mobilizações a ampliarem seu impacto em quase 2 anos. No entanto, ficamos tranquilos em fazer isso acompanhado de duas boas notícias:
+
+      p
+        | Neste momento, nossa equipe já está desenvolvendo novas tecnologias de mobilização social de ponta, que prometem causar muito rebuliço. Estamos muito empolgados com isso, e temos certeza que você também vai adorar as novidades :)&nbsp;
+        | Existe uma ferramenta semelhante ao compartilhaço, o&nbsp;
+        a href="https://www.thunderclap.it/pt" Thunderclap
+        | , que tem uma versão em português. Ou seja, você vai continuar podendo sincronizar suas postagens!
+
+      p
+        | Por enquanto é isso, mas como sempre, estamos à disposição para conversar quando quiser. É só mandar um email para contato&nbsp;
+        a href="mailto:contato@nossascidades.org" contato@nossascidades.org&nbsp;
+        | ou visitar nosso site: &nbsp;
+        a href="www.nossascidades.org" www.nossascidades.org
+
     #fb-root
 
     .flash-messages
@@ -32,8 +52,8 @@ html
     - content_for :application_menu do
       li= link_to "Como funciona?", about_path
       li.active
-        = link_to new_campaign_path do
-          span.icon-plus &nbsp;
+        = link_to '#' do
+          span.icon-plus.disabled &nbsp;
           | Criar compartilhaço
 
     = meurio_header_for :compartilhaco
