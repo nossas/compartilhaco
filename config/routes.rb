@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: 'campaigns#index'
 
-  resources :campaigns do
+  resources :campaigns, except: [:new, :create] do
     member do
       get 'images/:trash', to: 'campaigns#serve_image', as: :serve_image
       patch :archive, to: "campaigns#archive"
